@@ -1,4 +1,3 @@
-import React from 'react'
 import estilo from './Container.module.css'
 
 const Container = (props) => {
