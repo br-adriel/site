@@ -1,10 +1,10 @@
-import React from "react";
+import Container from "./Container";
 import estilo from "./Section.module.css";
 
 const Section = (props) => {
   return (
     <section id={props.id} className={estilo.section}>
-      {props.children}
+      <Container>{props.children}</Container>
     </section>
   );
 };
