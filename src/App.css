@@ -1,0 +1,42 @@
+:root {
+  font-size: 16px;
+  --primario: #4574cb;
+  --primario-alt: #5386e4;
+  --secundario: #8f2d56;
+  --fundo: #fff;
+  --fundo-alt: #eee;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: var(--fundo);
+}
+
+div,
+section,
+footer,
+nav {
+  max-width: 100%;
+}
+
+a {
+  color: var(--primario);
+  text-decoration: none;
+}
+
+a:hover {
+  color: var(--primario-alt);
+}
+
+a:active {
+  color: var(--secundario);
+}
+
+a:visited {
+  color: var(--primario);
+}
