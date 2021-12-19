@@ -6,7 +6,7 @@ import {
   faLinkedinIn,
 } from "@fortawesome/free-brands-svg-icons";
 import estilo from "./BarraSocial.module.css";
-import ItemSocial from './ItemSocial'
+import ItemSocial from "./ItemSocial";
 
 const BarraSocial = (props) => {
   const itensSociais = [
@@ -42,7 +42,9 @@ const BarraSocial = (props) => {
     );
   };
   return (
-    <div className={estilo["barra-social"]}>{itensSociais.map(renderizaItens)}</div>
+    <div className={estilo["barra-social"]}>
+      {itensSociais.map(renderizaItens)}
+    </div>
   );
 };
 

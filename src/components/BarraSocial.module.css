@@ -4,6 +4,7 @@
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
+  margin: 1.5rem 0;
 }
 
 /* Tablet em modo retrato e acima */
