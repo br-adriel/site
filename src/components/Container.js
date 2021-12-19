@@ -1,12 +1,7 @@
-import estilo from './Container.module.css'
+import estilo from "./Container.module.css";
 
 const Container = (props) => {
-  const 
-  return (
-    <div className={estilo.container}>
-      {props.children}
-    </div>
-  )
-}
+  return <div className={estilo.container}>{props.children}</div>;
+};
 
-export default Container
+export default Container;
