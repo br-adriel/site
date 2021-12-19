@@ -1,0 +1,14 @@
+.barra-social {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+/* Tablet em modo retrato e acima */
+@media screen and (min-width: 600px) {
+  .barra-social {
+    justify-content: flex-start;
+  }
+}
