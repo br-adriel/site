@@ -1,0 +1,17 @@
+.container {
+  width: 100%;
+  max-width: 1200px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Tablet em modo paisagem e acima */
+@media screen and (min-width: 900px) {
+  .container {
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+  }
+}
