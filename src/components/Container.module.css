@@ -6,17 +6,56 @@
   justify-content: center;
   align-items: center;
   padding: 0 1rem;
+  margin: 4rem 0;
 }
 
 .container.col-reverse {
   flex-direction: column-reverse;
 }
 
+.container > div {
+  margin: 2rem 0;
+}
+
+.container > div {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.container img {
+  width: 100%;
+  max-width: 600px;
+  height: auto;
+}
+
+/* Celular */
+@media screen and (max-width: 599px) {
+  .container h1,
+  .container h2,
+  .container h3,
+  .container p {
+    text-align: center;
+  }
+}
+
+/* Tablet na vertical */
+@media screen and (width > 600px) {
+}
+
 /* Tablet em modo paisagem e acima */
 @media screen and (min-width: 900px) {
-  .container {
+  .container,
+  .container.col-reverse {
     flex-direction: row;
     justify-content: space-around;
     align-items: center;
+  }
+
+  .container > div {
+    align-items: flex-start;
+    width: 50%;
   }
 }

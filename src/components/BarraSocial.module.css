@@ -7,8 +7,8 @@
   margin: 1.5rem 0;
 }
 
-/* Tablet em modo retrato e acima */
-@media screen and (min-width: 600px) {
+/* Tablet em modo paisagem e acima */
+@media screen and (min-width: 900px) {
   .barra-social {
     justify-content: flex-start;
   }
