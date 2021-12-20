@@ -1,0 +1,18 @@
+.habilidade {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 20%;
+  margin: 0.5rem;
+  background: var(--fundo-alt);
+  border-radius: 0.2rem;
+  padding: 1rem;
+  box-shadow: none;
+  transition: 0.3s width;
+}
+
+.nome {
+  font-size: 0.9rem;
+  text-align: center;
+}
