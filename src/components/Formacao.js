@@ -1,6 +1,7 @@
 import ItemFormacao from "./ItemFormacao";
 import Section from "./Section";
 import imgFormacao from "./../img/formacao.svg";
+import estilo from "./Formacao.module.css";
 
 const Formacao = () => {
   const formacoes = [
@@ -37,7 +38,9 @@ const Formacao = () => {
         </div>
         <div>
           <h2>Formação acadêmica</h2>
-          {formacoes.map(renderizarFormacoes)}
+          <div className={estilo.formacoes}>
+            {formacoes.map(renderizarFormacoes)}
+          </div>
         </div>
       </Section>
     </>
