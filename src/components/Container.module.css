@@ -37,13 +37,22 @@
   .container h1,
   .container h2,
   .container h3,
-  .container p {
+  .container p,
+  .container ul {
     text-align: center;
+  }
+
+  .container ul {
+    list-style-type: none;
+    margin: 0;
   }
 }
 
 /* Tablet na vertical */
 @media screen and (width > 600px) {
+  .container {
+    padding: 0 8%;
+  }
 }
 
 /* Tablet em modo paisagem e acima */
