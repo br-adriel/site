@@ -1,0 +1,37 @@
+.experiencia {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  margin-bottom: 1.5rem;
+}
+
+.titulo {
+  font-family: "Lato", sans-serif;
+  font-size: 1.4rem;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+
+.data {
+  font-size: 1rem;
+  font-style: italic;
+  margin-bottom: 0.5rem;
+}
+
+.responsabilidade {
+  font-size: 1.1rem;
+}
+
+.tarefas {
+  list-style: square;
+  margin-left: 1rem;
+}
+
+.titulo,
+.data,
+.responsabilidade,
+.tarefas {
+  width: 100%;
+}
