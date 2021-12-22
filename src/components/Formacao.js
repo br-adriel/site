@@ -37,7 +37,7 @@ const Formacao = () => {
           <img src={imgFormacao} alt="" />
         </div>
         <div>
-          <h2>Formação acadêmica</h2>
+          <h2 className={estilo.titulo}>Formação acadêmica</h2>
           <div className={estilo.formacoes}>
             {formacoes.map(renderizarFormacoes)}
           </div>

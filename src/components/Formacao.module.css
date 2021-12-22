@@ -1,7 +1,11 @@
 .formacoes {
-  width: 85%;
+  width: 100%;
   display: flex;
   justify-content: flex-start;
   align-items: center;
   flex-wrap: wrap;
+}
+
+.titulo {
+  margin-bottom: 1rem;
 }
