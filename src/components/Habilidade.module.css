@@ -8,11 +8,10 @@
   background: var(--fundo-alt);
   border-radius: 0.2rem;
   padding: 1rem;
-  box-shadow: none;
-  transition: 0.3s width;
 }
 
 .nome {
+  margin-top: 0.5rem;
   font-size: 0.9rem;
   text-align: center;
 }
