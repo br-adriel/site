@@ -1,0 +1,61 @@
+.projeto {
+  width: 100%;
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  background: var(--fundo-alt);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 0.1rem 0.3rem rgba(0, 0, 0, 0.2);
+}
+
+.projeto img {
+  width: 100%;
+  border-radius: 0.3rem;
+}
+
+.barra {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 0.5rem;
+  padding: 0.25rem;
+}
+
+.titulo {
+  font-size: 1.5rem;
+}
+
+.acoes {
+  display: flex;
+  justify-content: space-between;
+}
+
+.acoes a {
+  background: var(--primario);
+  color: var(--fundo);
+  padding: 0.5rem;
+  margin-left: 0.5rem;
+  border-radius: 0.3rem;
+  transition: background 0.3s, color 0.3s;
+}
+
+.acoes a:hover {
+  background: var(--primario-alt);
+}
+
+/* Tablet na vertical */
+@media screen and (min-width: 600px) {
+  .projeto {
+    width: 50%;
+  }
+}
+
+/* Tablet na horizontal */
+@media screen and (min-width: 900px) {
+  .projeto {
+    width: 30%;
+  }
+}
