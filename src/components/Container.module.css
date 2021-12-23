@@ -70,3 +70,10 @@
     width: 50%;
   }
 }
+
+/* Desktop e maiores */
+@media screen and (min-width: 1280px) {
+  .container {
+    padding: 0;
+  }
+}
