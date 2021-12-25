@@ -1,19 +1,12 @@
 .footer {
-  padding: 2rem;
+  padding: 1rem;
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-bottom: 5rem;
+  margin-bottom: 4rem;
 }
 
 .footer p {
   font-size: 0.9em;
   text-align: center;
-}
-
-/* Tablet na horizontal */
-@media screen and (min-width: 900px) {
-  .footer {
-    margin-bottom: 0;
-  }
 }
