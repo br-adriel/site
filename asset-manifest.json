@@ -1,0 +1,25 @@
+{
+  "files": {
+    "main.css": "/site/static/css/main.f7e59504.css",
+    "main.js": "/site/static/js/main.a9abd1db.js",
+    "static/media/documentation.jpg": "/site/static/media/documentation.0bde84a548df7b7d3542.jpg",
+    "static/media/trailerflix.jpg": "/site/static/media/trailerflix.b57347d6c02e75909b33.jpg",
+    "static/media/survey-form.jpg": "/site/static/media/survey-form.46fdfe053e7a05728bd7.jpg",
+    "static/media/landing-page.jpg": "/site/static/media/landing-page.b757ed19a4458f0d5221.jpg",
+    "static/media/experiencias.svg": "/site/static/media/experiencias.29cf84357ca35219051f4c60ee1b4c29.svg",
+    "static/media/home.svg": "/site/static/media/home.e4dab8573c08a07c25fd285b5634f345.svg",
+    "static/media/habilidades.svg": "/site/static/media/habilidades.d784bc94d8ebfaa3ff910f594dce25e4.svg",
+    "static/media/markdown.jpg": "/site/static/media/markdown.aa558814ad87a19e16c1.jpg",
+    "static/media/drum-machine.jpg": "/site/static/media/drum-machine.19673c799e65a653632b.jpg",
+    "static/media/citacoes.jpg": "/site/static/media/citacoes.b3df6d9a734fc1c9b4a0.jpg",
+    "static/media/jogo-cobra.jpg": "/site/static/media/jogo-cobra.330c2fe806f1178d8771.jpg",
+    "static/media/formacao.svg": "/site/static/media/formacao.708ba59e5c0b498f4399eb64c6f39247.svg",
+    "index.html": "/site/index.html",
+    "main.f7e59504.css.map": "/site/static/css/main.f7e59504.css.map",
+    "main.a9abd1db.js.map": "/site/static/js/main.a9abd1db.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.f7e59504.css",
+    "static/js/main.a9abd1db.js"
+  ]
+}
