@@ -4,6 +4,7 @@ import Formacao from "./components/Formacao";
 import Habilidades from "./components/Habilidades";
 import Experiencias from "./components/Experiencias";
 import Portfolio from "./components/Portfolio.js";
+import Footer from "./components/Footer";
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
       <Habilidades />
       <Experiencias />
       <Portfolio />
+      <Footer />
     </>
   );
 }
