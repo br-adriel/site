@@ -72,7 +72,7 @@ const Portfolio = (props) => {
     );
   };
   return (
-    <section id="porfolio" className={estilo.section}>
+    <section id="portfolio" className={estilo.section}>
       <div className={estilo.container}>
         <h2 className={estilo.titulo}>Portfólio</h2>
         <div className={estilo.portfolio}>{projetos.map(renderProjetos)}</div>
