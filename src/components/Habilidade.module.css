@@ -3,7 +3,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 20%;
+  width: 30%;
   margin: 0.5rem;
   background: var(--fundo-alt);
   border-radius: 0.2rem;
@@ -14,4 +14,11 @@
   margin-top: 0.5rem;
   font-size: 0.9rem;
   text-align: center;
+}
+
+/* Tablet em modo paisagem e acima */
+@media screen and (min-width: 900px) {
+  .habilidade {
+    width: 20%;
+  }
 }
