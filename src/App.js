@@ -3,6 +3,7 @@ import Home from "./components/Home";
 import Formacao from "./components/Formacao";
 import Habilidades from "./components/Habilidades";
 import Experiencias from "./components/Experiencias";
+import Portfolio from "./components/Portfolio.js";
 
 function App() {
   return (
@@ -11,6 +12,7 @@ function App() {
       <Formacao />
       <Habilidades />
       <Experiencias />
+      <Portfolio />
     </>
   );
 }
