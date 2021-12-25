@@ -13,6 +13,7 @@
 .projeto img {
   width: 100%;
   border-radius: 0.3rem;
+  flex-grow: 1;
 }
 
 .barra {
@@ -44,18 +45,4 @@
 
 .acoes a:hover {
   background: var(--primario-alt);
-}
-
-/* Tablet na vertical */
-@media screen and (min-width: 600px) {
-  .projeto {
-    width: 50%;
-  }
-}
-
-/* Tablet na horizontal */
-@media screen and (min-width: 900px) {
-  .projeto {
-    width: 30%;
-  }
 }
