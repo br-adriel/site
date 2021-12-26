@@ -19,6 +19,13 @@
 /* Tablet em modo paisagem e acima */
 @media screen and (min-width: 900px) {
   .habilidade {
+    width: 25%;
+  }
+}
+
+/* PC e acima */
+@media screen and (min-width: 1280px) {
+  .habilidade {
     width: 20%;
   }
 }
