@@ -1,6 +1,7 @@
 .formacao {
   margin: 0.5rem 0;
   width: 100%;
+  text-align: center;
 }
 
 .titulo,
@@ -21,4 +22,11 @@
 
 .data {
   font-style: italic;
+}
+
+/* Tablet em modo paisagem e acima */
+@media screen and (min-width: 900px) {
+  .formacao {
+    text-align: left;
+  }
 }

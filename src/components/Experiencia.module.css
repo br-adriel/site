@@ -5,6 +5,7 @@
   justify-content: flex-start;
   align-items: flex-start;
   margin-bottom: 1.5rem;
+  text-align: center;
 }
 
 .titulo {
@@ -27,4 +28,18 @@
 .tarefas {
   list-style: square;
   margin-left: 1rem;
+}
+
+.titulo,
+.data,
+.responsabilidade,
+.tarefas {
+  width: 100%;
+}
+
+/* Tablet em modo paisagem e acima */
+@media screen and (min-width: 900px) {
+  .experiencia {
+    text-align: left;
+  }
 }
