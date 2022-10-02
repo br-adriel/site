@@ -3,6 +3,7 @@ import { createGlobalStyle } from 'styled-components';
 const GlobalStyle = createGlobalStyle`
   :root {
     font-size: 16px;
+    accent-color: #3a8bff;
   }
 
   * {
@@ -13,6 +14,16 @@ const GlobalStyle = createGlobalStyle`
 
   body {
     font-family: 'Outfit', sans-serif;
+    scrollbar-width: none;
+  }
+
+  ::-webkit-scrollbar {
+    display: none;
+  }
+
+  ::selection {
+    color: #fff;
+    background: #3a8bff;
   }
 
   #root {
@@ -21,6 +32,7 @@ const GlobalStyle = createGlobalStyle`
     display: flex;
     flex-direction: column;
     align-items: center;
+    background: #fdfeff;
   }
 
   h1 {
