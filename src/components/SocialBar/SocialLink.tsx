@@ -4,11 +4,17 @@ import styled from 'styled-components';
 interface Props {
   icon: any;
   link: string;
+  title?: string;
 }
 
-const SocialLink: React.FC<Props> = ({ link, icon }) => {
+const SocialLink: React.FC<Props> = ({ link, icon, title }) => {
   return (
-    <LinkTag href={link} target='_blank' rel='noopener noreferrer'>
+    <LinkTag
+      href={link}
+      target='_blank'
+      rel='noopener noreferrer'
+      title={title}
+    >
       {icon}
     </LinkTag>
   );
