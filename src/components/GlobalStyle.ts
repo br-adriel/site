@@ -1,9 +1,10 @@
 import { createGlobalStyle } from 'styled-components';
+import { ITheme } from './ThemeSwitch/Themes';
 
 const GlobalStyle = createGlobalStyle`
   :root {
     font-size: 16px;
-    accent-color: #3a8bff;
+    accent-color: ${({ theme }: { theme: ITheme }) => theme.primary};
   }
 
   * {
@@ -32,7 +33,9 @@ const GlobalStyle = createGlobalStyle`
     display: flex;
     flex-direction: column;
     align-items: center;
-    background: #fdfeff;
+    background: ${({ theme }: { theme: ITheme }) => theme.bg};
+    color: ${({ theme }: { theme: ITheme }) => theme.color};
+    transition: background .3s ease-in-out;
   }
 
   h1 {
@@ -43,6 +46,19 @@ const GlobalStyle = createGlobalStyle`
   h2 {
     font-size: 2rem;
     font-weight: 500;
+  }
+
+  button {
+    padding: 10px;
+    border-radius: 5px;
+    background: ${({ theme }: { theme: ITheme }) => theme.primary};
+    color: #fff;
+    cursor: pointer;
+    transition: background .3s ease-in-out;
+
+    &:hover {
+      background: ${({ theme }: { theme: ITheme }) => theme.secondary}
+    }
   }
 `;
 
