@@ -21,7 +21,7 @@ const SocialLink: React.FC<Props> = ({ link, icon, title }) => {
 };
 
 const LinkTag = styled.a`
-  font-size: 35px;
+  font-size: 30px;
   width: 55px;
   height: 55px;
   padding: 10px;
