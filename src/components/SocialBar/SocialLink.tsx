@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { ITheme } from '../ThemeSwitch/Themes';
 
 interface Props {
   icon: any;
@@ -27,7 +28,7 @@ const LinkTag = styled.a`
   padding: 10px;
   text-decoration: none;
   color: #fff;
-  background: #3a86ff;
+  background: ${({ theme }: { theme: ITheme }) => theme.primary};
   display: flex;
   justify-content: center;
   align-items: center;
@@ -35,7 +36,7 @@ const LinkTag = styled.a`
   transition: 0.3s background ease-in-out;
 
   &:hover {
-    background: #8338ec;
+    background: ${({ theme }: { theme: ITheme }) => theme.secondary};
   }
 `;
 
