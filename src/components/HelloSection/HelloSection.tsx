@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { At, Github, Linkedin } from 'react-bootstrap-icons';
+import { Github, Linkedin } from 'react-bootstrap-icons';
 import desktop_img from '../../assets/img/home_desktop.svg';
 import SocialBar from '../SocialBar';
 import * as S from './HelloSection.style';
@@ -17,12 +17,6 @@ const HelloSection = () => {
       icon: <Linkedin />,
       link: 'https://linkedin.com/in/adriel-fsantos',
       title: 'Linkedin',
-    },
-    {
-      id: 3,
-      icon: <At />,
-      link: 'mailto:adriel.fsantos@outlook.com',
-      title: 'Email',
     },
   ];
 
