@@ -10,7 +10,7 @@ export interface ITheme {
 export const light: ITheme = {
   primary: '#3a86ff',
   secondary: '#8338ec',
-  bg: '#fdfeff',
+  bg: '#f5f5fa',
   bg2: '#ffffff',
   color: '#000000',
   colorAlt: '#ffffff',
