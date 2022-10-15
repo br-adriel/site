@@ -16,4 +16,13 @@ export const Section = styled(ContainerSection)`
 
 export const ContentDiv = styled.div`
   flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+`;
+
+export const SkillGrid = styled.div`
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
 `;
