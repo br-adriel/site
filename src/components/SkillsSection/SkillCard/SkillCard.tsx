@@ -9,7 +9,12 @@ interface IProps {
 
 const SkillCard: React.FC<IProps> = ({ icon, skill, description }) => {
   return (
-    <S.Card>
+    <S.Card
+      initial={{ opacity: 0 }}
+      whileInView={{ opacity: 1 }}
+      viewport={{ once: true }}
+      transition={{ duraation: 0.5, ease: 'easeOut' }}
+    >
       <img src={icon} alt='' />
       <S.Content>
         <h3>{skill}</h3>

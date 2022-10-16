@@ -1,15 +1,17 @@
+import { motion } from 'framer-motion';
 import styled from 'styled-components';
 import { ITheme } from '../../ThemeSwitch/Themes';
 
-export const Card = styled.div`
+export const Card = styled(motion.div)`
   background: ${({ theme }: { theme: ITheme }) => theme.bg2};
   padding: 12px;
   border-radius: 5px;
   display: flex;
   gap: 12px;
+  align-items: center;
 
   img {
-    width: 64px;
+    width: 170px;
     filter: drop-shadow(0 0 2px rgba(0, 0, 0, 0.1));
   }
 `;
