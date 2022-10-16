@@ -8,11 +8,20 @@ export const Card = styled(motion.div)`
   border-radius: 5px;
   display: flex;
   gap: 12px;
-  align-items: center;
+  align-items: flex-start;
+  box-shadow: 0 0 2px rgba(200, 200, 200, 0.1);
+  transition: all 0.4s ease-in-out;
+  position: relative;
 
   img {
-    width: 170px;
-    filter: drop-shadow(0 0 2px rgba(0, 0, 0, 0.1));
+    width: 20%;
+    background: #fff;
+    padding: 5px;
+    border-radius: 5px;
+  }
+
+  &:hover {
+    box-shadow: 0 2px 6px rgba(200, 200, 200, 0.2);
   }
 `;
 
@@ -24,6 +33,6 @@ export const Content = styled.div`
 
   h3 {
     font-weight: 500;
-    font-size: 1.3rem;
+    font-size: 1.35rem;
   }
 `;
