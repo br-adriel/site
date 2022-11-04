@@ -7,3 +7,10 @@ export interface IEducationItem {
   mes_fim: number;
   ano_fim: number;
 }
+
+export interface ISkill {
+  id: string;
+  imagem: string;
+  nome: string;
+  descricao: string;
+}
