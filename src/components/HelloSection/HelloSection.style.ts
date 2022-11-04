@@ -6,7 +6,6 @@ export const Section = styled(ContainerSection)`
   justify-content: space-around;
   align-items: center;
   gap: 40px;
-  min-height: 100vh;
 
   img {
     max-height: 70vh;
