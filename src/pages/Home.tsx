@@ -1,3 +1,4 @@
+import EducationSection from '../components/EducationSection';
 import HelloSection from '../components/HelloSection';
 import SkillsSection from '../components/SkillsSection';
 
@@ -6,6 +7,7 @@ const Home = () => {
     <>
       <HelloSection />
       <SkillsSection />
+      <EducationSection />
     </>
   );
 };
