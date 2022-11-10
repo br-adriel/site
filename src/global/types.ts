@@ -14,3 +14,14 @@ export interface ISkill {
   nome: string;
   descricao: string;
 }
+
+export interface IProject {
+  id: string;
+  nome: string;
+  descricao: string;
+  tecnologias: string[];
+  criado_em: string;
+  repositorio: string;
+  visualizacao: string;
+  imagem: string;
+}
