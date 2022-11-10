@@ -15,11 +15,16 @@ const GlobalStyle = createGlobalStyle`
 
   body {
     font-family: 'Outfit', sans-serif;
-    scrollbar-width: none;
   }
 
   ::-webkit-scrollbar {
-    display: none;
+    width: 8px;
+    background: ${({ theme }: { theme: ITheme }) => theme.bg};
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: ${({ theme }: { theme: ITheme }) => theme.primary};
+    border-radius: 5px;
   }
 
   ::selection {
