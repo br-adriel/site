@@ -4,6 +4,7 @@ import { ThemeProvider } from 'styled-components';
 import { useState } from 'react';
 import { dark, light } from './components/ThemeSwitch/Themes';
 import ThemeSwitch from './components/ThemeSwitch/ThemeSwitch';
+import { Outlet } from 'react-router-dom';
 
 function App() {
   const [useDarkTheme, setUseDarkTheme] = useState(false);
@@ -14,7 +15,7 @@ function App() {
     <ThemeProvider theme={useDarkTheme ? dark : light}>
       <GlobalStyle />
       <ThemeSwitch useDarkTheme={useDarkTheme} setTheme={setTheme} />
-      <Home></Home>
+      <Outlet />
     </ThemeProvider>
   );
 }
