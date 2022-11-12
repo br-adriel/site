@@ -15,7 +15,7 @@ const ProjectCard: React.FC<IProps> = ({ name, image, id }) => {
         src={image}
         width='100%'
         height='auto'
-        threshold={100}
+        threshold={300}
         alt=''
       />
       <h3>{name}</h3>
