@@ -1,3 +1,3 @@
-import SkillCard from './SkillCard'
+import SkillCard from './SkillCard';
 
-export SkillCard;
+export default SkillCard;
