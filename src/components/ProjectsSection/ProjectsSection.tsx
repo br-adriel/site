@@ -16,11 +16,14 @@ const ProjectsSection = () => {
       const q = query(
         projectsCollectionRef,
         orderBy('criado_em', 'desc'),
-        limit(6)
+        limit(3)
       );
 
       const data = await getDocs(q);
-      const fetchedProjects = data.docs.map((doc) => ({ ...doc.data(), id: doc.id }));
+      const fetchedProjects = data.docs.map((doc) => ({
+        ...doc.data(),
+        id: doc.id,
+      }));
       setProjects(fetchedProjects);
       setLoading(false);
     };
@@ -32,7 +35,7 @@ const ProjectsSection = () => {
     <S.Section>
       <S.TitleBar>
         <h2>Projetos</h2>
-        <S.ButtonLink>Ver todos</S.ButtonLink>
+        <S.ButtonLink to='/projetos'>Ver todos</S.ButtonLink>
       </S.TitleBar>
       {loading ? (
         <Loading />
