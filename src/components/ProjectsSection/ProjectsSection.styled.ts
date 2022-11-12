@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import ContainerSection from '../ContainerSection';
 import { ITheme } from '../ThemeSwitch/Themes';
+import { Link } from 'react-router-dom';
 
 export const Section = styled(ContainerSection)`
   display: flex;
@@ -17,13 +18,14 @@ export const TitleBar = styled.div`
   align-items: center;
 `;
 
-export const ButtonLink = styled.a`
+export const ButtonLink = styled(Link)`
   padding: 10px;
   border-radius: 5px;
   background: ${({ theme }: { theme: ITheme }) => theme.primary};
   color: #fff;
   cursor: pointer;
   transition: background 0.3s ease-in-out;
+  text-decoration: none;
 
   &:hover {
     background: ${({ theme }: { theme: ITheme }) => theme.secondary};
@@ -34,6 +36,5 @@ export const CardGrid = styled.div`
   width: 100%;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  grid-template-rows: repeat(2, 1fr);
   gap: 10px;
 `;
