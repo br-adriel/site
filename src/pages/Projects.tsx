@@ -1,18 +1,18 @@
-import React, { useState, useEffect } from 'react';
-import styled from 'styled-components';
-import ContainerSection from '../components/ContainerSection';
-import { ProjectCard } from '../components/ProjectsSection';
-import { IProject } from '../global/types';
-import { db } from '../firebase-config';
 import {
   collection,
-  orderBy,
-  query,
   getDocs,
   limit,
+  orderBy,
+  query,
   startAfter,
 } from 'firebase/firestore';
+import { useEffect, useState } from 'react';
+import styled from 'styled-components';
+import ContainerSection from '../components/ContainerSection';
 import Loading from '../components/Loading';
+import ProjectsGrid from '../components/ProjectsGrid';
+import { db } from '../firebase-config';
+import { IProject } from '../global/types';
 
 const Projects = () => {
   const [projects, setProjects]: [IProject[], any] = useState([]);
@@ -75,22 +75,7 @@ const Projects = () => {
   return (
     <Section>
       <h1>Projetos</h1>
-      {loading ? (
-        <Loading />
-      ) : (
-        <CardGrid>
-          {projects.map((project) => {
-            return (
-              <ProjectCard
-                key={project.id}
-                id={project.id}
-                name={project.nome}
-                image={project.imagem}
-              />
-            );
-          })}
-        </CardGrid>
-      )}
+      {loading ? <Loading /> : <ProjectsGrid projects={projects} />}
       <div id='fimGrid' />
     </Section>
   );
@@ -113,11 +98,4 @@ const Section = styled(ContainerSection)`
     width: 100%;
     height: 10px;
   }
-`;
-
-const CardGrid = styled.div`
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 10px;
-  grid-auto-rows: 1fr;
 `;
