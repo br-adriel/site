@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import { db } from '../../firebase-config';
 import { IProject } from '../../global/types';
 import Loading from '../Loading';
-import ProjectCard from './ProjectCard';
+import ProjectCard from '../ProjectCard';
 import * as S from './ProjectsSection.styled';
 
 const ProjectsSection = () => {

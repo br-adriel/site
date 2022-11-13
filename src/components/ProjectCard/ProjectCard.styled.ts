@@ -1,6 +1,6 @@
 import styled from 'styled-components';
-import DefaultCard from '../../Card';
-import { ITheme } from '../../ThemeSwitch/Themes';
+import DefaultCard from '../Card';
+import { ITheme } from '../ThemeSwitch/Themes';
 
 export const Card = styled(DefaultCard)`
   width: 100%;
