@@ -44,7 +44,19 @@ const Projects = () => {
           id: doc.id,
         } as IProject)
     );
-    setProjects((prev: IProject[]) => [...prev, ...fetchedProjects]);
+    setProjects((prev: IProject[]) => {
+      if (prev.length && fetchedProjects.length) {
+        for (let i = 1; i <= 10; i++) {
+          let index = prev.length - i;
+          if (index >= 0) {
+            if (prev[index].id === fetchedProjects[0].id) {
+              return prev;
+            }
+          }
+        }
+      }
+      return [...prev, ...fetchedProjects];
+    });
     if (data.size) setLastProject(data.docs[data.size - 1]);
   };
 
