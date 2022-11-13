@@ -1,6 +1,7 @@
 import React from 'react';
 import * as S from './ProjectCard.styled';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
+import { Link } from 'react-router-dom';
 
 interface IProps {
   name: string;
@@ -18,7 +19,9 @@ const ProjectCard: React.FC<IProps> = ({ name, image, id }) => {
         threshold={300}
         alt=''
       />
-      <h3>{name}</h3>
+      <h3>
+        <Link to={`/projetos/${id}`}>{name}</Link>
+      </h3>
     </S.Card>
   );
 };

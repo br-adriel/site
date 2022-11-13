@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import DefaultCard from '../../Card';
+import { ITheme } from '../../ThemeSwitch/Themes';
 
 export const Card = styled(DefaultCard)`
   width: 100%;
@@ -14,5 +15,10 @@ export const Card = styled(DefaultCard)`
   h3 {
     font-size: 1.3rem;
     font-weight: 500;
+  }
+
+  a {
+    color: ${({ theme }: { theme: ITheme }) => theme.color};
+    text-decoration: none;
   }
 `;
