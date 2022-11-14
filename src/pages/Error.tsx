@@ -1,18 +1,26 @@
-import React from 'react';
-import styled from 'styled-components';
+import { useState } from 'react';
+import { useRouteError } from 'react-router-dom';
+import styled, { ThemeProvider } from 'styled-components';
 import ContainerSection from '../components/ContainerSection';
 import ErrorDisplay from '../components/ErrorDisplay';
+import GlobalStyle from '../components/GlobalStyle';
+import { dark, light } from '../components/ThemeSwitch/Themes';
+import ThemeSwitch from '../components/ThemeSwitch/ThemeSwitch';
 
-interface IProps {
-  title?: string;
-  message?: string;
-}
+const Error = () => {
+  const [useDarkTheme, setUseDarkTheme] = useState(false);
+  const setTheme = () => setUseDarkTheme((prev) => !prev);
 
-const Error: React.FC<IProps> = ({ title, message }) => {
+  const error = useRouteError() as any;
+  console.table(error);
   return (
-    <Section>
-      <ErrorDisplay title={title} message={message} />
-    </Section>
+    <ThemeProvider theme={useDarkTheme ? dark : light}>
+      <GlobalStyle />
+      <ThemeSwitch useDarkTheme={useDarkTheme} setTheme={setTheme} />
+      <Section>
+        <ErrorDisplay title={error.statusText} message={error.message} />
+      </Section>
+    </ThemeProvider>
   );
 };
 
