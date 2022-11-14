@@ -16,7 +16,11 @@ const ProjectImage: React.FC<IProps> = ({
   codigoFonte,
 }) => {
   return (
-    <S.ImgWrapper>
+    <S.AnimatedImgWrapper
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.4 }}
+    >
       <img src={src} alt={alt || ''} />
       {visualizacao && codigoFonte ? (
         <S.LinksGroup>
@@ -32,7 +36,7 @@ const ProjectImage: React.FC<IProps> = ({
           ) : null}
         </S.LinksGroup>
       ) : null}
-    </S.ImgWrapper>
+    </S.AnimatedImgWrapper>
   );
 };
 

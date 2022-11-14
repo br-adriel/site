@@ -1,3 +1,4 @@
+import { motion } from 'framer-motion';
 import styled from 'styled-components';
 import { ITheme } from '../../ThemeSwitch/Themes';
 
@@ -11,6 +12,8 @@ export const ImgWrapper = styled.div`
     border-radius: 5px;
   }
 `;
+
+export const AnimatedImgWrapper = motion(ImgWrapper);
 
 export const LinksGroup = styled.div`
   position: absolute;
