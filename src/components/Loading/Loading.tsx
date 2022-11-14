@@ -3,9 +3,13 @@ import * as S from './Loading.styled';
 
 const Loading = () => {
   return (
-    <S.Wrapper>
+    <S.AnimatedWrapper
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.3 }}
+    >
       <Spinner />
-    </S.Wrapper>
+    </S.AnimatedWrapper>
   );
 };
 
