@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import Card from '../Card';
+import { motion } from 'framer-motion';
 
 export const Wrapper = styled.div`
   width: 100%;
@@ -32,6 +33,8 @@ export const ProjectInfo = styled(Card)`
   flex-direction: column;
   gap: 6px;
 `;
+
+export const AnimatedProjectInfo = motion(ProjectInfo);
 
 export const ProjectInfoTitle = styled.h2`
   font-size: 1rem;

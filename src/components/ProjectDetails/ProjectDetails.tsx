@@ -19,14 +19,22 @@ const ProjectDetails: React.FC<IProps> = ({ projeto }) => {
           visualizacao={projeto.visualizacao}
         />
         <S.ProjectInfoWrapper>
-          <S.ProjectInfo>
+          <S.AnimatedProjectInfo
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.4 }}
+          >
             <S.ProjectInfoTitle>Descrição</S.ProjectInfoTitle>
             <p>{projeto.descricao}</p>
-          </S.ProjectInfo>
-          <S.ProjectInfo>
+          </S.AnimatedProjectInfo>
+          <S.AnimatedProjectInfo
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.4 }}
+          >
             <S.ProjectInfoTitle>Tecnologias usadas</S.ProjectInfoTitle>
             <TechList techs={projeto.tecnologias} />
-          </S.ProjectInfo>
+          </S.AnimatedProjectInfo>
         </S.ProjectInfoWrapper>
       </S.Grid>
     </S.Wrapper>
