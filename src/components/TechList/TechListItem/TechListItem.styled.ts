@@ -2,7 +2,6 @@ import styled from 'styled-components';
 import { ITheme } from '../../ThemeSwitch/Themes';
 
 export const ListItem = styled.li`
-  padding: 6px;
   border-radius: 5px;
   background: ${({ theme }: { theme: ITheme }) => theme.bg};
   transition: all 0.3 ease;
@@ -15,7 +14,12 @@ export const ListItem = styled.li`
   }
 
   a {
-    text-decoration: none;
+    display: block;
+    padding: 6px;
+  }
+
+  a,
+  a:hover {
     color: inherit;
   }
 `;
