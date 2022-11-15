@@ -69,7 +69,6 @@ const GlobalStyle = createGlobalStyle`
   a {
     text-decoration: none;
     color: ${({ theme }: { theme: ITheme }) => theme.primary};
-    transition: 0.3s color ease;
   }
 
   a:hover {
