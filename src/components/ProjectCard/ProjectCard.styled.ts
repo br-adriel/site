@@ -7,6 +7,7 @@ export const Card = styled(DefaultCard)`
   display: flex;
   flex-direction: column;
   gap: 8px;
+  color: ${({ theme }: { theme: ITheme }) => theme.color};
 
   img {
     border-radius: 5px;
@@ -15,10 +16,5 @@ export const Card = styled(DefaultCard)`
   h3 {
     font-size: 1.3rem;
     font-weight: 500;
-  }
-
-  a {
-    color: ${({ theme }: { theme: ITheme }) => theme.color};
-    text-decoration: none;
   }
 `;

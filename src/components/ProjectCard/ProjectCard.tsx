@@ -11,18 +11,18 @@ interface IProps {
 
 const ProjectCard: React.FC<IProps> = ({ name, image, id }) => {
   return (
-    <S.Card>
-      <LazyLoadImage
-        src={image}
-        width='100%'
-        height='auto'
-        threshold={300}
-        alt=''
-      />
-      <h3>
-        <Link to={`/projetos/${id}`}>{name}</Link>
-      </h3>
-    </S.Card>
+    <Link to={`/projetos/${id}`}>
+      <S.Card>
+        <LazyLoadImage
+          src={image}
+          width='100%'
+          height='auto'
+          threshold={300}
+          alt=''
+        />
+        <h3>{name}</h3>
+      </S.Card>
+    </Link>
   );
 };
 
