@@ -29,7 +29,12 @@ const SkillsSection = () => {
       ) : (
         <S.ContentDiv>
           <h2>Habilidades e tecnologias</h2>
-          <S.SkillGrid>
+          <S.AnimatedSkillGrid
+            initial={{ opacity: 0, y: 15 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, ease: 'easeOut' }}
+          >
             {skills.map((skill) => (
               <SkillCard
                 key={skill.id}
@@ -38,7 +43,7 @@ const SkillsSection = () => {
                 description={skill.descricao}
               />
             ))}
-          </S.SkillGrid>
+          </S.AnimatedSkillGrid>
         </S.ContentDiv>
       )}
       <img src={techImg} alt='' />

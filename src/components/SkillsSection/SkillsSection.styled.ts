@@ -1,3 +1,4 @@
+import { motion } from 'framer-motion';
 import styled from 'styled-components';
 import ContainerSection from '../ContainerSection';
 
@@ -25,3 +26,5 @@ export const SkillGrid = styled.div`
   grid-template-columns: repeat(3, 1fr);
   gap: 12px;
 `;
+
+export const AnimatedSkillGrid = motion(SkillGrid);
