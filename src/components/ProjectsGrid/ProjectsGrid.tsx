@@ -9,7 +9,12 @@ interface IProps {
 
 const ProjectsGrid: React.FC<IProps> = ({ projects }) => {
   return (
-    <S.CardGrid>
+    <S.AnimatedCardGrid
+      initial={{ opacity: 0, y: 15 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.5, ease: 'easeOut' }}
+    >
       {projects.map((project) => {
         return (
           <ProjectCard
@@ -20,7 +25,7 @@ const ProjectsGrid: React.FC<IProps> = ({ projects }) => {
           />
         );
       })}
-    </S.CardGrid>
+    </S.AnimatedCardGrid>
   );
 };
 
