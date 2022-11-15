@@ -5,6 +5,7 @@ import { IProject } from '../../global/types';
 import { getQuery } from '../../utils';
 import Loading from '../Loading';
 import ProjectCard from '../ProjectCard';
+import ProjectsGrid from '../ProjectsGrid';
 import * as S from './ProjectsSection.styled';
 
 const ProjectsSection = () => {
@@ -34,22 +35,7 @@ const ProjectsSection = () => {
         <h2>Projetos</h2>
         <S.ButtonLink to='/projetos'>Ver todos</S.ButtonLink>
       </S.TitleBar>
-      {loading ? (
-        <Loading />
-      ) : (
-        <S.CardGrid>
-          {projects.map((project) => {
-            return (
-              <ProjectCard
-                name={project.nome}
-                id={project.id}
-                image={project.imagem}
-                key={project.id}
-              />
-            );
-          })}
-        </S.CardGrid>
-      )}
+      {loading ? <Loading /> : <ProjectsGrid projects={projects} />}
     </S.Section>
   );
 };

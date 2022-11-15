@@ -31,10 +31,3 @@ export const ButtonLink = styled(Link)`
     background: ${({ theme }: { theme: ITheme }) => theme.secondary};
   }
 `;
-
-export const CardGrid = styled.div`
-  width: 100%;
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 10px;
-`;
