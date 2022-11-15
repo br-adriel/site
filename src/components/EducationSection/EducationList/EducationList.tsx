@@ -16,13 +16,7 @@ const EducationList: React.FC<IProps> = ({ data }) => {
       transition={{ duration: 0.5, ease: 'easeOut' }}
     >
       {data.map((education) => (
-        <S.Card
-          key={education.id}
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ duraation: 0.5, ease: 'easeOut' }}
-        >
+        <S.Card key={education.id}>
           <h3>
             {education.curso} ({education.instituicao})
           </h3>
