@@ -1,7 +1,8 @@
-import { collection, limit, orderBy, query, getDocs } from 'firebase/firestore';
+import { collection, limit, orderBy, query } from 'firebase/firestore';
 import { useEffect, useState } from 'react';
 import { db } from '../../firebase-config';
 import { IProject } from '../../global/types';
+import { getQuery } from '../../utils';
 import Loading from '../Loading';
 import ProjectCard from '../ProjectCard';
 import * as S from './ProjectsSection.styled';
@@ -19,11 +20,7 @@ const ProjectsSection = () => {
         limit(3)
       );
 
-      const data = await getDocs(q);
-      const fetchedProjects = data.docs.map((doc) => ({
-        ...doc.data(),
-        id: doc.id,
-      }));
+      const fetchedProjects = await getQuery(q);
       setProjects(fetchedProjects);
       setLoading(false);
     };
