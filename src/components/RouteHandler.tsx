@@ -4,6 +4,7 @@ import Error from '../pages/Error';
 import Home from '../pages/Home';
 import Project from '../pages/Project';
 import Projects from '../pages/Projects';
+import Filter from '../pages/Filter';
 
 const router = createBrowserRouter([
   {
@@ -14,6 +15,10 @@ const router = createBrowserRouter([
       {
         path: '',
         element: <Home />,
+      },
+      {
+        path: 'projetos/filtrar/:techName',
+        element: <Filter />,
       },
       {
         path: 'projetos/:projectId',
