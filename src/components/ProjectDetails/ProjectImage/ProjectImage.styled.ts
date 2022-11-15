@@ -35,5 +35,6 @@ export const LinksGroup = styled.div`
 
   a:hover {
     background: ${({ theme }: { theme: ITheme }) => theme.secondary};
+    color: #fff;
   }
 `;

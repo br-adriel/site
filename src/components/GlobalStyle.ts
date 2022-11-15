@@ -62,8 +62,18 @@ const GlobalStyle = createGlobalStyle`
     transition: background .3s ease-in-out;
 
     &:hover {
-      background: ${({ theme }: { theme: ITheme }) => theme.secondary}
+      background: ${({ theme }: { theme: ITheme }) => theme.secondary};
     }
+  }
+
+  a {
+    text-decoration: none;
+    color: ${({ theme }: { theme: ITheme }) => theme.primary};
+    transition: 0.3s color ease;
+  }
+
+  a:hover {
+    color: ${({ theme }: { theme: ITheme }) => theme.secondary};
   }
 `;
 
