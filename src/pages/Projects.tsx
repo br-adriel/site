@@ -11,6 +11,7 @@ import styled from 'styled-components';
 import ContainerSection from '../components/ContainerSection';
 import Loading from '../components/Loading';
 import ProjectsGrid from '../components/ProjectsGrid';
+import ScrollLoad from '../components/ScrollLoad';
 import { db } from '../firebase-config';
 import { IProject } from '../global/types';
 
@@ -63,20 +64,14 @@ const Projects = () => {
   useEffect(() => {
     getProjetos();
     setLoading(false);
-
-    const obs = new IntersectionObserver((entries) => {
-      if (entries[0].isIntersecting) getProjetos();
-    }, {});
-
-    obs.observe(document.getElementById('fimGrid') as Element);
-    return () => obs.disconnect();
   }, []);
 
   return (
     <Section>
       <h1>Projetos</h1>
-      {loading ? <Loading /> : <ProjectsGrid projects={projects} />}
-      <div id='fimGrid' />
+      <ScrollLoad onScrollEnd={getProjetos}>
+        {loading ? <Loading /> : <ProjectsGrid projects={projects} />}
+      </ScrollLoad>
     </Section>
   );
 };
@@ -91,11 +86,5 @@ const Section = styled(ContainerSection)`
   h1 {
     font-size: 2rem;
     font-weight: 500;
-    position: ;
-  }
-
-  #fimGrid {
-    width: 100%;
-    height: 10px;
   }
 `;
