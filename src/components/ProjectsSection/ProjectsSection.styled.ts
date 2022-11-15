@@ -29,5 +29,6 @@ export const ButtonLink = styled(Link)`
 
   &:hover {
     background: ${({ theme }: { theme: ITheme }) => theme.secondary};
+    color: #fff;
   }
 `;

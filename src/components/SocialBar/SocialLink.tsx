@@ -40,6 +40,7 @@ const LinkTag = styled(motion.a)`
 
   &:hover {
     background: ${({ theme }: { theme: ITheme }) => theme.secondary};
+    color: #fff;
   }
 `;
 
