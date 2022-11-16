@@ -9,8 +9,15 @@ export const Section = styled(ContainerSection)`
   gap: 12px;
 
   & > img {
+    max-height: max(90vh, 90%);
+    display: none;
     width: 30%;
-    max-height: 90vh;
+  }
+
+  @media screen and (min-width: 992px) {
+    & > img {
+      display: block;
+    }
   }
 `;
 
@@ -23,8 +30,16 @@ export const ContentDiv = styled.div`
 
 export const SkillGrid = styled.div`
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: 1fr;
   gap: 12px;
+
+  @media screen and (min-width: 768px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media screen and (min-width: 992px) {
+    grid-template-columns: repeat(3, 1fr);
+  }
 `;
 
 export const AnimatedSkillGrid = motion(SkillGrid);
