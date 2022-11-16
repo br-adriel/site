@@ -17,8 +17,12 @@ export const Wrapper = styled.div`
 export const Grid = styled.div`
   width: 100%;
   display: grid;
-  grid-template-columns: 3fr 2fr;
   gap: 10px;
+  grid-template-columns: 1fr;
+
+  @media screen and (min-width: 600px) {
+    grid-template-columns: 3fr 2fr;
+  }
 `;
 
 export const ProjectInfoWrapper = styled.div`
