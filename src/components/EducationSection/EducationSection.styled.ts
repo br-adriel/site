@@ -2,14 +2,30 @@ import styled from 'styled-components';
 import ContainerSection from '../ContainerSection';
 
 export const Section = styled(ContainerSection)`
-  flex-direction: row-reverse;
   display: flex;
-  justify-content: space-between;
+  flex-direction: column-reverse;
+  justify-content: center;
   align-items: center;
-  gap: 40px;
+  gap: 20px;
 
   img {
-    max-width: 50%;
+    max-width: 100%;
+  }
+
+  @media screen and (min-width: 768px) {
+    justify-content: space-between;
+    flex-direction: row-reverse;
+    gap: 40px;
+
+    img {
+      max-width: 45%;
+    }
+  }
+
+  @media screen and (min-width: 992px) {
+    img {
+      max-width: 50%;
+    }
   }
 `;
 
@@ -17,5 +33,8 @@ export const ContentDiv = styled.div`
   display: flex;
   flex-direction: column;
   gap: 10px;
-  flex-grow: 1;
+
+  @media screen and (min-width: 768px) {
+    flex-grow: 1;
+  }
 `;
