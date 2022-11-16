@@ -20,7 +20,7 @@ export const LinksGroup = styled.div`
   bottom: 8px;
   right: 8px;
   display: flex;
-  gap: 8px;
+  gap: 6px;
   justify-content: flex-end;
   align-items: center;
 
