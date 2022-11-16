@@ -13,11 +13,13 @@ const ProjectDetails: React.FC<IProps> = ({ projeto }) => {
     <S.Wrapper>
       <h1>{projeto.nome}</h1>
       <S.Grid>
-        <ProjectImage
-          src={projeto.imagem}
-          codigoFonte={projeto.repositorio}
-          visualizacao={projeto.visualizacao}
-        />
+        <div>
+          <ProjectImage
+            src={projeto.imagem}
+            codigoFonte={projeto.repositorio}
+            visualizacao={projeto.visualizacao}
+          />
+        </div>
         <S.ProjectInfoWrapper>
           <S.AnimatedProjectInfo
             initial={{ opacity: 0 }}
