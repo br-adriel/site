@@ -20,7 +20,7 @@ export const Grid = styled.div`
   gap: 10px;
   grid-template-columns: 1fr;
 
-  @media screen and (min-width: 600px) {
+  @media screen and (min-width: 768px) {
     grid-template-columns: 3fr 2fr;
   }
 `;
