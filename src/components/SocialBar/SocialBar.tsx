@@ -32,6 +32,11 @@ const FlexDiv = styled.div`
   display: flex;
   gap: 8px;
   align-items: center;
+  justify-content: center;
+
+  @media screen and (min-width: 768px) {
+    justify-content: flex-start;
+  }
 `;
 
 export default SocialBar;
