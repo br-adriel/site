@@ -7,6 +7,7 @@ import {
   startAfter,
 } from 'firebase/firestore';
 import { useEffect, useState } from 'react';
+import { Helmet } from 'react-helmet-async';
 import styled from 'styled-components';
 import ContainerSection from '../components/ContainerSection';
 import Loading from '../components/Loading';
@@ -68,6 +69,9 @@ const Projects = () => {
 
   return (
     <Section>
+      <Helmet>
+        <title>Projetos</title>
+      </Helmet>
       <h1>Projetos</h1>
       <ScrollLoad onScrollEnd={getProjetos}>
         {loading ? <Loading /> : <ProjectsGrid projects={projects} />}

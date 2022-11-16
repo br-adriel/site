@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { Helmet } from 'react-helmet-async';
 import { useParams } from 'react-router-dom';
 import ContainerSection from '../components/ContainerSection';
 import ErrorDisplay from '../components/ErrorDisplay';
@@ -48,9 +49,19 @@ const Project: React.FC<IProps> = ({ projectObj }) => {
       {isLoading ? (
         <Loading />
       ) : itExists ? (
-        <ProjectDetails projeto={project} />
+        <>
+          <Helmet>
+            <title>{project.nome}</title>
+          </Helmet>
+          <ProjectDetails projeto={project} />
+        </>
       ) : (
-        <ErrorDisplay title='Projeto não encontrado' />
+        <>
+          <Helmet>
+            <title>Erro 404</title>
+          </Helmet>
+          <ErrorDisplay title='Projeto não encontrado' />
+        </>
       )}
     </ContainerSection>
   );

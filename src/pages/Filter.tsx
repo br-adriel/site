@@ -7,6 +7,7 @@ import {
   where,
 } from 'firebase/firestore';
 import { useEffect, useState } from 'react';
+import { Helmet } from 'react-helmet-async';
 import { useParams } from 'react-router-dom';
 import styled from 'styled-components';
 import ContainerSection from '../components/ContainerSection';
@@ -68,6 +69,9 @@ const Filter = () => {
 
   return (
     <Section>
+      <Helmet>
+        <title>Projetos que utilizam {techName}</title>
+      </Helmet>
       <h1>Projetos que utilizam {techName}</h1>
       <ScrollLoad onScrollEnd={getProjetos}>
         {isLoading ? (
