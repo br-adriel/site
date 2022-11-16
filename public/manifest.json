@@ -1,6 +1,6 @@
 {
-  "short_name": "Adriel Faria",
-  "name": "Adriel Faria: Conheça meu trabalho como desenvolvedor",
+  "name": "Adriel Santos - Desenvolvedor Frontend",
+  "short_name": "Adriel Santos",
   "icons": [
     {
       "src": "favicon.ico",
@@ -23,8 +23,8 @@
       "type": "image/png"
     }
   ],
-  "start_url": ".",
+  "theme_color": "#3a86ff",
+  "background_color": "#3a86ff",
   "display": "standalone",
-  "theme_color": "#4574cb",
-  "background_color": "#ffffff"
+  "start_url": "."
 }
