@@ -1,8 +1,9 @@
-import { collection, getDocs } from 'firebase/firestore';
+import { collection, orderBy, query } from 'firebase/firestore';
 import { useEffect, useState } from 'react';
 import techImg from '../../assets/img/tech_bg.svg';
 import { db } from '../../firebase-config';
 import { ISkill } from '../../global/types';
+import { getQuery } from '../../utils';
 import Loading from '../Loading';
 import SkillCard from './SkillCard/SkillCard';
 import * as S from './SkillsSection.styled';
@@ -14,8 +15,9 @@ const SkillsSection = () => {
 
   useEffect(() => {
     const getHabilidades = async () => {
-      const data = await getDocs(skillsCollectionRef);
-      setSkills(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
+      const q = query(skillsCollectionRef, orderBy('ordem', 'asc'));
+      const fetchedSkills = await getQuery(q);
+      setSkills(fetchedSkills);
       setLoading(false);
     };
 
