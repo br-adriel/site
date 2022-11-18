@@ -12,6 +12,10 @@ export const Section = styled(ContainerSection)`
     max-height: max(70vh, 70%);
     display: none;
     width: 25%;
+
+    @-moz-document url-prefix() {
+      min-width: 25%;
+    }
   }
 
   @media screen and (min-width: 992px) {
@@ -23,6 +27,10 @@ export const Section = styled(ContainerSection)`
   @media screen and (min-width: 992px) {
     & > img {
       width: 20%;
+
+      @-moz-document url-prefix() {
+        min-width: 20%;
+      }
     }
   }
 `;

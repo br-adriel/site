@@ -33,6 +33,7 @@ export const ContentDiv = styled.div`
   display: flex;
   flex-direction: column;
   gap: 10px;
+  width: 100%;
 
   @media screen and (min-width: 768px) {
     flex-grow: 1;
