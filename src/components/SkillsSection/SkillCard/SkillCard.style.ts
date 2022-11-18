@@ -3,7 +3,8 @@ import DefaultCard from '../../Card';
 
 export const Card = styled(DefaultCard)`
   img {
-    width: 20%;
+    min-width: 20%;
+    max-width: 20%;
     background: #fff;
     padding: 5px;
     border-radius: 5px;
