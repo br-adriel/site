@@ -28,7 +28,7 @@ const Filter = () => {
   const { techName } = useParams();
   const projectsCollectionRef = collection(db, 'projetos');
   const [projects, setProjects]: projectsState = useState([] as IProject[]);
-  const [isLoading, setIsLoading] = useState(true);
+  const isLoading = useRef(true);
   const lastProject = useRef({});
   const shouldFetch = useRef(true);
 
@@ -50,8 +50,8 @@ const Filter = () => {
   };
 
   useEffect(() => {
+    isLoading.current = false;
     getProjetos();
-    setIsLoading(false);
   }, []);
 
   return (
@@ -61,7 +61,7 @@ const Filter = () => {
       </Helmet>
       <h1>Projetos que utilizam {techName}</h1>
       <ScrollLoad onScrollEnd={getProjetos}>
-        {isLoading ? (
+        {isLoading.current ? (
           <Loading />
         ) : projects.length > 0 ? (
           <ProjectsGrid projects={projects} />

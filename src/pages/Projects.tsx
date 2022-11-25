@@ -23,9 +23,9 @@ type projectsState = [
 
 const Projects = () => {
   const [projects, setProjects]: projectsState = useState([] as IProject[]);
-  const [loading, setLoading] = useState(true);
   const lastProject = useRef({});
   const shouldFetch = useRef(true);
+  const loading = useRef(true);
   const projectsCollectionRef = collection(db, 'projetos');
 
   const getProjetos = async () => {
@@ -45,8 +45,8 @@ const Projects = () => {
   };
 
   useEffect(() => {
+    loading.current = false;
     getProjetos();
-    setLoading(false);
   }, []);
 
   return (
@@ -56,7 +56,7 @@ const Projects = () => {
       </Helmet>
       <h1>Projetos</h1>
       <ScrollLoad onScrollEnd={getProjetos}>
-        {loading ? <Loading /> : <ProjectsGrid projects={projects} />}
+        {loading.current ? <Loading /> : <ProjectsGrid projects={projects} />}
       </ScrollLoad>
     </Section>
   );
