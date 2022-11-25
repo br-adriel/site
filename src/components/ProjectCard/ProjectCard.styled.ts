@@ -12,6 +12,7 @@ export const Card = styled(DefaultCard)`
 
   img {
     border-radius: 5px;
+    flex-grow: 1;
   }
 
   h3 {
