@@ -1,12 +1,11 @@
 import {
   collection,
-  getDocs,
   limit,
   orderBy,
   query,
   startAfter,
 } from 'firebase/firestore';
-import { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import styled from 'styled-components';
 import ContainerSection from '../components/ContainerSection';
@@ -15,56 +14,39 @@ import ProjectsGrid from '../components/ProjectsGrid';
 import ScrollLoad from '../components/ScrollLoad';
 import { db } from '../firebase-config';
 import { IProject } from '../global/types';
+import { fetchPage, joinProjectsArrays } from '../utils';
+
+type projectsState = [
+  IProject[],
+  React.Dispatch<React.SetStateAction<IProject[]>>
+];
 
 const Projects = () => {
-  const [projects, setProjects]: [IProject[], any] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [lastProject, setLastProject] = useState({});
-
+  const [projects, setProjects]: projectsState = useState([] as IProject[]);
+  const lastProject = useRef({});
+  const shouldFetch = useRef(true);
+  const loading = useRef(true);
   const projectsCollectionRef = collection(db, 'projetos');
 
-  const firstLoadQuery = query(
-    projectsCollectionRef,
-    orderBy('criado_em', 'desc'),
-    limit(10)
-  );
-
-  const pageQuery = query(
-    projectsCollectionRef,
-    orderBy('criado_em', 'desc'),
-    startAfter(lastProject),
-    limit(10)
-  );
-
   const getProjetos = async () => {
-    const q = loading ? firstLoadQuery : pageQuery;
-    const data = await getDocs(q);
-    const fetchedProjects = data.docs.map(
-      (doc) =>
-        ({
-          ...doc.data(),
-          id: doc.id,
-        } as IProject)
+    const q = query(
+      projectsCollectionRef,
+      orderBy('criado_em', 'desc'),
+      startAfter(lastProject.current),
+      limit(10)
     );
-    setProjects((prev: IProject[]) => {
-      if (prev.length && fetchedProjects.length) {
-        for (let i = 1; i <= 10; i++) {
-          let index = prev.length - i;
-          if (index >= 0) {
-            if (prev[index].id === fetchedProjects[0].id) {
-              return prev;
-            }
-          }
-        }
-      }
-      return [...prev, ...fetchedProjects];
-    });
-    if (data.size) setLastProject(data.docs[data.size - 1]);
+
+    if (shouldFetch) {
+      const fetchedProjects = await fetchPage(q, shouldFetch, lastProject);
+      setProjects((prev) =>
+        joinProjectsArrays(prev, fetchedProjects as IProject[])
+      );
+    }
   };
 
   useEffect(() => {
+    loading.current = false;
     getProjetos();
-    setLoading(false);
   }, []);
 
   return (
@@ -74,7 +56,7 @@ const Projects = () => {
       </Helmet>
       <h1>Projetos</h1>
       <ScrollLoad onScrollEnd={getProjetos}>
-        {loading ? <Loading /> : <ProjectsGrid projects={projects} />}
+        {loading.current ? <Loading /> : <ProjectsGrid projects={projects} />}
       </ScrollLoad>
     </Section>
   );
