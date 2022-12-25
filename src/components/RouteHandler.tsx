@@ -8,7 +8,7 @@ import Filter from '../pages/Filter';
 
 const router = createBrowserRouter([
   {
-    path: '/',
+    path: '/site/',
     element: <App />,
     children: [
       {
