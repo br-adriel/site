@@ -1,40 +1,25 @@
-import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import App from '../App';
-import NotFoundError from '../pages/NotFoundError';
+import Filter from '../pages/Filter';
 import Home from '../pages/Home';
+import NotFoundError from '../pages/NotFoundError';
 import Project from '../pages/Project';
 import Projects from '../pages/Projects';
-import Filter from '../pages/Filter';
 
-const router = createBrowserRouter([
-  {
-    path: '/site/',
-    element: <App />,
-    children: [
-      {
-        path: '',
-        element: <Home />,
-      },
-      {
-        path: 'projetos/filtrar/:techName',
-        element: <Filter />,
-      },
-      {
-        path: 'projetos/:projectId',
-        element: <Project />,
-      },
-      {
-        path: 'projetos',
-        element: <Projects />,
-      },
-      {
-        path: '*',
-        element: <NotFoundError />,
-      },
-    ],
-  },
-]);
-
-const RouteHandler = () => <RouterProvider router={router} />;
+const RouteHandler = () => {
+  return (
+    <BrowserRouter basename='/site/'>
+      <Routes>
+        <Route path='' element={<App />}>
+          <Route path='' element={<Home />} />
+          <Route path='projetos/' element={<Projects />} />
+          <Route path='projetos/filtrar/:techName' element={<Filter />} />
+          <Route path='projetos/:projectId' element={<Project />} />
+          <Route path='*' element={<NotFoundError />} />
+        </Route>
+      </Routes>
+    </BrowserRouter>
+  );
+};
 
 export default RouteHandler;
