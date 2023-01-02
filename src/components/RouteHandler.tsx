@@ -1,4 +1,4 @@
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { HashRouter, Route, Routes } from 'react-router-dom';
 import App from '../App';
 import Filter from '../pages/Filter';
 import Home from '../pages/Home';
@@ -8,7 +8,7 @@ import Projects from '../pages/Projects';
 
 const RouteHandler = () => {
   return (
-    <BrowserRouter basename='/site/'>
+    <HashRouter>
       <Routes>
         <Route path='' element={<App />}>
           <Route path='' element={<Home />} />
@@ -18,7 +18,7 @@ const RouteHandler = () => {
           <Route path='*' element={<NotFoundError />} />
         </Route>
       </Routes>
-    </BrowserRouter>
+    </HashRouter>
   );
 };
 
