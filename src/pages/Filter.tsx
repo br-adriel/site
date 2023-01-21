@@ -10,6 +10,7 @@ import { useEffect, useRef, useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { useParams } from 'react-router-dom';
 import styled from 'styled-components';
+import BackButton from '../components/BackButton';
 import ContainerSection from '../components/ContainerSection';
 import ErrorDisplay from '../components/ErrorDisplay';
 import Loading from '../components/Loading';
@@ -59,7 +60,10 @@ const Filter = () => {
       <Helmet>
         <title>Projetos que utilizam {techName}</title>
       </Helmet>
-      <h1>Projetos que utilizam {techName}</h1>
+      <Header>
+        <BackButton />
+        <h1>Projetos que utilizam {techName}</h1>
+      </Header>
       <ScrollLoad onScrollEnd={getProjetos}>
         {isLoading.current ? (
           <Loading />
@@ -87,4 +91,10 @@ const Section = styled(ContainerSection)`
     font-size: 2rem;
     font-weight: 500;
   }
+`;
+
+const Header = styled.div`
+  display: flex;
+  gap: 10px;
+  align-items: center;
 `;

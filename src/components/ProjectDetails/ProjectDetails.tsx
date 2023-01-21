@@ -3,6 +3,7 @@ import * as S from './ProjectDetails.styled';
 import ProjectImage from './ProjectImage';
 import TechList from '../TechList';
 import { IProject } from '../../global/types';
+import BackButton from '../BackButton';
 
 interface IProps {
   projeto: IProject;
@@ -11,7 +12,10 @@ interface IProps {
 const ProjectDetails: React.FC<IProps> = ({ projeto }) => {
   return (
     <S.Wrapper>
-      <h1>{projeto.nome}</h1>
+      <S.Header>
+        <BackButton />
+        <h1>{projeto.nome}</h1>
+      </S.Header>
       <S.Grid>
         <div>
           <ProjectImage

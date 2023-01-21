@@ -14,6 +14,12 @@ export const Wrapper = styled.div`
   }
 `;
 
+export const Header = styled.div`
+  display: flex;
+  gap: 10px;
+  align-items: center;
+`;
+
 export const Grid = styled.div`
   width: 100%;
   display: grid;

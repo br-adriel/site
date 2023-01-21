@@ -8,6 +8,7 @@ import {
 import React, { useEffect, useRef, useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import styled from 'styled-components';
+import BackButton from '../components/BackButton';
 import ContainerSection from '../components/ContainerSection';
 import Loading from '../components/Loading';
 import ProjectsGrid from '../components/ProjectsGrid';
@@ -54,7 +55,11 @@ const Projects = () => {
       <Helmet>
         <title>Projetos</title>
       </Helmet>
-      <h1>Projetos</h1>
+
+      <Header>
+        <BackButton />
+        <h1>Projetos</h1>
+      </Header>
       <ScrollLoad onScrollEnd={getProjetos}>
         {loading.current ? <Loading /> : <ProjectsGrid projects={projects} />}
       </ScrollLoad>
@@ -63,6 +68,12 @@ const Projects = () => {
 };
 
 export default Projects;
+
+const Header = styled.div`
+  display: flex;
+  gap: 10px;
+  align-items: center;
+`;
 
 const Section = styled(ContainerSection)`
   display: flex;
