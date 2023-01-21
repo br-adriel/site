@@ -22,20 +22,19 @@ const ProjectImage: React.FC<IProps> = ({
       transition={{ duration: 0.4 }}
     >
       <img src={src} alt={alt || ''} />
-      {visualizacao && codigoFonte ? (
-        <S.LinksGroup>
-          {codigoFonte ? (
-            <a href={codigoFonte} target='_blank' rel='noopener noreferrer'>
-              Código fonte <BoxArrowUpRight />
-            </a>
-          ) : null}
-          {visualizacao ? (
-            <a href={visualizacao} target='_blank' rel='noopener noreferrer'>
-              Visualizar <BoxArrowUpRight />
-            </a>
-          ) : null}
-        </S.LinksGroup>
-      ) : null}
+
+      <S.LinksGroup>
+        {codigoFonte ? (
+          <a href={codigoFonte} target='_blank' rel='noopener noreferrer'>
+            Código fonte <BoxArrowUpRight />
+          </a>
+        ) : null}
+        {visualizacao ? (
+          <a href={visualizacao} target='_blank' rel='noopener noreferrer'>
+            Visualizar <BoxArrowUpRight />
+          </a>
+        ) : null}
+      </S.LinksGroup>
     </S.AnimatedImgWrapper>
   );
 };
