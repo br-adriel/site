@@ -51,19 +51,22 @@ const Projects = () => {
   }, []);
 
   return (
-    <Section>
-      <Helmet>
-        <title>Projetos</title>
-      </Helmet>
+    <main>
+      <Section>
+        <Helmet>
+          <title>Projetos</title>
+        </Helmet>
 
-      <Header>
-        <BackButton />
-        <h1>Projetos</h1>
-      </Header>
-      <ScrollLoad onScrollEnd={getProjetos}>
-        {loading.current ? <Loading /> : <ProjectsGrid projects={projects} />}
-      </ScrollLoad>
-    </Section>
+        <Header>
+          <BackButton />
+          <h1>Projetos</h1>
+        </Header>
+
+        <ScrollLoad onScrollEnd={getProjetos}>
+          {loading.current ? <Loading /> : <ProjectsGrid projects={projects} />}
+        </ScrollLoad>
+      </Section>
+    </main>
   );
 };
 

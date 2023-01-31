@@ -7,7 +7,7 @@ const BackButton = () => {
 
   return (
     <Button onClick={() => navigate(-1)}>
-      <ArrowLeft />
+      <ArrowLeft title='Voltar' />
     </Button>
   );
 };

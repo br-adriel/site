@@ -1,14 +1,12 @@
-import React from 'react';
+import { motion } from 'framer-motion';
 import styled from 'styled-components';
 import { ITheme } from '../ThemeSwitch/Themes';
-import { motion } from 'framer-motion';
 interface Props {
   icon: any;
   link: string;
-  title?: string;
 }
 
-const SocialLink: React.FC<Props> = ({ link, icon, title }) => {
+const SocialLink = ({ link, icon }: Props) => {
   return (
     <LinkTag
       initial={{ scale: 0.4, opacity: 0 }}
@@ -17,7 +15,6 @@ const SocialLink: React.FC<Props> = ({ link, icon, title }) => {
       href={link}
       target='_blank'
       rel='noopener noreferrer'
-      title={title}
     >
       {icon}
     </LinkTag>

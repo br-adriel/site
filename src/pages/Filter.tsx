@@ -56,27 +56,29 @@ const Filter = () => {
   }, []);
 
   return (
-    <Section>
-      <Helmet>
-        <title>Projetos que utilizam {techName}</title>
-      </Helmet>
-      <Header>
-        <BackButton />
-        <h1>Projetos que utilizam {techName}</h1>
-      </Header>
-      <ScrollLoad onScrollEnd={getProjetos}>
-        {isLoading.current ? (
-          <Loading />
-        ) : projects.length > 0 ? (
-          <ProjectsGrid projects={projects} />
-        ) : (
-          <ErrorDisplay
-            title='Nenhum projeto encontrado'
-            message='Tente filtrar por outra tecnologia'
-          />
-        )}
-      </ScrollLoad>
-    </Section>
+    <main>
+      <Section>
+        <Helmet>
+          <title>Projetos que utilizam {techName}</title>
+        </Helmet>
+        <Header>
+          <BackButton />
+          <h1>Projetos que utilizam {techName}</h1>
+        </Header>
+        <ScrollLoad onScrollEnd={getProjetos}>
+          {isLoading.current ? (
+            <Loading />
+          ) : projects.length > 0 ? (
+            <ProjectsGrid projects={projects} />
+          ) : (
+            <ErrorDisplay
+              title='Nenhum projeto encontrado'
+              message='Tente filtrar por outra tecnologia'
+            />
+          )}
+        </ScrollLoad>
+      </Section>
+    </main>
   );
 };
 

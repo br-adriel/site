@@ -1,4 +1,3 @@
-import React from 'react';
 import { BoxArrowUpRight } from 'react-bootstrap-icons';
 import * as S from './ProjectImage.styled';
 
@@ -9,12 +8,7 @@ interface IProps {
   codigoFonte?: string;
 }
 
-const ProjectImage: React.FC<IProps> = ({
-  src,
-  alt,
-  visualizacao,
-  codigoFonte,
-}) => {
+const ProjectImage = ({ src, alt, visualizacao, codigoFonte }: IProps) => {
   return (
     <S.AnimatedImgWrapper
       initial={{ opacity: 0 }}

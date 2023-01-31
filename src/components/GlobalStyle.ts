@@ -6,15 +6,16 @@ const GlobalStyle = createGlobalStyle`
     font-size: 16px;
     accent-color: ${({ theme }: { theme: ITheme }) => theme.primary};
   }
-
+  
   * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
   }
-
+  
   body {
     font-family: 'Outfit', sans-serif;
+    background: ${({ theme }: { theme: ITheme }) => theme.bg};
   }
 
   ::-webkit-scrollbar {
@@ -41,6 +42,14 @@ const GlobalStyle = createGlobalStyle`
     background: ${({ theme }: { theme: ITheme }) => theme.bg};
     color: ${({ theme }: { theme: ITheme }) => theme.color};
     transition: background .3s ease-in-out;
+  }
+
+  main {
+    min-height: 100vh;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
 
   h1 {

@@ -5,15 +5,17 @@ import ErrorDisplay from '../components/ErrorDisplay';
 
 const NotFoundError = () => {
   return (
-    <Section>
-      <Helmet>
-        <title>Erro 404</title>
-      </Helmet>
-      <ErrorDisplay
-        title='Página não encontrada'
-        message='Verifique a url e tente novamente'
-      />
-    </Section>
+    <main>
+      <Section>
+        <Helmet>
+          <title>Erro 404</title>
+        </Helmet>
+        <ErrorDisplay
+          title='Página não encontrada'
+          message='Verifique a url e tente novamente'
+        />
+      </Section>
+    </main>
   );
 };
 

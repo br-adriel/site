@@ -8,15 +8,13 @@ const HelloSection = () => {
   const socialItems = [
     {
       id: 1,
-      icon: <Github />,
+      icon: <Github title='Github' />,
       link: 'https://github.com/br-adriel',
-      title: 'Github',
     },
     {
       id: 2,
-      icon: <Linkedin />,
+      icon: <Linkedin title='LinkedIn' />,
       link: 'https://linkedin.com/in/adriel-fsantos',
-      title: 'Linkedin',
     },
   ];
 

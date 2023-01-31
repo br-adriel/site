@@ -9,7 +9,7 @@ interface Props {
 
 const ThemeSwitch: React.FC<Props> = ({ useDarkTheme, setTheme }) => {
   return (
-    <S.ThemeButton onClick={setTheme} title='Alterar tema'>
+    <S.ThemeButton onClick={setTheme} title='Alterar tema' type='button'>
       {useDarkTheme ? <MoonStarsFill /> : <SunFill />}
     </S.ThemeButton>
   );

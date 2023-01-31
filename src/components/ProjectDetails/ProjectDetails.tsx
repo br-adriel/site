@@ -1,15 +1,14 @@
-import React from 'react';
-import * as S from './ProjectDetails.styled';
-import ProjectImage from './ProjectImage';
-import TechList from '../TechList';
 import { IProject } from '../../global/types';
 import BackButton from '../BackButton';
+import TechList from '../TechList';
+import * as S from './ProjectDetails.styled';
+import ProjectImage from './ProjectImage';
 
 interface IProps {
   projeto: IProject;
 }
 
-const ProjectDetails: React.FC<IProps> = ({ projeto }) => {
+const ProjectDetails = ({ projeto }: IProps) => {
   return (
     <S.Wrapper>
       <S.Header>

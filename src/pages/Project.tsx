@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { useParams } from 'react-router-dom';
 import ContainerSection from '../components/ContainerSection';
@@ -12,7 +12,7 @@ interface IProps {
   projectObj?: IProject;
 }
 
-const Project: React.FC<IProps> = ({ projectObj }) => {
+const Project = ({ projectObj }: IProps) => {
   const initialProject: IProject = {
     criado_em: '',
     descricao: '',
@@ -45,25 +45,27 @@ const Project: React.FC<IProps> = ({ projectObj }) => {
   }, []);
 
   return (
-    <ContainerSection>
-      {isLoading ? (
-        <Loading />
-      ) : itExists ? (
-        <>
-          <Helmet>
-            <title>{project.nome}</title>
-          </Helmet>
-          <ProjectDetails projeto={project} />
-        </>
-      ) : (
-        <>
-          <Helmet>
-            <title>Erro 404</title>
-          </Helmet>
-          <ErrorDisplay title='Projeto não encontrado' />
-        </>
-      )}
-    </ContainerSection>
+    <main>
+      <ContainerSection>
+        {isLoading ? (
+          <Loading />
+        ) : itExists ? (
+          <>
+            <Helmet>
+              <title>{project.nome}</title>
+            </Helmet>
+            <ProjectDetails projeto={project} />
+          </>
+        ) : (
+          <>
+            <Helmet>
+              <title>Erro 404</title>
+            </Helmet>
+            <ErrorDisplay title='Projeto não encontrado' />
+          </>
+        )}
+      </ContainerSection>
+    </main>
   );
 };
 
