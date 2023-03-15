@@ -1,5 +1,6 @@
+import { db } from '@/firebase-config';
 import { IProject } from '@/global/types';
-import { getDocs, Query, DocumentData } from 'firebase/firestore';
+import { doc, DocumentData, getDoc, getDocs, Query } from 'firebase/firestore';
 
 export async function getQuery(query: Query<DocumentData>) {
   const data = await getDocs(query);
@@ -49,4 +50,11 @@ export function joinProjectsArrays(
     notRepeated.push(fetchedArr[i]);
   }
   return [...projectsArr, ...notRepeated];
+}
+
+export async function getProject(id: string) {
+  const docRef = doc(db, 'projetos', id);
+  const docSnap = await getDoc(docRef);
+  if (docSnap.exists()) return docSnap.data();
+  return null;
 }
