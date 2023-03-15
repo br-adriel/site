@@ -1,6 +1,5 @@
 import { motion } from 'framer-motion';
 import { Github, Linkedin } from 'react-bootstrap-icons';
-import desktop_img from '../../assets/img/home_desktop.svg';
 import SocialBar from '../SocialBar';
 import * as S from './HelloSection.style';
 
@@ -33,11 +32,11 @@ const HelloSection = () => {
           animate={{ opacity: 1 }}
           transition={{ duration: 0.5, delay: 0.2 }}
         >
-          Desenvolvedor Frontend
+          Desenvolvedor Fullstack
         </motion.h2>
         <SocialBar socialItems={socialItems} />
       </div>
-      <img src={desktop_img} alt='' />
+      <img src='/assets/img/home_desktop.svg' alt='' />
     </S.Section>
   );
 };

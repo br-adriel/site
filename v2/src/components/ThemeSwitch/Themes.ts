@@ -7,7 +7,7 @@ export interface ITheme {
   colorAlt: string;
 }
 
-export const light: ITheme = {
+export const lightTheme: ITheme = {
   primary: '#3a86ff',
   secondary: '#8338ec',
   bg: '#f5f5fa',
@@ -16,7 +16,7 @@ export const light: ITheme = {
   colorAlt: '#ffffff',
 };
 
-export const dark: ITheme = {
+export const darkTheme: ITheme = {
   primary: '#3a86ff',
   secondary: '#8338ec',
   bg: '#1f1f1f',
