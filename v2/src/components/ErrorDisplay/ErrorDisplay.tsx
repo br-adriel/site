@@ -1,5 +1,5 @@
-import React from 'react';
-import errorIllustration from '../../assets/img/alert.svg';
+import Image from 'next/image';
+import Link from 'next/link';
 import * as S from './ErrorDisplay.styled';
 
 interface IProps {
@@ -14,10 +14,19 @@ const ErrorDisplay: React.FC<IProps> = ({
   return (
     <S.Container>
       <S.ImgWrapper>
-        <img src={errorIllustration} alt='' />
+        <Image
+          src='/assets/img/alert.svg'
+          alt=''
+          width={500}
+          height={200}
+          priority
+        />
       </S.ImgWrapper>
       <h2>{title}</h2>
       {message ? <p>{message}</p> : null}
+      <Link className='btn' href='/'>
+        Ir para a página inicial
+      </Link>
     </S.Container>
   );
 };

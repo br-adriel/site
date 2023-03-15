@@ -1,5 +1,5 @@
 import BackButton from '@/components/BackButton';
-import ContainerSection from '@/components/ContainerSection';
+import { ContainerSection } from '@/components/Container';
 import Loading from '@/components/Loading';
 import ProjectsGrid from '@/components/ProjectsGrid';
 import ScrollLoad from '@/components/ScrollLoad';

@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 import styled from 'styled-components';
-import ContainerSection from '../ContainerSection';
+import { ContainerSection } from '../Container';
 
 export const Section = styled(ContainerSection)`
   display: flex;

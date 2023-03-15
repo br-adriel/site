@@ -1,4 +1,5 @@
-import ContainerSection from '@/components/ContainerSection';
+import { ContainerSection } from '@/components/Container';
+import ErrorDisplay from '@/components/ErrorDisplay';
 import Loading from '@/components/Loading';
 import ProjectDetails from '@/components/ProjectDetails';
 import { IProject } from '@/global/types';
@@ -43,6 +44,13 @@ export default function Project({ projectObj }: IProps) {
     }
   }, [id]);
 
+  if (project === null)
+    return (
+      <ErrorDisplay
+        title='Projeto não encontrado'
+        message='Verifique a URL e tente novamente'
+      />
+    );
   return (
     <>
       <Head>

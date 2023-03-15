@@ -61,16 +61,19 @@ const GlobalStyle = createGlobalStyle`
     font-weight: 500;
   }
 
-  button {
+  button, .btn {
     padding: 10px;
     border-radius: 5px;
     background: ${({ theme }: { theme: ITheme }) => theme.primary};
+    text-decoration: none;
     color: #fff;
     cursor: pointer;
     transition: background .3s ease-in-out;
-
+    
     &:hover {
       background: ${({ theme }: { theme: ITheme }) => theme.secondary};
+      color: #fff;
+      text-decoration: none;
     }
   }
 

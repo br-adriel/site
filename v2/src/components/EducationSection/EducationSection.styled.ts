@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import ContainerSection from '../ContainerSection';
+import { ContainerSection } from '../Container';
 
 export const Section = styled(ContainerSection)`
   display: flex;
