@@ -1,6 +1,5 @@
 import { collection, getDocs } from 'firebase/firestore';
 import { useEffect, useState } from 'react';
-import board_presentation from '../../assets/img/board_presentation.svg';
 import { db } from '../../firebase-config';
 import { IEducationItem } from '../../global/types';
 import Loading from '../Loading';
@@ -34,7 +33,7 @@ const EducationSection = () => {
           </>
         )}
       </S.ContentDiv>
-      <img src={board_presentation} alt='' />
+      <img src='/assets/img/board_presentation.svg' alt='' />
     </S.Section>
   );
 };

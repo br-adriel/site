@@ -1,3 +1,4 @@
+import EducationSection from '@/components/EducationSection';
 import HelloSection from '@/components/HelloSection';
 import SkillsSection from '@/components/SkillsSection';
 import Head from 'next/head';
@@ -15,8 +16,8 @@ export default function Home() {
       <main>
         <HelloSection />
         <SkillsSection />
-        {/* 
         <EducationSection />
+        {/* 
         <ProjectsSection /> */}
       </main>
     </>
