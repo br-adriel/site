@@ -1,12 +1,11 @@
+import { useRouter } from 'next/router';
 import { ArrowLeft } from 'react-bootstrap-icons';
-import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 
 const BackButton = () => {
-  const navigate = useNavigate();
-
+  const router = useRouter();
   return (
-    <Button onClick={() => navigate(-1)}>
+    <Button onClick={() => router.back()}>
       <ArrowLeft title='Voltar' />
     </Button>
   );
