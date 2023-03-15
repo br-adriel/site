@@ -1,4 +1,3 @@
-import Image from 'next/image';
 import Link from 'next/link';
 import * as S from './ErrorDisplay.styled';
 
@@ -13,17 +12,10 @@ const ErrorDisplay: React.FC<IProps> = ({
 }) => {
   return (
     <S.Container>
-      <S.ImgWrapper>
-        <Image
-          src='/assets/img/alert.svg'
-          alt=''
-          width={500}
-          height={200}
-          priority
-        />
-      </S.ImgWrapper>
-      <h2>{title}</h2>
-      {message ? <p>{message}</p> : null}
+      <div>
+        <h2>{title}</h2>
+        {message ? <p>{message}</p> : null}
+      </div>
       <Link className='btn' href='/'>
         Ir para a página inicial
       </Link>
