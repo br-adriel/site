@@ -23,7 +23,7 @@ export const themeSlice = createSlice({
     switchTheme(state) {
       state.useDark = !state.useDark;
       state.theme = state.useDark ? darkTheme : lightTheme;
-      setUserDarkThemePreference(!state.useDark);
+      setUserDarkThemePreference(state.useDark);
     },
   },
 });
