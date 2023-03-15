@@ -1,7 +1,6 @@
-import React from 'react';
 import { IProject } from '../../global/types';
-import * as S from './ProjectsGrid.styled';
 import ProjectCard from '../ProjectCard';
+import * as S from './ProjectsGrid.styled';
 
 interface IProps {
   projects: IProject[];

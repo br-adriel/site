@@ -18,4 +18,26 @@ const Card = styled(motion.div)`
   }
 `;
 
+export const ProjectCard = styled(Card)`
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  color: ${({ theme }: { theme: ITheme }) => theme.color};
+
+  img {
+    border-radius: 5px;
+    flex-grow: 1;
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+  }
+
+  h3 {
+    font-size: 1.3rem;
+    font-weight: 500;
+  }
+`;
+
 export default Card;
