@@ -9,12 +9,12 @@ const Card = styled(motion.div)`
   display: flex;
   gap: 12px;
   align-items: flex-start;
-  box-shadow: 0 0 2px rgba(200, 200, 200, 0.1);
+  box-shadow: 0 0 4px ${({ theme }: { theme: ITheme }) => theme.shadowSm};
   transition: all 0.4s ease-in-out;
   position: relative;
 
   &:hover {
-    box-shadow: 0 2px 6px rgba(200, 200, 200, 0.2);
+    box-shadow: 0 0 4px ${({ theme }: { theme: ITheme }) => theme.shadowMd};
   }
 `;
 

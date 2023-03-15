@@ -1,5 +1,5 @@
 import { doc, getDoc } from 'firebase/firestore';
-import { db } from '../firebase-config';
+import { db } from '../../v2/src/firebase-config';
 
 export default async function getProject(id: string) {
   const docRef = doc(db, 'projetos', id);

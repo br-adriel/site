@@ -1,4 +1,4 @@
-import { IProject } from '../global/types';
+import { IProject } from '../../v2/src/global/types';
 
 function joinProjectsArrays(
   projectsArr: IProject[] = [],

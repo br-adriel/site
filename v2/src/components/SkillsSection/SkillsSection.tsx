@@ -1,9 +1,8 @@
+import { db } from '@/firebase-config';
+import { ISkill } from '@/global/types';
+import { getQuery } from '@/utils/firebaseCollections';
 import { collection, orderBy, query } from 'firebase/firestore';
 import { useEffect, useState } from 'react';
-import techImg from '../../assets/img/tech_bg.svg';
-import { db } from '../../firebase-config';
-import { ISkill } from '../../global/types';
-import { getQuery } from '../../utils';
 import Loading from '../Loading';
 import SkillCard from './SkillCard/SkillCard';
 import * as S from './SkillsSection.styled';
@@ -48,7 +47,7 @@ const SkillsSection = () => {
           </S.AnimatedSkillGrid>
         </S.ContentDiv>
       )}
-      <img src={techImg} alt='' />
+      <img src='/assets/img/tech_bg.svg' alt='' />
     </S.Section>
   );
 };

@@ -1,4 +1,5 @@
 import HelloSection from '@/components/HelloSection';
+import SkillsSection from '@/components/SkillsSection';
 import Head from 'next/head';
 
 export default function Home() {
@@ -13,7 +14,8 @@ export default function Home() {
       </Head>
       <main>
         <HelloSection />
-        {/* <SkillsSection />
+        <SkillsSection />
+        {/* 
         <EducationSection />
         <ProjectsSection /> */}
       </main>

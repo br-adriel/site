@@ -16,8 +16,8 @@ export const lightTheme: ITheme = {
   bg2: '#ffffff',
   color: '#000000',
   colorAlt: '#ffffff',
-  shadowSm: '0 0 2px rgba(200, 200, 200, 0.1)',
-  shadowMd: '0 0 2px rgba(200, 200, 200, 0.2)',
+  shadowSm: 'rgba(200, 200, 200, 0.2)',
+  shadowMd: 'rgba(200, 200, 200, 0.4)',
 };
 
 export const darkTheme: ITheme = {
@@ -27,6 +27,6 @@ export const darkTheme: ITheme = {
   bg2: '#1A1A1A',
   color: '#ffffff',
   colorAlt: '#000000',
-  shadowSm: '0 0 2px rgba(10, 10, 10, 0.1)',
-  shadowMd: '0 0 2px rgba(10, 10, 10, 0.2)',
+  shadowSm: 'rgba(0, 0, 0, 0.2)',
+  shadowMd: 'rgba(0, 0, 0, 0.4)',
 };
