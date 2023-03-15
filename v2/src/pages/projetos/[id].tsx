@@ -46,10 +46,15 @@ export default function Project({ projectObj }: IProps) {
 
   if (project === null)
     return (
-      <ErrorDisplay
-        title='Projeto não encontrado'
-        message='Verifique a URL e tente novamente'
-      />
+      <>
+        <Head>
+          <title>Projeto não encontrado</title>
+        </Head>
+        <ErrorDisplay
+          title='Projeto não encontrado'
+          message='Verifique a URL e tente novamente'
+        />
+      </>
     );
   return (
     <>
