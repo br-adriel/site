@@ -35,4 +35,5 @@ export const { addProjects, clearProjects } = projectsSlice.actions;
 
 export const selectProjects = (state: RootState) => state.projects;
 
-export default projectsSlice.reducer;
+const projectsReducer = projectsSlice.reducer;
+export default projectsReducer;
