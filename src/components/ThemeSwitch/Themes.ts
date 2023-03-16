@@ -10,7 +10,7 @@ export interface ITheme {
 }
 
 export const lightTheme: ITheme = {
-  primary: '#3a86ff',
+  primary: '#0072e7',
   secondary: '#8338ec',
   bg: '#f5f5fa',
   bg2: '#ffffff',
@@ -21,7 +21,7 @@ export const lightTheme: ITheme = {
 };
 
 export const darkTheme: ITheme = {
-  primary: '#3a86ff',
+  primary: '#0072e7',
   secondary: '#8338ec',
   bg: '#1f1f1f',
   bg2: '#1A1A1A',
