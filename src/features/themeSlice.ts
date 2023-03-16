@@ -32,4 +32,5 @@ export const { switchTheme, setDarkTheme, setLightTheme } = themeSlice.actions;
 
 export const selectTheme = (state: RootState) => state.theme;
 
-export default themeSlice.reducer;
+const themeReducer = themeSlice.reducer;
+export default themeReducer;
