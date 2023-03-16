@@ -1,6 +1,13 @@
-import { Head, Html, Main, NextScript } from 'next/document';
+import Document, {
+  DocumentContext,
+  Head,
+  Html,
+  Main,
+  NextScript,
+} from 'next/document';
+import { ServerStyleSheet } from 'styled-components';
 
-export default function Document() {
+export default function AppDocument() {
   return (
     <Html lang='pt-BR'>
       <Head>
@@ -13,3 +20,23 @@ export default function Document() {
     </Html>
   );
 }
+
+AppDocument.getInitialProps = async (context: DocumentContext) => {
+  const sheet = new ServerStyleSheet();
+  const originalRenderPage = context.renderPage;
+
+  try {
+    context.renderPage = () =>
+      originalRenderPage({
+        enhanceApp: (App) => (props) => sheet.collectStyles(<App {...props} />),
+      });
+
+    const initialProps = await Document.getInitialProps(context);
+    return {
+      ...initialProps,
+      styles: [initialProps.styles, sheet.getStyleElement()],
+    };
+  } finally {
+    sheet.seal();
+  }
+};
