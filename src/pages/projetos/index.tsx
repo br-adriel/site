@@ -56,6 +56,10 @@ export default function Projetos() {
     <>
       <Head>
         <title>Projetos</title>
+        <meta
+          name='description'
+          content='Confira os projetos em que eu já trabalhei'
+        />
       </Head>
       <main>
         <Section>

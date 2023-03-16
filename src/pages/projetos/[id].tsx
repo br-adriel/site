@@ -50,6 +50,10 @@ export default function Project({ projectObj }: IProps) {
       <>
         <Head>
           <title>Projeto não encontrado</title>
+          <meta
+            name='description'
+            content='O projeto que você está procurando não existe'
+          />
         </Head>
         <ErrorDisplay
           title='Projeto não encontrado'
@@ -61,6 +65,10 @@ export default function Project({ projectObj }: IProps) {
     <>
       <Head>
         <title>{project.nome}</title>
+        <meta
+          name='description'
+          content={`Veja mais detalhes sobre o projeto "${project.nome}"`}
+        />
       </Head>
       <main>
         <ContainerSection>

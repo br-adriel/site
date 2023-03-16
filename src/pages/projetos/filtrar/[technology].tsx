@@ -76,6 +76,10 @@ export default function ProjetosDeTecnologia() {
     <>
       <Head>
         <title>Projetos que utilizam {technology ? technology : ' '}</title>
+        <meta
+          name='description'
+          content={`Confira os projetos que utilizam a tecnologia "${technology}"`}
+        />
       </Head>
       <main>
         <Section>
