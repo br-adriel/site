@@ -1,7 +1,7 @@
+import Link from 'next/link';
 import styled from 'styled-components';
-import ContainerSection from '../ContainerSection';
+import { ContainerSection } from '../Container';
 import { ITheme } from '../ThemeSwitch/Themes';
-import { Link } from 'react-router-dom';
 
 export const Section = styled(ContainerSection)`
   display: flex;

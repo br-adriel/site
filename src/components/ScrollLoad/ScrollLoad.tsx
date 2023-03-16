@@ -1,4 +1,4 @@
-import React, { useEffect, useId } from 'react';
+import { useEffect, useId } from 'react';
 import * as S from './ScrollLoad.styled';
 
 interface IProps {

@@ -1,6 +1,5 @@
-import React from 'react';
+import { getMonthName } from '@/utils/dates';
 import { IEducationItem } from '../../../global/types';
-import { getMonthName } from '../../../utils';
 import * as S from './EducationList.styled';
 
 interface IProps {

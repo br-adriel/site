@@ -1,4 +1,4 @@
-export default function getMonthName(
+export function getMonthName(
   month: number,
   short = false,
   lower = false,

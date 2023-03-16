@@ -1,6 +1,6 @@
-import DefaultCard from '../../Card';
-import styled from 'styled-components';
 import { motion } from 'framer-motion';
+import styled from 'styled-components';
+import DefaultCard from '../../Card';
 
 export const List = styled.div`
   display: flex;

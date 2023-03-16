@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import { BoxArrowUpRight } from 'react-bootstrap-icons';
 import * as S from './ProjectImage.styled';
 
@@ -15,7 +16,7 @@ const ProjectImage = ({ src, alt, visualizacao, codigoFonte }: IProps) => {
       animate={{ opacity: 1 }}
       transition={{ duration: 0.4 }}
     >
-      <img src={src} alt={alt || ''} />
+      <Image src={src} alt={alt || ''} width={1067} height={600} priority />
 
       <S.LinksGroup>
         {codigoFonte ? (

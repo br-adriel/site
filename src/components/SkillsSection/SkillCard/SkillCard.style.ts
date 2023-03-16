@@ -1,5 +1,5 @@
+import DefaultCard from '@/components/Card';
 import styled from 'styled-components';
-import DefaultCard from '../../Card';
 
 export const Card = styled(DefaultCard)`
   img {

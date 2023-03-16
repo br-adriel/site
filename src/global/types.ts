@@ -1,3 +1,5 @@
+import { Timestamp } from 'firebase/firestore';
+
 export interface IEducationItem {
   id: string;
   curso: string;
@@ -20,7 +22,7 @@ export interface IProject {
   nome: string;
   descricao: string;
   tecnologias: string[];
-  criado_em: string;
+  criado_em: string | Timestamp;
   repositorio: string;
   visualizacao: string;
   imagem: string;

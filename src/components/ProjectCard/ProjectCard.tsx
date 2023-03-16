@@ -1,7 +1,6 @@
-import React from 'react';
-import * as S from './ProjectCard.styled';
-import { LazyLoadImage } from 'react-lazy-load-image-component';
-import { Link } from 'react-router-dom';
+import Image from 'next/image';
+import Link from 'next/link';
+import { ProjectCard as Card } from '../Card';
 
 interface IProps {
   name: string;
@@ -11,17 +10,11 @@ interface IProps {
 
 const ProjectCard: React.FC<IProps> = ({ name, image, id }) => {
   return (
-    <Link to={`/projetos/${id}`}>
-      <S.Card>
-        <LazyLoadImage
-          src={image}
-          width='100%'
-          height='auto'
-          threshold={300}
-          alt=''
-        />
+    <Link href={`/projetos/${id}`}>
+      <Card>
+        <Image src={image} width='1067' height='600' alt='' priority />
         <h3>{name}</h3>
-      </S.Card>
+      </Card>
     </Link>
   );
 };

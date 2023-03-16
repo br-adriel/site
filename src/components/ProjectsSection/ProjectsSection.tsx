@@ -1,10 +1,9 @@
+import { db } from '@/firebase-config';
+import { IProject } from '@/global/types';
+import { getQuery } from '@/utils/firebaseCollections';
 import { collection, limit, orderBy, query } from 'firebase/firestore';
 import { useEffect, useState } from 'react';
-import { db } from '../../firebase-config';
-import { IProject } from '../../global/types';
-import { getQuery } from '../../utils';
 import Loading from '../Loading';
-import ProjectCard from '../ProjectCard';
 import ProjectsGrid from '../ProjectsGrid';
 import * as S from './ProjectsSection.styled';
 
@@ -33,7 +32,7 @@ const ProjectsSection = () => {
     <S.Section>
       <S.TitleBar>
         <h2>Projetos</h2>
-        <S.ButtonLink to='/projetos'>Ver todos</S.ButtonLink>
+        <S.ButtonLink href='/projetos'>Ver todos</S.ButtonLink>
       </S.TitleBar>
       {loading ? <Loading /> : <ProjectsGrid projects={projects} />}
     </S.Section>

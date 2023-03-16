@@ -1,5 +1,5 @@
 import { createGlobalStyle } from 'styled-components';
-import { ITheme } from './ThemeSwitch/Themes';
+import { ITheme } from '@/components/ThemeSwitch/Themes';
 
 const GlobalStyle = createGlobalStyle`
   :root {
@@ -14,8 +14,10 @@ const GlobalStyle = createGlobalStyle`
   }
   
   body {
-    font-family: 'Outfit', sans-serif;
+    font-family: var(--font-family);
     background: ${({ theme }: { theme: ITheme }) => theme.bg};
+    color: ${({ theme }: { theme: ITheme }) => theme.color};
+    transition: background .3s ease-in-out;
   }
 
   ::-webkit-scrollbar {
@@ -39,9 +41,6 @@ const GlobalStyle = createGlobalStyle`
     display: flex;
     flex-direction: column;
     align-items: center;
-    background: ${({ theme }: { theme: ITheme }) => theme.bg};
-    color: ${({ theme }: { theme: ITheme }) => theme.color};
-    transition: background .3s ease-in-out;
   }
 
   main {
@@ -62,16 +61,19 @@ const GlobalStyle = createGlobalStyle`
     font-weight: 500;
   }
 
-  button {
+  button, .btn {
     padding: 10px;
     border-radius: 5px;
     background: ${({ theme }: { theme: ITheme }) => theme.primary};
+    text-decoration: none;
     color: #fff;
     cursor: pointer;
     transition: background .3s ease-in-out;
-
+    
     &:hover {
       background: ${({ theme }: { theme: ITheme }) => theme.secondary};
+      color: #fff;
+      text-decoration: none;
     }
   }
 

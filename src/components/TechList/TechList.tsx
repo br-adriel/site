@@ -1,5 +1,4 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 import * as S from './TechList.styled';
 import TechListItem from './TechListItem';
 
@@ -14,7 +13,7 @@ const TechList: React.FC<IProps> = ({ techs }) => {
         const url = `/projetos/filtrar/${tech}`;
         return (
           <TechListItem key={tech}>
-            <Link to={url}>{tech}</Link>
+            <Link href={url}>{tech}</Link>
           </TechListItem>
         );
       })}
