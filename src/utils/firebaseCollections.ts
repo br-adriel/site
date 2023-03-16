@@ -1,6 +1,15 @@
 import { db } from '@/firebase-config';
-import { IProject } from '@/global/types';
-import { doc, DocumentData, getDoc, getDocs, Query } from 'firebase/firestore';
+import { IEducationItem, IProject, ISkill } from '@/global/types';
+import {
+  collection,
+  doc,
+  DocumentData,
+  getDoc,
+  getDocs,
+  orderBy,
+  query,
+  Query,
+} from 'firebase/firestore';
 
 export async function getQuery(query: Query<DocumentData>) {
   const data = await getDocs(query);
@@ -64,4 +73,21 @@ export function serializeProjectsArray(projects: IProject[]): IProject[] {
       criado_em: proj.criado_em.toString(),
     };
   });
+}
+
+export async function getHabilidades() {
+  const skillsCollectionRef = collection(db, 'habilidades');
+  const q = query(skillsCollectionRef, orderBy('ordem', 'asc'));
+  const fetchedSkills = await getQuery(q);
+  return fetchedSkills as ISkill[];
+}
+
+export async function getEducacao() {
+  const educationCollectionRef = collection(db, 'educacao');
+  const data = await getDocs(educationCollectionRef);
+  const fetchedEducation = data.docs.map((doc) => ({
+    ...doc.data(),
+    id: doc.id,
+  }));
+  return fetchedEducation as IEducationItem[];
 }

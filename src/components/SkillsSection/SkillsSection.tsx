@@ -1,27 +1,19 @@
-import { db } from '@/firebase-config';
 import { ISkill } from '@/global/types';
-import { getQuery } from '@/utils/firebaseCollections';
-import { collection, orderBy, query } from 'firebase/firestore';
 import { useEffect, useState } from 'react';
 import Loading from '../Loading';
 import SkillCard from './SkillCard/SkillCard';
 import * as S from './SkillsSection.styled';
 
-const SkillsSection = () => {
-  const [skills, setSkills]: [ISkill[], any] = useState([]);
+interface IProps {
+  skills: ISkill[];
+}
+
+const SkillsSection = ({ skills }: IProps) => {
   const [loading, setLoading] = useState(true);
-  const skillsCollectionRef = collection(db, 'habilidades');
 
   useEffect(() => {
-    const getHabilidades = async () => {
-      const q = query(skillsCollectionRef, orderBy('ordem', 'asc'));
-      const fetchedSkills = await getQuery(q);
-      setSkills(fetchedSkills);
-      setLoading(false);
-    };
-
-    getHabilidades();
-  }, []);
+    if (skills) setLoading(false);
+  }, [skills]);
 
   return (
     <S.Section>

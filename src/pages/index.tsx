@@ -2,9 +2,17 @@ import EducationSection from '@/components/EducationSection';
 import HelloSection from '@/components/HelloSection';
 import ProjectsSection from '@/components/ProjectsSection';
 import SkillsSection from '@/components/SkillsSection';
+import { IEducationItem, ISkill } from '@/global/types';
+import { getEducacao, getHabilidades } from '@/utils/firebaseCollections';
+import { GetStaticProps } from 'next';
 import Head from 'next/head';
 
-export default function Home() {
+interface IProps {
+  skills: ISkill[];
+  education: IEducationItem[];
+}
+
+export default function Home({ skills, education }: IProps) {
   return (
     <>
       <Head>
@@ -16,10 +24,23 @@ export default function Home() {
       </Head>
       <main>
         <HelloSection />
-        <SkillsSection />
-        <EducationSection />
+        <SkillsSection skills={skills} />
+        <EducationSection education={education} />
         <ProjectsSection />
       </main>
     </>
   );
 }
+
+export const getStaticProps: GetStaticProps = async (context) => {
+  try {
+    const skills = await getHabilidades();
+    const education = await getEducacao();
+    return {
+      props: { skills, education },
+    };
+  } catch (err) {}
+  return {
+    props: { education: [], skills: [] },
+  };
+};
