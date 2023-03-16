@@ -59,7 +59,7 @@ export default function ProjetosDeTecnologia() {
   };
 
   useEffect(() => {
-    if (typeof technology === 'string') {
+    if (typeof technology === 'string' && technology.length > 0) {
       getProjetos();
       isLoading.current = false;
     }
@@ -68,13 +68,11 @@ export default function ProjetosDeTecnologia() {
     };
   }, [technology]);
 
+  if (!technology) return;
   return (
     <>
       <Head>
-        <title>
-          Projetos que utilizam{' '}
-          {typeof technology === 'string' ? technology : ''}
-        </title>
+        <title>Projetos que utilizam {technology ? technology : ' '}</title>
       </Head>
       <main>
         <Section>
