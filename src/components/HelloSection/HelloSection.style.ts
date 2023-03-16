@@ -11,6 +11,8 @@ export const Section = styled(ContainerSection)`
 
   img {
     max-height: 70vh;
+    max-width: 90%;
+    object-fit: contain;
   }
 
   h1 {
