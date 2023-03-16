@@ -4,7 +4,7 @@ import { joinProjectsArrays } from '@/utils/firebaseCollections';
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 export const projectsSlice = createSlice({
-  name: 'projects',
+  name: 'filteredProjects',
   initialState: {
     projects: [] as IProject[],
     lastProject: {} as {} | IProject,
@@ -33,6 +33,7 @@ export const projectsSlice = createSlice({
 
 export const { addProjects, clearProjects } = projectsSlice.actions;
 
-export const selectProjects = (state: RootState) => state.projects;
+export const selectFilteredProjects = (state: RootState) =>
+  state.filteredProjects;
 
 export default projectsSlice.reducer;
