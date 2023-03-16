@@ -7,23 +7,39 @@ export const projectsSlice = createSlice({
   name: 'projects',
   initialState: {
     projects: [] as IProject[],
+    lastProject: {} as {} | IProject,
     filteredProjects: [] as IProject[],
+    lastFilteredProject: {} as {} | IProject,
+    shouldFetchProjects: true,
   },
   reducers: {
     addProjects(state, action: PayloadAction<IProject[]>) {
+      const initialCount = state.projects.length;
+
       state.projects = joinProjectsArrays(state.projects, action.payload);
+      state.lastProject = state.projects[state.projects.length - 1];
+
+      if (initialCount === state.projects.length) {
+        state.shouldFetchProjects = false;
+      } else {
+        state.shouldFetchProjects = true;
+      }
     },
     addFilteredProjects(state, action: PayloadAction<IProject[]>) {
       state.filteredProjects = joinProjectsArrays(
         state.filteredProjects,
         action.payload
       );
+      state.lastFilteredProject =
+        state.filteredProjects[state.filteredProjects.length - 1];
     },
     clearProjects(state) {
       state.projects = [];
+      state.lastProject = {};
     },
     clearFilteredProjects(state) {
       state.filteredProjects = [];
+      state.lastFilteredProject = {};
     },
   },
 });

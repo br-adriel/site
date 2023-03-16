@@ -15,39 +15,40 @@ import {
   startAfter,
 } from 'firebase/firestore';
 import Head from 'next/head';
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
 
 export default function Projetos() {
   const dispatch = useDispatch();
 
-  const { projects } = useSelector(selectProjects);
-  const lastProject = useRef({});
-  const shouldFetch = useRef(true);
-  const loading = useRef(true);
+  const [loading, setLoading] = useState(true);
+  const { projects, lastProject, shouldFetchProjects } =
+    useSelector(selectProjects);
+
+  const lastProjectRef = useRef(lastProject);
   const projectsCollectionRef = collection(db, 'projetos');
 
   const getProjetos = async () => {
     const q = query(
       projectsCollectionRef,
       orderBy('criado_em', 'desc'),
-      startAfter(lastProject.current),
+      startAfter(lastProjectRef.current),
       limit(10)
     );
 
-    if (shouldFetch) {
+    if (shouldFetchProjects) {
       const fetchedProjects = (await fetchPage(
         q,
-        shouldFetch,
-        lastProject
+        lastProjectRef
       )) as IProject[];
       dispatch(addProjects(serializeProjectsArray(fetchedProjects)));
     }
+    setLoading(false);
   };
 
   useEffect(() => {
-    loading.current = false;
+    lastProjectRef.current = lastProject;
     getProjetos();
   }, []);
 
@@ -64,11 +65,7 @@ export default function Projetos() {
           </Header>
 
           <ScrollLoad onScrollEnd={getProjetos}>
-            {loading.current ? (
-              <Loading />
-            ) : (
-              <ProjectsGrid projects={projects} />
-            )}
+            {loading ? <Loading /> : <ProjectsGrid projects={projects} />}
           </ScrollLoad>
         </Section>
       </main>
