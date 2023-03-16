@@ -5,10 +5,10 @@ import Loading from '@/components/Loading';
 import ProjectsGrid from '@/components/ProjectsGrid';
 import ScrollLoad from '@/components/ScrollLoad';
 import {
-  addFilteredProjects,
-  clearFilteredProjects,
-  selectProjects,
-} from '@/features/projectsSlice';
+  addProjects,
+  clearProjects,
+  selectFilteredProjects,
+} from '@/features/filteredProjectsSlice';
 import { db } from '@/firebase-config';
 import { IProject } from '@/global/types';
 import { fetchPage, serializeProjectsArray } from '@/utils/firebaseCollections';
@@ -22,7 +22,7 @@ import {
 } from 'firebase/firestore';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
 
@@ -32,39 +32,42 @@ export default function ProjetosDeTecnologia() {
   const router = useRouter();
   const { technology } = router.query;
 
-  const { filteredProjects } = useSelector(selectProjects);
+  const [isLoading, setIsLoading] = useState(true);
+  const { projects, lastProject, shouldFetchProjects } = useSelector(
+    selectFilteredProjects
+  );
 
+  const lastProjectRef = useRef(lastProject);
   const projectsCollectionRef = collection(db, 'projetos');
-  const isLoading = useRef(true);
-  const lastProject = useRef({});
-  const shouldFetch = useRef(true);
 
   const getProjetos = async () => {
     const q = query(
       projectsCollectionRef,
       where('tecnologias', 'array-contains', technology),
       orderBy('criado_em', 'desc'),
-      startAfter(lastProject.current),
+      startAfter(lastProjectRef.current),
       limit(10)
     );
 
-    if (shouldFetch) {
+    if (shouldFetchProjects) {
       const fetchedProjects = (await fetchPage(
         q,
-        shouldFetch,
-        lastProject
+        lastProjectRef
       )) as IProject[];
-      dispatch(addFilteredProjects(serializeProjectsArray(fetchedProjects)));
+      dispatch(addProjects(serializeProjectsArray(fetchedProjects)));
     }
+    setIsLoading(false);
   };
 
   useEffect(() => {
+    lastProjectRef.current = lastProject;
+
     if (typeof technology === 'string' && technology.length > 0) {
       getProjetos();
-      isLoading.current = false;
     }
+
     return () => {
-      dispatch(clearFilteredProjects());
+      dispatch(clearProjects());
     };
   }, [technology]);
 
@@ -81,10 +84,10 @@ export default function ProjetosDeTecnologia() {
             <h1>Projetos que utilizam {technology}</h1>
           </Header>
           <ScrollLoad onScrollEnd={getProjetos}>
-            {isLoading.current ? (
+            {isLoading ? (
               <Loading />
-            ) : filteredProjects.length > 0 ? (
-              <ProjectsGrid projects={filteredProjects} />
+            ) : projects.length > 0 ? (
+              <ProjectsGrid projects={projects} />
             ) : (
               <ErrorDisplay
                 title='Nenhum projeto encontrado'
