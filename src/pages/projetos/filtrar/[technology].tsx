@@ -9,24 +9,23 @@ import {
   clearProjects,
   selectFilteredProjects,
 } from '@/features/filteredProjectsSlice';
-import { db } from '@/firebase-config';
 import { IProject } from '@/global/types';
-import { fetchPage, serializeProjectsArray } from '@/utils/firebaseCollections';
 import {
-  collection,
-  limit,
-  orderBy,
-  query,
-  startAfter,
-  where,
-} from 'firebase/firestore';
+  filterProjects,
+  serializeProjectsArray,
+} from '@/utils/firebaseCollections';
+import { GetStaticProps } from 'next';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
 import { useEffect, useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
 
-export default function ProjetosDeTecnologia() {
+interface IProps {
+  initialProjects: IProject[];
+}
+
+export default function ProjetosDeTecnologia({ initialProjects = [] }: IProps) {
   const dispatch = useDispatch();
 
   const router = useRouter();
@@ -38,28 +37,22 @@ export default function ProjetosDeTecnologia() {
   );
 
   const lastProjectRef = useRef(lastProject);
-  const projectsCollectionRef = collection(db, 'projetos');
 
   const getProjetos = async () => {
-    const q = query(
-      projectsCollectionRef,
-      where('tecnologias', 'array-contains', technology),
-      orderBy('criado_em', 'desc'),
-      startAfter(lastProjectRef.current),
-      limit(10)
-    );
-
     if (shouldFetchProjects) {
-      const fetchedProjects = (await fetchPage(
-        q,
-        lastProjectRef
-      )) as IProject[];
-      dispatch(addProjects(serializeProjectsArray(fetchedProjects)));
+      if (typeof technology === 'string' && technology.length) {
+        const fetchedProjects = await filterProjects(
+          technology,
+          lastProjectRef
+        );
+        dispatch(addProjects(serializeProjectsArray(fetchedProjects)));
+      }
     }
     setIsLoading(false);
   };
 
   useEffect(() => {
+    dispatch(addProjects(initialProjects));
     lastProjectRef.current = lastProject;
 
     if (typeof technology === 'string' && technology.length > 0) {
@@ -71,11 +64,15 @@ export default function ProjetosDeTecnologia() {
     };
   }, [technology]);
 
-  if (!technology) return;
+  const pageTitle = `Projetos que utilizam ${technology ? technology : ' '}`;
   return (
     <>
       <Head>
-        <title>Projetos que utilizam {technology ? technology : ' '}</title>
+        <title>{pageTitle}</title>
+        <meta
+          name='description'
+          content={`Confira os projetos que utilizam a tecnologia "${technology}"`}
+        />
       </Head>
       <main>
         <Section>
@@ -117,3 +114,46 @@ const Header = styled.div`
   gap: 10px;
   align-items: center;
 `;
+
+export function getStaticPaths() {
+  const paths = [
+    { params: { technology: 'HTML' } },
+    { params: { technology: 'CSS' } },
+    { params: { technology: 'TypeSctipt' } },
+    { params: { technology: 'JavaScript' } },
+    { params: { technology: 'React' } },
+    { params: { technology: 'StyledComponents' } },
+    { params: { technology: 'Firebase' } },
+    { params: { technology: 'React router dom' } },
+    { params: { technology: 'Next' } },
+    { params: { technology: 'Webpack' } },
+    { params: { technology: 'Tailwind' } },
+    { params: { technology: 'Redux' } },
+  ];
+
+  return {
+    paths,
+    fallback: true,
+  };
+}
+
+export const getStaticProps: GetStaticProps<
+  {},
+  { technology: string }
+> = async (context) => {
+  if (context.params) {
+    const { technology } = context.params;
+    try {
+      const fetchedProjects = await filterProjects(technology, { current: {} });
+      return {
+        props: {
+          initialProjects: serializeProjectsArray(fetchedProjects),
+        },
+      };
+    } catch (err) {}
+  }
+  return {
+    props: {},
+    notFound: true,
+  };
+};

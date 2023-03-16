@@ -8,6 +8,7 @@ export default function PageNotFound() {
     <>
       <Head>
         <title>Erro 404</title>
+        <meta name='description' content='Página não encontrada' />
       </Head>
       <main>
         <Section>

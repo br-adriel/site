@@ -1,4 +1,5 @@
 import { ISkill } from '@/global/types';
+import Image from 'next/image';
 import { useEffect, useState } from 'react';
 import Loading from '../Loading';
 import SkillCard from './SkillCard/SkillCard';
@@ -39,7 +40,7 @@ const SkillsSection = ({ skills }: IProps) => {
           </S.AnimatedSkillGrid>
         </S.ContentDiv>
       )}
-      <img src='/assets/img/tech_bg.svg' alt='' />
+      <Image src='/assets/img/tech_bg.svg' alt='' width={248} height={555} />
     </S.Section>
   );
 };

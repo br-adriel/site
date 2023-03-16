@@ -6,9 +6,12 @@ import {
   DocumentData,
   getDoc,
   getDocs,
+  limit,
   orderBy,
   query,
   Query,
+  startAfter,
+  where,
 } from 'firebase/firestore';
 
 export async function getQuery(query: Query<DocumentData>) {
@@ -90,4 +93,21 @@ export async function getEducacao() {
     id: doc.id,
   }));
   return fetchedEducation as IEducationItem[];
+}
+
+export async function filterProjects(
+  technology: string,
+  lastProjectRef: React.MutableRefObject<object>
+) {
+  const projectsCollectionRef = collection(db, 'projetos');
+  const q = query(
+    projectsCollectionRef,
+    where('tecnologias', 'array-contains', technology),
+    orderBy('criado_em', 'desc'),
+    startAfter(lastProjectRef.current),
+    limit(10)
+  );
+
+  const fetchedProjects = await fetchPage(q, lastProjectRef);
+  return fetchedProjects as IProject[];
 }
