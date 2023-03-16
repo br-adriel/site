@@ -1,9 +1,11 @@
-import { configureStore } from '@reduxjs/toolkit';
+import projectsReducer from '@/features/projectsSlice';
 import themeReducer from '@/features/themeSlice';
+import { configureStore } from '@reduxjs/toolkit';
 
 const store = configureStore({
   reducer: {
     theme: themeReducer,
+    projects: projectsReducer,
   },
 });
 

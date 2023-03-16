@@ -3,9 +3,10 @@ import { ContainerSection } from '@/components/Container';
 import Loading from '@/components/Loading';
 import ProjectsGrid from '@/components/ProjectsGrid';
 import ScrollLoad from '@/components/ScrollLoad';
+import { addProjects, selectProjects } from '@/features/projectsSlice';
 import { db } from '@/firebase-config';
 import { IProject } from '@/global/types';
-import { fetchPage, joinProjectsArrays } from '@/utils/firebaseCollections';
+import { fetchPage } from '@/utils/firebaseCollections';
 import {
   collection,
   limit,
@@ -14,16 +15,14 @@ import {
   startAfter,
 } from 'firebase/firestore';
 import Head from 'next/head';
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
 
-type projectsState = [
-  IProject[],
-  React.Dispatch<React.SetStateAction<IProject[]>>
-];
-
 export default function Projetos() {
-  const [projects, setProjects]: projectsState = useState([] as IProject[]);
+  const dispatch = useDispatch();
+
+  const { projects } = useSelector(selectProjects);
   const lastProject = useRef({});
   const shouldFetch = useRef(true);
   const loading = useRef(true);
@@ -38,10 +37,12 @@ export default function Projetos() {
     );
 
     if (shouldFetch) {
-      const fetchedProjects = await fetchPage(q, shouldFetch, lastProject);
-      setProjects((prev) =>
-        joinProjectsArrays(prev, fetchedProjects as IProject[])
-      );
+      const fetchedProjects = (await fetchPage(
+        q,
+        shouldFetch,
+        lastProject
+      )) as IProject[];
+      dispatch(addProjects(fetchedProjects));
     }
   };
 
