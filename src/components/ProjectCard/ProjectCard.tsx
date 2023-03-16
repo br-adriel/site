@@ -12,7 +12,7 @@ const ProjectCard: React.FC<IProps> = ({ name, image, id }) => {
   return (
     <Link href={`/projetos/${id}`}>
       <Card>
-        <Image src={image} width='1067' height='600' alt='' />
+        <Image src={image} width='1067' height='600' alt='' priority />
         <h3>{name}</h3>
       </Card>
     </Link>
