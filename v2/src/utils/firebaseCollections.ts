@@ -58,3 +58,12 @@ export async function getProject(id: string) {
   if (docSnap.exists()) return docSnap.data();
   return null;
 }
+
+export function serializeProjectsArray(projects: IProject[]): IProject[] {
+  return projects.map((proj) => {
+    return {
+      ...proj,
+      criado_em: proj.criado_em.toString(),
+    };
+  });
+}

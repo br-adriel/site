@@ -18,7 +18,7 @@ function joinProjectsArrays(
   }
 
   // verifica se já foram buscados todos os projetos
-  const notRepeated = [];
+  const notRepeated: IProject[] = [];
   for (let i = 0; i < fetchedArr.length; i++) {
     if (projectsArr[0].id === fetchedArr[i].id) break;
     notRepeated.push(fetchedArr[i]);
