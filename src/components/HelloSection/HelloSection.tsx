@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion';
+import Image from 'next/image';
 import { Github, Linkedin } from 'react-bootstrap-icons';
 import SocialBar from '../SocialBar';
 import * as S from './HelloSection.style';
@@ -36,7 +37,12 @@ const HelloSection = () => {
         </motion.h2>
         <SocialBar socialItems={socialItems} />
       </div>
-      <img src='/assets/img/home_desktop.svg' alt='' />
+      <Image
+        src='/assets/img/home_desktop.svg'
+        alt=''
+        width={423}
+        height={399}
+      />
     </S.Section>
   );
 };

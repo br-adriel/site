@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import { useEffect, useState } from 'react';
 import { IEducationItem } from '../../global/types';
 import Loading from '../Loading';
@@ -27,7 +28,12 @@ const EducationSection = ({ education }: IProps) => {
           </>
         )}
       </S.ContentDiv>
-      <img src='/assets/img/board_presentation.svg' alt='' />
+      <Image
+        src='/assets/img/board_presentation.svg'
+        alt=''
+        width={700}
+        height={544}
+      />
     </S.Section>
   );
 };
