@@ -14,7 +14,7 @@ const GlobalStyle = createGlobalStyle`
   }
   
   body {
-    font-family: var(--font-family);
+    font-family: 'Outfit', sans-serif;
     background: ${({ theme }: { theme: ITheme }) => theme.bg};
     color: ${({ theme }: { theme: ITheme }) => theme.color};
     transition: background .3s ease-in-out;
@@ -80,6 +80,7 @@ const GlobalStyle = createGlobalStyle`
   a {
     text-decoration: none;
     color: ${({ theme }: { theme: ITheme }) => theme.primary};
+    display: inline-block;
   }
 
   a:hover {

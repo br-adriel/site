@@ -4,10 +4,10 @@ import { ITheme } from './ThemeSwitch/Themes';
 
 const Card = styled(motion.div)`
   background: ${({ theme }: { theme: ITheme }) => theme.bg2};
-  padding: 12px;
-  border-radius: 5px;
+  padding: 16px;
+  border-radius: 8px;
   display: flex;
-  gap: 12px;
+  gap: 8px;
   align-items: flex-start;
   box-shadow: 0 0 4px ${({ theme }: { theme: ITheme }) => theme.shadowSm};
   transition: all 0.4s ease-in-out;

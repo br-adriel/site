@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import * as S from './SkillCard.style';
 
 interface IProps {
@@ -6,14 +7,11 @@ interface IProps {
   description?: string;
 }
 
-const SkillCard: React.FC<IProps> = ({ icon, skill, description }) => {
+const SkillCard: React.FC<IProps> = ({ icon, skill }) => {
   return (
     <S.Card>
-      <img src={icon} alt='' />
-      <S.Content>
-        <h3>{skill}</h3>
-        <p>{description}</p>
-      </S.Content>
+      <Image src={icon} alt='' width={48} height={48} />
+      <h3>{skill}</h3>
     </S.Card>
   );
 };
