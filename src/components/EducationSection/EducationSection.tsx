@@ -33,6 +33,7 @@ const EducationSection = ({ education }: IProps) => {
         alt=''
         width={700}
         height={544}
+        priority
       />
     </S.Section>
   );

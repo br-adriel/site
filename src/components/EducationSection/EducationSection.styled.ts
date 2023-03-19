@@ -10,6 +10,7 @@ export const Section = styled(ContainerSection)`
 
   img {
     max-width: 100%;
+    height: auto;
   }
 
   @media screen and (min-width: 768px) {

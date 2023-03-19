@@ -42,6 +42,7 @@ const HelloSection = () => {
         alt=''
         width={423}
         height={399}
+        priority
       />
     </S.Section>
   );
