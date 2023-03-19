@@ -15,6 +15,8 @@ export interface ISkill {
   imagem: string;
   nome: string;
   descricao: string;
+  tem_projetos: boolean;
+  filtro: string;
 }
 
 export interface IProject {

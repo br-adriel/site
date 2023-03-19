@@ -1,8 +1,7 @@
 import { ISkill } from '@/global/types';
-import Image from 'next/image';
 import { useEffect, useState } from 'react';
 import Loading from '../Loading';
-import SkillCard from './SkillCard/SkillCard';
+import SkillPopover from './SkillPopover';
 import * as S from './SkillsSection.styled';
 
 interface IProps {
@@ -23,6 +22,7 @@ const SkillsSection = ({ skills }: IProps) => {
       ) : (
         <S.ContentDiv>
           <h2>Habilidades e tecnologias</h2>
+
           <S.AnimatedSkillGrid
             initial={{ opacity: 0, y: 15 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -30,17 +30,11 @@ const SkillsSection = ({ skills }: IProps) => {
             transition={{ duration: 0.5, ease: 'easeOut' }}
           >
             {skills.map((skill) => (
-              <SkillCard
-                key={skill.id}
-                icon={skill.imagem}
-                skill={skill.nome}
-                description={skill.descricao}
-              />
+              <SkillPopover skill={skill} key={skill.id} />
             ))}
           </S.AnimatedSkillGrid>
         </S.ContentDiv>
       )}
-      <Image src='/assets/img/tech_bg.svg' alt='' width={248} height={555} />
     </S.Section>
   );
 };
