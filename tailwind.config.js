@@ -8,6 +8,9 @@ module.exports = {
   theme: {
     extend: {
       colors: {
+        site_bg: {
+          DEFAULT: 'rgb(var(--background-rgb))',
+        },
         alt_bg: {
           DEFAULT: 'rgb(var(--background-rgb-alt))',
         },
