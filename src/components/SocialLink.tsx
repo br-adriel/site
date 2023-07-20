@@ -25,7 +25,7 @@ export default function SocialLink({ Icon, link, title }: IProps) {
       title={title}
       className='text-3xl rounded-full'
     >
-      <div className='hover:bg-violet-700 bg-blue-600 p-3 transition-all hover:scale-95 rounded-full'>
+      <div className='hover:bg-violet-700 bg-blue-600 p-3 transition-all hover:scale-95 rounded-full text-white'>
         {<Icon />}
       </div>
     </motion.a>
