@@ -1,7 +1,7 @@
 'use client';
 
 import { fadeInUpAnimation } from '@/animations/FadeInUp';
-import { delay, motion } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { ArrowRight } from 'react-bootstrap-icons';
 
 interface IProps {
