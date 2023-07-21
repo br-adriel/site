@@ -1,5 +1,6 @@
 'use client';
 
+import { fadeInAnimation } from '@/animations/FadeIn';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 import { Github, Icon, Linkedin } from 'react-bootstrap-icons';
@@ -11,18 +12,6 @@ interface ILinkSocial {
   link: string;
   title: string;
 }
-
-const textAnimation = {
-  initial: {
-    opacity: 0,
-  },
-  animate: {
-    opacity: 1,
-  },
-  transition: {
-    duration: 0.5,
-  },
-};
 
 export default function HelloSection() {
   const linksSociais: ILinkSocial[] = [
@@ -40,20 +29,21 @@ export default function HelloSection() {
     },
   ];
 
+  const h1Animation = fadeInAnimation(0.5);
+  const h2Animation = fadeInAnimation(0.5, 0.2);
+
   return (
     <section className='container p-5 min-h-screen mx-auto flex flex-col md:flex-row items-center justify-center gap-12 lg:gap-8'>
       <div className='w-full py-5 md:w-1/2 lg:pl-9 xl:pl-9'>
         <motion.h1
-          {...textAnimation}
+          {...h1Animation}
           className='text-5xl text-center md:text-left lg:text-7xl font-semibold'
         >
           Adriel Santos
         </motion.h1>
         <motion.p
+          {...h2Animation}
           className='text-center md:text-left text-2xl lg:text-3xl capitalize'
-          initial={textAnimation.initial}
-          animate={textAnimation.animate}
-          transition={{ ...textAnimation.transition, delay: 0.2 }}
         >
           Desenvolvedor fullstack
         </motion.p>
