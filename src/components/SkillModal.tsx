@@ -24,7 +24,9 @@ export default function SkillModal({ open }: IProps) {
           dolorum. Consectetur, quam nam.
         </p>
       </div>
-      <div className='w-full lg:w-2/3 xl:w-3/4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2'>
+      <div className='w-full lg:w-2/3 xl:w-3/4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-2'>
+        <ProjectCard />
+        <ProjectCard />
         <ProjectCard />
       </div>
     </ModalBody>
