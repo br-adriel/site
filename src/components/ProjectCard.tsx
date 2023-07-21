@@ -4,7 +4,7 @@ export default function ProjectCard() {
   return (
     <a
       href=''
-      className='bg-alt_bg p-3 rounded shadow hover:shadow-lg transition-shadow'
+      className='bg-alt_bg p-3 rounded shadow hover:shadow-lg transition-shadow focus:outline-blue-600 focus:outline-2 focus-visible:outline'
     >
       <Image
         alt=''

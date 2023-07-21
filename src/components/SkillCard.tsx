@@ -15,9 +15,9 @@ export default function SkillCard({ delay }: IProps) {
   return (
     <motion.div
       {...cardAnimation}
-      className='bg-alt_bg p-2 rounded flex items-center justify-center cursor-pointer shadow hover:shadow-md transition-shadow'
+      className='bg-alt_bg p-2 rounded flex items-center justify-center cursor-pointer shadow hover:shadow-md transition-shadow focus-within:outline focus-within:outline-blue-600'
     >
-      <Trigger title='HTML'>
+      <Trigger title='HTML' className='focus:outline-none'>
         <Image
           src='https://www.svgrepo.com/show/349402/html5.svg'
           alt=''
