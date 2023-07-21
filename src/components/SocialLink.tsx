@@ -2,12 +2,7 @@
 
 import { Icon } from 'react-bootstrap-icons';
 import { motion } from 'framer-motion';
-
-const linkAnimation = {
-  initial: { scale: 0.4, opacity: 0 },
-  animate: { scale: 1, opacity: 1 },
-  transition: { duration: 0.5 },
-};
+import { fadeInGrow } from '@/animations/FadeInGrow';
 
 interface IProps {
   Icon: Icon;
@@ -16,9 +11,10 @@ interface IProps {
 }
 
 export default function SocialLink({ Icon, link, title }: IProps) {
+  const animation = fadeInGrow();
   return (
     <motion.a
-      {...linkAnimation}
+      {...animation}
       href={link}
       target='_blank'
       rel='noopener noreferrer'
