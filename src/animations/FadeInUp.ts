@@ -1,3 +1,5 @@
+import { MotionProps } from 'framer-motion';
+
 export const fadeInUpAnimation = (delay: number = 0) => {
   return {
     initial: 'hidden',
@@ -19,5 +21,5 @@ export const fadeInUpAnimation = (delay: number = 0) => {
       once: true,
     },
     whileInView: 'visible',
-  };
+  } as MotionProps;
 };
