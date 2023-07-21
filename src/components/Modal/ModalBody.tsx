@@ -39,7 +39,7 @@ export default function ModalBody({ title, children, open }: IProps) {
                     </button>
                   </Dialog.Close>
                 </Dialog.Title>
-                <Dialog.Description className='flex flex-col lg:flex-row gap-5'>
+                <Dialog.Description className='flex flex-col lg:flex-row gap-5 items-start'>
                   {children}
                 </Dialog.Description>
               </motion.div>
