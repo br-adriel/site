@@ -2,9 +2,13 @@ import Image from 'next/image';
 import ModalBody from './Modal/ModalBody';
 import ProjectCard from './ProjectCard';
 
-export default function SkillModal() {
+interface IProps {
+  open: boolean;
+}
+
+export default function SkillModal({ open }: IProps) {
   return (
-    <ModalBody title={<h2 className='font-semibold'>HTML</h2>}>
+    <ModalBody open={open} title={<h2 className='font-semibold'>HTML</h2>}>
       <div className='w-full lg:w-1/3 xl:w-1/4'>
         <Image
           width={200}
