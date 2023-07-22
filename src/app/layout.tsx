@@ -1,6 +1,10 @@
+'use client';
+
 import type { Metadata } from 'next';
 import { Outfit } from 'next/font/google';
 import './globals.css';
+import { Provider } from 'react-redux';
+import { store } from '@/store';
 
 const outfit = Outfit({ subsets: ['latin'] });
 
@@ -48,7 +52,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang='pt-BR'>
-      <body className={outfit.className}>{children}</body>
+      <body className={outfit.className}>
+        <Provider store={store}>{children}</Provider>
+      </body>
     </html>
   );
 }
