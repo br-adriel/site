@@ -4,6 +4,7 @@ export default interface IExperience {
   empresa: string;
   id: string;
   mes_inicio: number;
+  tarefas: string[];
   ano_fim?: number;
   mes_fim?: number;
 }
