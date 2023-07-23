@@ -1,10 +1,10 @@
 export default interface IExperience {
-  ano_inicio: number;
+  anoInicio: number;
   cargo: string;
   empresa: string;
   id: string;
-  mes_inicio: number;
+  mesInicio: number;
   tarefas: string[];
-  ano_fim?: number;
-  mes_fim?: number;
+  anoFim?: number;
+  mesFim?: number;
 }

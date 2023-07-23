@@ -19,11 +19,11 @@ export default function ExperienceCard({ delay, experience }: IProps) {
     >
       <h3 className='text-2xl mb-1 font-medium'>{experience.empresa}</h3>
       <p className='text-md opacity-70'>
-        {`${getShortMonthName(experience.mes_inicio)} ${
-          experience.ano_inicio
+        {`${getShortMonthName(experience.mesInicio)} ${
+          experience.anoInicio
         } - `}
-        {experience.mes_fim
-          ? `${getShortMonthName(experience.mes_fim)} ${experience.ano_fim}`
+        {experience.mesFim
+          ? `${getShortMonthName(experience.mesFim)} ${experience.anoFim}`
           : 'Atualmente'}
       </p>
       <hr className='border opacity-10 my-2 rounded' />

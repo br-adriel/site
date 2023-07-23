@@ -5,5 +5,5 @@ export default interface ISkill {
   imagem: string;
   nome: string;
   ordem: number;
-  tem_projectos: boolean;
+  temProjetos: boolean;
 }

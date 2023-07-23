@@ -8,8 +8,8 @@ export default class ExperienceController {
     const experiencesCollectionRef = collection(db, 'experiencia');
     const q = query(
       experiencesCollectionRef,
-      orderBy('ano_inicio', 'desc'),
-      orderBy('mes_inicio', 'desc')
+      orderBy('anoInicio', 'desc'),
+      orderBy('mesInicio', 'desc')
     );
     const fetchedExperiences = await getQuery(q);
     return fetchedExperiences as IExperience[];
