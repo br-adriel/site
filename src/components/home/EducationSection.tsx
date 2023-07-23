@@ -1,25 +1,22 @@
 import Image from 'next/image';
 import EducationCard from '../EducationCard';
+import { useDispatch, useSelector } from 'react-redux';
+import {
+  fetchEducation,
+  selectAllEducation,
+  selectEducationStatus,
+} from '@/store/educationSlice';
+import { useEffect } from 'react';
+import { AppDispatch } from '@/store';
 
 export default function EducationSection() {
-  const educacao = [
-    {
-      ano_fim: 2024,
-      ano_inicio: 2021,
-      curso: 'Sistemas de informação',
-      instituicao: 'UFRN',
-      mes_fim: 12,
-      mes_inicio: 6,
-    },
-    {
-      ano_fim: 2021,
-      ano_inicio: 2017,
-      curso: 'Informárica',
-      instituicao: 'IFRN',
-      mes_fim: 12,
-      mes_inicio: 3,
-    },
-  ];
+  const dispatch = useDispatch<AppDispatch>();
+  const education = useSelector(selectAllEducation);
+  const status = useSelector(selectEducationStatus);
+
+  useEffect(() => {
+    if (status === 'idle') dispatch(fetchEducation());
+  }, [dispatch, status]);
 
   return (
     <section className='container p-5 min-h-screen mx-auto flex flex-col md:flex-row-reverse items-center justify-center gap-12 lg:gap-5'>
@@ -27,8 +24,10 @@ export default function EducationSection() {
         <div className='flex flex-col gap-2'>
           <h2 className='text-4xl font-semibold mb-3'>Educação</h2>
 
-          {educacao.map((ed, index) => {
-            return <EducationCard {...ed} delay={index} key={ed.curso} />;
+          {education.map((ed, index) => {
+            return (
+              <EducationCard education={ed} delay={index} key={ed.curso} />
+            );
           })}
         </div>
       </div>
