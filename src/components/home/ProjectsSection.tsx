@@ -17,7 +17,11 @@ export default function ProjectsSection() {
       <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3'>
         {numbers.map((n, index) => {
           return (
-            <motion.div {...fadeInUpAnimation(index * 0.2)} className='flex'>
+            <motion.div
+              {...fadeInUpAnimation(index * 0.2)}
+              className='flex'
+              key={index}
+            >
               <ProjectCard key={n} />
             </motion.div>
           );
