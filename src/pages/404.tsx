@@ -1,6 +1,5 @@
 import LinkButton from '@/components/LinkButton';
 import { Outfit } from 'next/font/google';
-import '@/app/globals.css';
 import Head from 'next/head';
 
 const outfit = Outfit({ subsets: ['latin'] });
@@ -12,6 +11,10 @@ export default function NotFound() {
         <title>
           Página não encontrada | Adriel Santos - Desenvolvedor Fullstack
         </title>
+        <meta
+          name='description'
+          content='Página não encontrada, verifique a URL e tente novamente'
+        />
       </Head>
 
       <main className={`${outfit.className} w-screen h-screen p-4`}>
