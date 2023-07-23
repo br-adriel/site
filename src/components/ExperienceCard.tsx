@@ -1,24 +1,15 @@
-'use client';
-
 import { fadeInUpAnimation } from '@/animations/FadeInUp';
+import IExperience from '@/interfaces/IExperience';
+import { getShortMonthName } from '@/utils/date';
 import { motion } from 'framer-motion';
 import { ArrowRight } from 'react-bootstrap-icons';
 
 interface IProps {
-  cargo: string;
-  data: string;
   delay?: number;
-  empresa: string;
-  tarefas: string[];
+  experience: IExperience;
 }
 
-export default function ExperienceCard({
-  cargo,
-  data,
-  delay,
-  empresa,
-  tarefas,
-}: IProps) {
+export default function ExperienceCard({ delay, experience }: IProps) {
   const animation = fadeInUpAnimation(0.2 * (delay || 0));
 
   return (
@@ -26,12 +17,19 @@ export default function ExperienceCard({
       {...animation}
       className='bg-alt_bg shadow rounded py-3 px-4 hover:shadow-md transition-shadow'
     >
-      <h3 className='text-2xl mb-1 font-medium'>{empresa}</h3>
-      <p className='text-md opacity-70'>{data}</p>
+      <h3 className='text-2xl mb-1 font-medium'>{experience.empresa}</h3>
+      <p className='text-md opacity-70'>
+        {`${getShortMonthName(experience.mes_inicio)} ${
+          experience.ano_inicio
+        } - `}
+        {experience.mes_fim
+          ? `${getShortMonthName(experience.mes_fim)} ${experience.ano_fim}`
+          : 'Atualmente'}
+      </p>
       <hr className='border opacity-10 my-2 rounded' />
-      <h4 className='text-xl font-medium'>{cargo}</h4>
+      <h4 className='text-xl font-medium'>{experience.cargo}</h4>
       <ul>
-        {tarefas.map((tarefa) => {
+        {experience.tarefas.map((tarefa) => {
           return (
             <li className='flex items-center' key={tarefa}>
               <ArrowRight className='inline-block mr-2 opacity-60' />
