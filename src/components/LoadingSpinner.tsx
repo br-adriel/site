@@ -5,8 +5,8 @@ export default function LoadingSpinner() {
     <MutatingDots
       color='#2563eb'
       secondaryColor='#4338ca'
-      width={120}
-      height={120}
+      width={100}
+      height={100}
       wrapperClass='w-full flex justify-center items-center'
     />
   );
