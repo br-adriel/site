@@ -1,11 +1,13 @@
 import { configureStore } from '@reduxjs/toolkit';
-import { experiencesSlice } from './experiencesSlice';
-import { skillsSlice } from './skillsSlice';
+import { educationReducer } from './educationSlice';
+import { experienceReducer } from './experiencesSlice';
+import { skillReducer } from './skillsSlice';
 
 export const store = configureStore({
   reducer: {
-    experiences: experiencesSlice.reducer,
-    skills: skillsSlice.reducer,
+    experiences: experienceReducer,
+    skills: skillReducer,
+    education: educationReducer,
   },
 });
 
