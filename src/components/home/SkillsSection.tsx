@@ -19,7 +19,7 @@ export default function SkillsSection() {
   const [showModal, setShowModal] = useState<boolean>(false);
 
   useEffect(() => {
-    if (status !== 'loading') dispatch(fetchSkills());
+    if (status === 'idle') dispatch(fetchSkills());
   }, [dispatch, status]);
 
   return (
