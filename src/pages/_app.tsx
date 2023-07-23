@@ -1,8 +1,12 @@
+import AuthLoader from '@/components/AuthLoader';
 import { store } from '@/store';
 import '@/styles/globals.css';
 import type { AppProps } from 'next/app';
+import { Outfit } from 'next/font/google';
 import Head from 'next/head';
 import { Provider } from 'react-redux';
+
+const outfit = Outfit({ subsets: ['latin'] });
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
@@ -15,7 +19,11 @@ export default function App({ Component, pageProps }: AppProps) {
         />
         <meta name='theme-color' content='#1d4ed8' />
       </Head>
-      <Component {...pageProps} />
+
+      <AuthLoader />
+      <div className={outfit.className}>
+        <Component {...pageProps} />
+      </div>
     </Provider>
   );
 }

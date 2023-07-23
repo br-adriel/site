@@ -1,8 +1,5 @@
 import LinkButton from '@/components/LinkButton';
-import { Outfit } from 'next/font/google';
 import Head from 'next/head';
-
-const outfit = Outfit({ subsets: ['latin'] });
 
 export default function NotFound() {
   return (
@@ -17,7 +14,7 @@ export default function NotFound() {
         />
       </Head>
 
-      <main className={`${outfit.className} w-screen h-screen p-4`}>
+      <main className='w-screen h-screen p-4'>
         <section className='container h-full flex flex-col gap-2 justify-center items-center mx-auto'>
           <h1 className='text-5xl font-bold text-center'>
             Página não encontrada
