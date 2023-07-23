@@ -1,11 +1,12 @@
+import IUser from '@/interfaces/IUser';
 import { auth } from '@/services/firebase/firebase.config';
 import { PayloadAction, createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import { User, signInWithEmailAndPassword, signOut } from 'firebase/auth';
+import { signInWithEmailAndPassword, signOut } from 'firebase/auth';
 import { RootState } from '.';
 
 type StateType = {
   loginStatus: 'idle' | 'loading' | 'succeeded' | 'failed';
-  user: null | User;
+  user: null | IUser;
 };
 
 const initialState: StateType = {
@@ -39,7 +40,7 @@ export const authSlice = createSlice({
   initialState,
   name: 'auth',
   reducers: {
-    setUser(state, action: PayloadAction<{ user: User | null }>) {
+    setUser(state, action: PayloadAction<{ user: IUser | null }>) {
       state.user = action.payload.user;
 
       if (action.payload.user !== null) state.loginStatus = 'succeeded';

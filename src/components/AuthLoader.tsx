@@ -8,8 +8,17 @@ function AuthLoader() {
   const dispatch = useDispatch();
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (userAuth) => {
-      if (userAuth) dispatch(setUser({ user: userAuth }));
-      else dispatch(setUser({ user: null }));
+      if (userAuth) {
+        dispatch(
+          setUser({
+            user: {
+              uid: userAuth.uid,
+              displayName: userAuth.displayName,
+              email: userAuth.email,
+            },
+          })
+        );
+      } else dispatch(setUser({ user: null }));
     });
 
     return () => unsubscribe();
