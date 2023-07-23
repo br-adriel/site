@@ -6,12 +6,12 @@ import { RootState } from '.';
 
 type StateType = {
   loginStatus: 'idle' | 'loading' | 'succeeded' | 'failed';
-  user: null | IUser;
+  user?: null | IUser;
 };
 
 const initialState: StateType = {
   loginStatus: 'idle',
-  user: null,
+  user: undefined,
 };
 
 /**

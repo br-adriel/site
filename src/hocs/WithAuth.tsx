@@ -10,7 +10,7 @@ export default function WithAuth(Component: ComponentType<any>) {
     const user = useSelector(selectUser);
 
     useEffect(() => {
-      if (!user) {
+      if (user === null) {
         router.push('/admin/login');
       }
     }, [user, router]);
