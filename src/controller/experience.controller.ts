@@ -11,7 +11,7 @@ export default class ExperienceController {
       orderBy('ano_inicio', 'desc'),
       orderBy('mes_inicio', 'desc')
     );
-    const fetchedSkills = await getQuery(q);
-    return fetchedSkills as IExperience[];
+    const fetchedExperiences = await getQuery(q);
+    return fetchedExperiences as IExperience[];
   }
 }
