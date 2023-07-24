@@ -1,16 +1,10 @@
-import { AppDispatch } from '@/store';
-import { logoutUser } from '@/store/authSlice';
+import { getUserAuth } from '@/contexts/AuthContext';
 import Link from 'next/link';
 import { BoxArrowRight } from 'react-bootstrap-icons';
-import { useDispatch } from 'react-redux';
 import Button from '../Button';
 
 export default function Header() {
-  const dispatch = useDispatch<AppDispatch>();
-
-  const clickButton = () => {
-    dispatch(logoutUser());
-  };
+  const { logout } = getUserAuth();
 
   return (
     <header className='w-full bg-blue-600 shadow-lg'>
@@ -19,7 +13,7 @@ export default function Header() {
           <h1 className='text-2xl font-bold text-white'>
             <Link href='/admin'>Administração</Link>
           </h1>
-          <Button onClick={clickButton}>
+          <Button onClick={logout}>
             <BoxArrowRight />
           </Button>
         </div>

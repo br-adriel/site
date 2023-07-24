@@ -1,4 +1,4 @@
-import AuthLoader from '@/components/AuthLoader';
+import { AuthContextProvider } from '@/contexts/AuthContext';
 import { store } from '@/store';
 import '@/styles/globals.css';
 import type { AppProps } from 'next/app';
@@ -20,10 +20,11 @@ export default function App({ Component, pageProps }: AppProps) {
         <meta name='theme-color' content='#1d4ed8' />
       </Head>
 
-      <AuthLoader />
-      <div className={outfit.className}>
-        <Component {...pageProps} />
-      </div>
+      <AuthContextProvider>
+        <div className={outfit.className}>
+          <Component {...pageProps} />
+        </div>
+      </AuthContextProvider>
     </Provider>
   );
 }

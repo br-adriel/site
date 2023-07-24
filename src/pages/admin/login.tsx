@@ -2,29 +2,25 @@ import { fadeInAnimation } from '@/animations/FadeIn';
 import Button from '@/components/Button';
 import Input from '@/components/Input';
 import LoadingSpinner from '@/components/LoadingSpinner';
+import { getUserAuth } from '@/contexts/AuthContext';
 import WithoutAuth from '@/hocs/WithoutAuth';
-import { AppDispatch } from '@/store';
-import { loginUser, selectLoginStatus, selectUser } from '@/store/authSlice';
 import { AnimatePresence, motion } from 'framer-motion';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
 import { FormEvent, useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
 
 function Login() {
   const fadeAnimation = fadeInAnimation();
 
   const router = useRouter();
-  const dispatch = useDispatch<AppDispatch>();
-  const loginStatus = useSelector(selectLoginStatus);
-  const user = useSelector(selectUser);
+  const { user, loginStatus, login } = getUserAuth();
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
   const formSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    dispatch(loginUser({ email, password }));
+    login(email, password);
   };
 
   useEffect(() => {
@@ -70,6 +66,7 @@ function Login() {
                     <div className='flex flex-col gap-2 mb-3'>
                       <label htmlFor='email'>Email</label>
                       <Input
+                        required
                         type='email'
                         id='email'
                         value={email}
@@ -81,6 +78,7 @@ function Login() {
                     <div className='flex flex-col gap-2 mb-3'>
                       <label htmlFor='password'>Senha</label>
                       <Input
+                        required
                         type='password'
                         id='password'
                         value={password}
