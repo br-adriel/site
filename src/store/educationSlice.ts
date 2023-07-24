@@ -61,6 +61,17 @@ export const updateEducation = createAsyncThunk(
   }
 );
 
+/**
+ * Thunk responsável por remover educação da firestore
+ */
+export const removeEducation = createAsyncThunk(
+  'education/removeOne',
+  async (id: string) => {
+    await EducationController.remove(id);
+    return id;
+  }
+);
+
 export const educationSlice = createSlice({
   initialState,
   name: 'education',
@@ -124,6 +135,9 @@ export const educationSlice = createSlice({
         );
         state.formStatus = 'succeeded';
         state.formValues = initialState.formValues;
+      })
+      .addCase(removeEducation.fulfilled, (state, action) => {
+        state.data = state.data.filter((ed) => ed.id !== action.payload);
       });
   },
 });
