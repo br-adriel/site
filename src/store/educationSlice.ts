@@ -48,7 +48,7 @@ export const addEducationToFirestore = createAsyncThunk(
 );
 
 /**
- * Thunk responsável por adicionar educação na firestore
+ * Thunk responsável por atualizar educação na firestore
  */
 export const updateEducation = createAsyncThunk(
   'education/updateOne',
