@@ -4,6 +4,7 @@ import { getQuery } from '@/services/firebase/utils';
 import {
   addDoc,
   collection,
+  deleteDoc,
   doc,
   orderBy,
   query,
@@ -35,5 +36,10 @@ export default class ExperienceController {
     const docRef = doc(db, 'experiencia', id);
     await updateDoc(docRef, experience);
     return { ...experience, id };
+  }
+
+  static async remove(id: string): Promise<void> {
+    const docRef = doc(db, 'experiencia', id);
+    await deleteDoc(docRef);
   }
 }
