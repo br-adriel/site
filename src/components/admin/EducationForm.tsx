@@ -3,9 +3,17 @@ import { AppDispatch } from '@/store';
 import {
   addEducationToFirestore,
   selectEducationFormStatus,
+  selectEducationFormValues,
+  setAnoFim,
+  setAnoInicio,
+  setCurso,
+  setInstituicao,
+  setMesInicio,
+  switchToCreateMode,
+  updateEducation,
 } from '@/store/educationSlice';
 import { monthSelectOptionsPtBr } from '@/utils/date';
-import { FormEvent, useEffect, useState } from 'react';
+import { FormEvent } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Button from '../Button';
 import Input from '../Input';
@@ -15,40 +23,29 @@ import Select from '../Select';
 export default function EducationForm() {
   const dispatch = useDispatch<AppDispatch>();
   const formStatus = useSelector(selectEducationFormStatus);
+  const formValues = useSelector(selectEducationFormValues);
 
-  const [curso, setCurso] = useState('');
-  const [instituicao, setInstituicao] = useState('');
-  const [mesInicio, setMesInicio] = useState(1);
-  const [anoInicio, setAnoInicio] = useState(2021);
-  const [mesFim, setMesFim] = useState<number>();
-  const [anoFim, setAnoFim] = useState<number>();
   const formSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
+    if (formValues.id) {
+      dispatch(updateEducation(formValues));
+      return;
+    }
+
     const educacaoParaCriar: Omit<IEducation, 'id'> = {
-      anoInicio,
-      curso,
-      instituicao,
-      mesInicio,
+      anoInicio: formValues.anoInicio,
+      curso: formValues.curso,
+      instituicao: formValues.instituicao,
+      mesInicio: formValues.mesInicio,
     };
-    if (anoFim) {
-      educacaoParaCriar.anoFim = anoFim;
-      educacaoParaCriar.mesFim = mesFim;
+    if (formValues.anoFim) {
+      educacaoParaCriar.anoFim = formValues.anoFim;
+      educacaoParaCriar.mesFim = formValues.mesFim;
     }
 
     dispatch(addEducationToFirestore(educacaoParaCriar));
   };
-
-  useEffect(() => {
-    if (formStatus === 'succeeded') {
-      setAnoFim(undefined);
-      setAnoInicio(2021);
-      setCurso('');
-      setInstituicao('');
-      setMesFim(undefined);
-      setMesInicio(1);
-    }
-  }, [dispatch, formStatus]);
 
   if (formStatus === 'loading') {
     return (
@@ -59,6 +56,9 @@ export default function EducationForm() {
   }
   return (
     <form className='w-full' onSubmit={formSubmit}>
+      <h4 className='font-semibold text-lg'>
+        Modo {formValues.id ? 'edição' : 'criação'}
+      </h4>
       <div className='mb-3 flex flex-col'>
         <label htmlFor='curso' className='mb-1'>
           Curso
@@ -66,8 +66,8 @@ export default function EducationForm() {
         <Input
           id='curso'
           required
-          value={curso}
-          onChange={(e) => setCurso(e.target.value)}
+          value={formValues.curso}
+          onChange={(e) => dispatch(setCurso(e.target.value))}
         />
       </div>
       <div className='mb-3 flex flex-col'>
@@ -77,8 +77,8 @@ export default function EducationForm() {
         <Input
           id='instituicao'
           required
-          value={instituicao}
-          onChange={(e) => setInstituicao(e.target.value)}
+          value={formValues.instituicao}
+          onChange={(e) => dispatch(setInstituicao(e.target.value))}
         />
       </div>
       <div className='mb-3 flex flex-col'>
@@ -88,8 +88,8 @@ export default function EducationForm() {
         <Select
           id='mesInicio'
           required
-          value={mesInicio}
-          onChange={(e) => setMesInicio(Number(e.target.value))}
+          value={formValues.mesInicio}
+          onChange={(e) => dispatch(setMesInicio(Number(e.target.value)))}
         >
           {monthSelectOptionsPtBr.map((opt) => (
             <option key={opt.value} value={opt.value}>
@@ -108,8 +108,8 @@ export default function EducationForm() {
           id='anoInicio'
           min={2001}
           max={2200}
-          value={anoInicio}
-          onChange={(e) => setAnoInicio(Number(e.target.value))}
+          value={formValues.anoInicio}
+          onChange={(e) => dispatch(setAnoInicio(Number(e.target.value)))}
         />
       </div>
       <div className='mb-3 flex flex-col'>
@@ -118,8 +118,8 @@ export default function EducationForm() {
         </label>
         <Select
           id='mesFim'
-          value={mesFim || ''}
-          onChange={(e) => setMesFim(Number(e.target.value))}
+          value={formValues.mesFim || ''}
+          onChange={(e) => dispatch(setAnoInicio(Number(e.target.value)))}
         >
           {monthSelectOptionsPtBr.map((opt) => (
             <option key={opt.value} value={opt.value}>
@@ -137,11 +137,18 @@ export default function EducationForm() {
           id='anoFim'
           min={2001}
           max={2200}
-          value={anoFim || ''}
-          onChange={(e) => setAnoFim(Number(e.target.value))}
+          value={formValues.anoFim || ''}
+          onChange={(e) => dispatch(setAnoFim(Number(e.target.value)))}
         />
       </div>
-      <Button type='submit'>Salvar</Button>
+      <div className='flex gap-2'>
+        <Button type='submit'>Salvar</Button>
+        {formValues.id && (
+          <Button type='button' onClick={() => dispatch(switchToCreateMode())}>
+            Mudar modo
+          </Button>
+        )}
+      </div>
     </form>
   );
 }
