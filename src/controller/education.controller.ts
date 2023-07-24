@@ -4,9 +4,10 @@ import { getQuery } from '@/services/firebase/utils';
 import {
   addDoc,
   collection,
+  deleteDoc,
+  doc,
   orderBy,
   query,
-  doc,
   updateDoc,
 } from '@firebase/firestore';
 
@@ -35,5 +36,10 @@ export default class EducationController {
     const docRef = doc(db, 'educacao', id);
     await updateDoc(docRef, education);
     return { ...education, id };
+  }
+
+  static async remove(id: string): Promise<void> {
+    const docRef = doc(db, 'educacao', id);
+    await deleteDoc(docRef);
   }
 }
