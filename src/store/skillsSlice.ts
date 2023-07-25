@@ -106,6 +106,17 @@ export const skillsSlice = createSlice({
       })
       .addCase(fetchSkills.rejected, (state) => {
         state.status = 'failed';
+      })
+      .addCase(addSkillToFirestore.pending, (state) => {
+        state.formStatus = 'loading';
+      })
+      .addCase(addSkillToFirestore.rejected, (state) => {
+        state.formStatus = 'failed';
+      })
+      .addCase(addSkillToFirestore.fulfilled, (state, action) => {
+        state.data = [action.payload, ...state.data];
+        state.formStatus = 'succeeded';
+        state.formValues = initialState.formValues;
       });
   },
 });
