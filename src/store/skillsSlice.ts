@@ -6,11 +6,23 @@ import { RootState } from '.';
 type StateType = {
   data: ISkill[];
   status: 'idle' | 'loading' | 'succeeded' | 'failed';
+  formStatus: 'idle' | 'loading' | 'succeeded' | 'failed';
+  formValues: ISkill;
 };
 
 const initialState: StateType = {
   data: [],
   status: 'idle',
+  formStatus: 'idle',
+  formValues: {
+    descricao: '',
+    filtro: '',
+    id: '',
+    imagem: '',
+    nome: '',
+    ordem: 0,
+    temProjetos: false,
+  },
 };
 
 /**
