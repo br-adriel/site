@@ -1,6 +1,6 @@
 import SkillController from '@/controller/skill.controller';
 import ISkill from '@/interfaces/ISkill';
-import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import { PayloadAction, createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { RootState } from '.';
 
 type StateType = {
@@ -69,7 +69,11 @@ export const removeSkill = createAsyncThunk(
 export const skillsSlice = createSlice({
   initialState,
   name: 'skills',
-  reducers: {},
+  reducers: {
+    setFormvalues(state, action: PayloadAction<ISkill>) {
+      state.formValues = action.payload;
+    },
+  },
   extraReducers(builder) {
     builder
       .addCase(fetchSkills.pending, (state) => {
