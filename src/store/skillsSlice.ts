@@ -79,7 +79,9 @@ export const skillsSlice = createSlice({
     setFiltro(state, action: PayloadAction<string>) {
       state.formValues.filtro = action.payload;
     },
-
+    setImagem(state, action: PayloadAction<string>) {
+      state.formValues.imagem = action.payload;
+    },
     switchToCreateMode(state) {
       state.formValues = initialState.formValues;
     },
