@@ -4,6 +4,7 @@ import { getQuery } from '@/services/firebase/utils';
 import {
   addDoc,
   collection,
+  deleteDoc,
   doc,
   orderBy,
   query,
@@ -28,5 +29,10 @@ export default class SkillController {
     const docRef = doc(db, 'habilidades', id);
     await updateDoc(docRef, skill);
     return { ...skill, id };
+  }
+
+  static async remove(id: string): Promise<void> {
+    const docRef = doc(db, 'habilidades', id);
+    await deleteDoc(docRef);
   }
 }
