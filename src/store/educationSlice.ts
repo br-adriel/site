@@ -122,6 +122,7 @@ export const educationSlice = createSlice({
       .addCase(addEducationToFirestore.fulfilled, (state, action) => {
         state.data = [action.payload, ...state.data];
         state.formStatus = 'succeeded';
+        state.formValues = initialState.formValues;
       })
       .addCase(updateEducation.pending, (state) => {
         state.formStatus = 'loading';
