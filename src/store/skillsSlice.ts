@@ -110,7 +110,16 @@ export const skillsSlice = createSlice({
   },
 });
 
-export const {} = skillsSlice.actions;
+export const {
+  setDescricao,
+  setFiltro,
+  setFormvalues,
+  setImagem,
+  setNome,
+  setOrdem,
+  setTemProjetos,
+  switchToCreateMode,
+} = skillsSlice.actions;
 
 export const skillReducer = skillsSlice.reducer;
 
