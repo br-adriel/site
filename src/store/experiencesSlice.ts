@@ -126,6 +126,7 @@ export const experiencesSlice = createSlice({
       .addCase(addExperienceToFirestore.fulfilled, (state, action) => {
         state.data = [action.payload, ...state.data];
         state.formStatus = 'succeeded';
+        state.formValues = initialState.formValues;
       })
       .addCase(updateExperience.pending, (state) => {
         state.formStatus = 'loading';
