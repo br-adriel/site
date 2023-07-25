@@ -33,6 +33,17 @@ export const fetchSkills = createAsyncThunk('skills/fetchAll', async () => {
   return skills;
 });
 
+/**
+ * Thunk responsável por adicionar habilidade na firestore
+ */
+export const addSkillToFirestore = createAsyncThunk(
+  'skills/addOneToFirestore',
+  async (skill: Omit<ISkill, 'id'>) => {
+    const savedSkill = await SkillController.add(skill);
+    return savedSkill;
+  }
+);
+
 export const skillsSlice = createSlice({
   initialState,
   name: 'skills',
