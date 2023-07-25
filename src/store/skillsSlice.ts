@@ -117,6 +117,19 @@ export const skillsSlice = createSlice({
         state.data = [action.payload, ...state.data];
         state.formStatus = 'succeeded';
         state.formValues = initialState.formValues;
+      })
+      .addCase(updateSkill.pending, (state) => {
+        state.formStatus = 'loading';
+      })
+      .addCase(updateSkill.rejected, (state) => {
+        state.formStatus = 'failed';
+      })
+      .addCase(updateSkill.fulfilled, (state, action) => {
+        state.data = state.data.map((skill) =>
+          skill.id === action.payload.id ? action.payload : skill
+        );
+        state.formStatus = 'succeeded';
+        state.formValues = initialState.formValues;
       });
   },
 });
