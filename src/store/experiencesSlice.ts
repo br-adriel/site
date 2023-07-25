@@ -104,6 +104,9 @@ export const experiencesSlice = createSlice({
     setMesFim(state, action: PayloadAction<number | undefined>) {
       state.formValues.mesFim = action.payload;
     },
+    switchToCreateMode(state) {
+      state.formValues = initialState.formValues;
+    },
   },
   extraReducers(builder) {
     builder
@@ -157,6 +160,7 @@ export const {
   setMesFim,
   setMesInicio,
   setTarefas,
+  switchToCreateMode,
 } = experiencesSlice.actions;
 
 export const experienceReducer = experiencesSlice.reducer;
