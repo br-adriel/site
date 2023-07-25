@@ -73,6 +73,9 @@ export const skillsSlice = createSlice({
     setFormvalues(state, action: PayloadAction<ISkill>) {
       state.formValues = action.payload;
     },
+    switchToCreateMode(state) {
+      state.formValues = initialState.formValues;
+    },
   },
   extraReducers(builder) {
     builder
