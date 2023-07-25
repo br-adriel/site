@@ -44,6 +44,17 @@ export const addSkillToFirestore = createAsyncThunk(
   }
 );
 
+/**
+ * Thunk responsável por atualizar habilidade na firestore
+ */
+export const updateSkill = createAsyncThunk(
+  'skills/updateOne',
+  async (skill: ISkill) => {
+    const updatedSkill = await SkillController.update(skill, skill.id);
+    return updatedSkill;
+  }
+);
+
 export const skillsSlice = createSlice({
   initialState,
   name: 'skills',
