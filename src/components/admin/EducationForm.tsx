@@ -8,6 +8,7 @@ import {
   setAnoInicio,
   setCurso,
   setInstituicao,
+  setMesFim,
   setMesInicio,
   switchToCreateMode,
   updateEducation,
@@ -119,7 +120,7 @@ export default function EducationForm() {
         <Select
           id='mesFim'
           value={formValues.mesFim || ''}
-          onChange={(e) => dispatch(setAnoInicio(Number(e.target.value)))}
+          onChange={(e) => dispatch(setMesFim(Number(e.target.value)))}
         >
           {monthSelectOptionsPtBr.map((opt) => (
             <option key={opt.value} value={opt.value}>
