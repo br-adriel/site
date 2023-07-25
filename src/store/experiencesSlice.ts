@@ -77,8 +77,18 @@ export const experiencesSlice = createSlice({
   name: 'experiences',
   initialState,
   reducers: {
-    setFormvalues(state, action: PayloadAction<IExperience>) {
-      state.formValues = action.payload;
+    addTarefa(state, action: PayloadAction<string>) {
+      if (!state.formValues.tarefas.some((t) => t === action.payload)) {
+        state.formValues.tarefas = [
+          ...state.formValues.tarefas,
+          action.payload,
+        ];
+      }
+    },
+    removeTarefa(state, action: PayloadAction<string>) {
+      state.formValues.tarefas = state.formValues.tarefas.filter(
+        (t) => t !== action.payload
+      );
     },
     setAnoInicio(state, action: PayloadAction<number>) {
       state.formValues.anoInicio = action.payload;
@@ -89,14 +99,14 @@ export const experiencesSlice = createSlice({
     setEmpresa(state, action: PayloadAction<string>) {
       state.formValues.empresa = action.payload;
     },
+    setFormvalues(state, action: PayloadAction<IExperience>) {
+      state.formValues = action.payload;
+    },
     setMesInicio(state, action: PayloadAction<number>) {
       state.formValues.mesInicio = action.payload;
     },
     setTarefas(state, action: PayloadAction<string[]>) {
       state.formValues.tarefas = action.payload;
-    },
-    addTarefa(state, action: PayloadAction<string>) {
-      state.formValues.tarefas = [...state.formValues.tarefas, action.payload];
     },
     setAnoFim(state, action: PayloadAction<number | undefined>) {
       state.formValues.anoFim = action.payload;
@@ -152,6 +162,7 @@ export const experiencesSlice = createSlice({
 
 export const {
   addTarefa,
+  removeTarefa,
   setAnoFim,
   setAnoInicio,
   setCargo,
