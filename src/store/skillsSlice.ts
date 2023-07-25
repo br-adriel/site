@@ -130,6 +130,9 @@ export const skillsSlice = createSlice({
         );
         state.formStatus = 'succeeded';
         state.formValues = initialState.formValues;
+      })
+      .addCase(removeSkill.fulfilled, (state, action) => {
+        state.data = state.data.filter((skill) => skill.id !== action.payload);
       });
   },
 });
