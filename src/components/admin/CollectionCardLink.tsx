@@ -9,7 +9,7 @@ export default function CollectionCardLink({ href, children }: IProps) {
   return (
     <Link
       href={href}
-      className='w-full bg-alt_bg p-3 rounded shadow hover:shadow-md transition-shadow cursor-pointer'
+      className='w-full bg-alt_bg p-3 rounded shadow hover:shadow-md hover:scale-95 transition-all cursor-pointer'
     >
       {children}
     </Link>
