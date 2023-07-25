@@ -29,23 +29,22 @@ export default function EducationForm() {
   const formSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    if (formValues.id) {
-      dispatch(updateEducation(formValues));
-      return;
-    }
-
-    const educacaoParaCriar: Omit<IEducation, 'id'> = {
+    const educacaoValues: Omit<IEducation, 'id'> = {
       anoInicio: formValues.anoInicio,
       curso: formValues.curso,
       instituicao: formValues.instituicao,
       mesInicio: formValues.mesInicio,
     };
     if (formValues.anoFim) {
-      educacaoParaCriar.anoFim = formValues.anoFim;
-      educacaoParaCriar.mesFim = formValues.mesFim;
+      educacaoValues.anoFim = formValues.anoFim;
+      educacaoValues.mesFim = formValues.mesFim;
     }
 
-    dispatch(addEducationToFirestore(educacaoParaCriar));
+    if (formValues.id) {
+      dispatch(updateEducation({ ...educacaoValues, id: formValues.id }));
+    } else {
+      dispatch(addEducationToFirestore(educacaoValues));
+    }
   };
 
   if (formStatus === 'loading') {
