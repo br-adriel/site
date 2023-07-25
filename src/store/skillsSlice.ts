@@ -153,3 +153,7 @@ export const skillReducer = skillsSlice.reducer;
 // Seletores
 export const selectAllSkills = (state: RootState) => state.skills.data;
 export const selectSkillsStatus = (state: RootState) => state.skills.status;
+export const selectSkillFormStatus = (state: RootState) =>
+  state.skills.formStatus;
+export const selectSkillFormValues = (state: RootState) =>
+  state.skills.formValues;
