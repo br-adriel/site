@@ -16,7 +16,7 @@ export default class ExperienceController {
 
   static async getAll() {
     const q = query(
-      ExperienceController.collectionRef,
+      this.collectionRef,
       orderBy('anoInicio', 'desc'),
       orderBy('mesInicio', 'desc')
     );
@@ -25,7 +25,7 @@ export default class ExperienceController {
   }
 
   static async add(experience: Omit<IExperience, 'id'>): Promise<IExperience> {
-    const docRef = await addDoc(ExperienceController.collectionRef, experience);
+    const docRef = await addDoc(this.collectionRef, experience);
     return { ...experience, id: docRef.id };
   }
 

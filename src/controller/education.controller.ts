@@ -16,7 +16,7 @@ export default class EducationController {
 
   static async getAll() {
     const q = query(
-      EducationController.collectionRef,
+      this.collectionRef,
       orderBy('anoInicio', 'desc'),
       orderBy('mesInicio', 'desc')
     );
@@ -25,7 +25,7 @@ export default class EducationController {
   }
 
   static async add(education: Omit<IEducation, 'id'>): Promise<IEducation> {
-    const docRef = await addDoc(EducationController.collectionRef, education);
+    const docRef = await addDoc(this.collectionRef, education);
     return { ...education, id: docRef.id };
   }
 
