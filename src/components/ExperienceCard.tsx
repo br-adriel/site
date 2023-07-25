@@ -2,14 +2,22 @@ import { fadeInUpAnimation } from '@/animations/FadeInUp';
 import IExperience from '@/interfaces/IExperience';
 import { getShortMonthName } from '@/utils/date';
 import { motion } from 'framer-motion';
-import { ArrowRight } from 'react-bootstrap-icons';
+import { ArrowRight, Pen, Trash } from 'react-bootstrap-icons';
+import Button from './Button';
 
 interface IProps {
   delay?: number;
   experience: IExperience;
+  onEdit?: (id: string) => void;
+  onRemove?: (id: string) => void;
 }
 
-export default function ExperienceCard({ delay, experience }: IProps) {
+export default function ExperienceCard({
+  delay,
+  experience,
+  onEdit,
+  onRemove,
+}: IProps) {
   const animation = fadeInUpAnimation(0.2 * (delay || 0));
 
   return (
@@ -38,6 +46,24 @@ export default function ExperienceCard({ delay, experience }: IProps) {
           );
         })}
       </ul>
+      {onEdit && onRemove ? (
+        <div className='mt-2 flex gap-2'>
+          <Button
+            type='button'
+            title='Editar'
+            onClick={() => onEdit(experience.id)}
+          >
+            <Pen />
+          </Button>
+          <Button
+            type='button'
+            title='Remover'
+            onClick={() => onRemove(experience.id)}
+          >
+            <Trash />
+          </Button>
+        </div>
+      ) : null}
     </motion.div>
   );
 }
