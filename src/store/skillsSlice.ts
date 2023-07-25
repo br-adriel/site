@@ -82,6 +82,9 @@ export const skillsSlice = createSlice({
     setImagem(state, action: PayloadAction<string>) {
       state.formValues.imagem = action.payload;
     },
+    setNome(state, action: PayloadAction<string>) {
+      state.formValues.nome = action.payload;
+    },
     switchToCreateMode(state) {
       state.formValues = initialState.formValues;
     },
