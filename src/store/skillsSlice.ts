@@ -55,6 +55,17 @@ export const updateSkill = createAsyncThunk(
   }
 );
 
+/**
+ * Thunk responsável por remover habilidade da firestore
+ */
+export const removeSkill = createAsyncThunk(
+  'skills/removeOne',
+  async (id: string) => {
+    await SkillController.remove(id);
+    return id;
+  }
+);
+
 export const skillsSlice = createSlice({
   initialState,
   name: 'skills',
