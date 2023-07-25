@@ -88,6 +88,9 @@ export const skillsSlice = createSlice({
     setOrdem(state, action: PayloadAction<number>) {
       state.formValues.ordem = action.payload;
     },
+    setTemProjetos(state, action: PayloadAction<boolean>) {
+      state.formValues.temProjetos = action.payload;
+    },
     switchToCreateMode(state) {
       state.formValues = initialState.formValues;
     },
