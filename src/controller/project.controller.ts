@@ -4,6 +4,7 @@ import { getQuery } from '@/services/firebase/utils';
 import {
   addDoc,
   collection,
+  deleteDoc,
   doc,
   orderBy,
   query,
@@ -31,5 +32,10 @@ export default class ProjectController {
     const docRef = doc(db, 'projetos', id);
     await updateDoc(docRef, project);
     return { ...project, id };
+  }
+
+  static async remove(id: string): Promise<void> {
+    const docRef = doc(db, 'projetos', id);
+    await deleteDoc(docRef);
   }
 }
