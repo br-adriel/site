@@ -28,6 +28,18 @@ export default class SkillController {
     return fetchedSkills as ISkill[];
   }
 
+  /**
+   * Adiciona uma nova habilidade ao banco de dados.
+   *
+   * @param {Omit<ISkill, 'id'>} skill - O objeto habilidade a ser
+   * adicionado ao banco de dados, excluindo o campo 'id'.
+   *
+   * @returns {Promise<ISkill>} Uma Promise que resolve para o objeto da
+   * habilidade adicionada, incluindo o campo 'id' gerado pelo banco de dados.
+   *
+   * @throws {Error} Se ocorrer algum erro durante a operação de inserção no
+   * banco de dados.
+   */
   static async add(skill: Omit<ISkill, 'id'>): Promise<ISkill> {
     const docRef = await addDoc(this.collectionRef, skill);
     return { ...skill, id: docRef.id };

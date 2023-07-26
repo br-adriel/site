@@ -39,6 +39,18 @@ export default class ProjectController {
     return fetchedProjects as IProject[];
   }
 
+  /**
+   * Adiciona um novo projeto ao banco de dados.
+   *
+   * @param {Omit<IProject, 'id'>} project - O objeto projeto a ser
+   * adicionado ao banco de dados, excluindo o campo 'id'.
+   *
+   * @returns {Promise<IProject>} Uma Promise que resolve para o objeto do
+   * projeto adicionado, incluindo o campo 'id' gerado pelo banco de dados.
+   *
+   * @throws {Error} Se ocorrer algum erro durante a operação de inserção no
+   * banco de dados.
+   */
   static async add(project: Omit<IProject, 'id'>): Promise<IProject> {
     const docRef = await addDoc(this.collectionRef, project);
     return { ...project, id: docRef.id };

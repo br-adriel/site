@@ -32,6 +32,18 @@ export default class EducationController {
     return fetchedEducation as IEducation[];
   }
 
+  /**
+   * Adiciona uma nova educação ao banco de dados.
+   *
+   * @param {Omit<IEducacation, 'id'>} educaction - O objeto educação a ser
+   * adicionado ao banco de dados, excluindo o campo 'id'.
+   *
+   * @returns {Promise<IEducacation>} Uma Promise que resolve para o objeto da
+   * educação adicionada, incluindo o campo 'id' gerado pelo banco de dados.
+   *
+   * @throws {Error} Se ocorrer algum erro durante a operação de inserção no
+   * banco de dados.
+   */
   static async add(education: Omit<IEducation, 'id'>): Promise<IEducation> {
     const docRef = await addDoc(this.collectionRef, education);
     return { ...education, id: docRef.id };
