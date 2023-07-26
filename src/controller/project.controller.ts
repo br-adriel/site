@@ -15,6 +15,14 @@ import {
 export default class ProjectController {
   private static collectionRef = collection(db, 'projetos');
 
+  /**
+   * Retorna todos os projetos do banco de dados
+   *
+   * @returns {Promise<IProject[]>} Uma Promise que resolve para um array
+   * contendo todos os projetos do banco de dados.
+   *
+   * @throws {Error} Se ocorrer algum erro durante a consulta ao banco de dados.
+   */
   static async getAll() {
     const q = query(this.collectionRef, orderBy('dataCriacao', 'desc'));
     const fetchedProjects = await getQuery(q);

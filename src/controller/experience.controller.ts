@@ -14,6 +14,14 @@ import {
 export default class ExperienceController {
   private static collectionRef = collection(db, 'experiencia');
 
+  /**
+   * Retorna todos as experiências do banco de dados
+   *
+   * @returns {Promise<IExperience[]>} Uma Promise que resolve para um array
+   * contendo todos as experiências do banco de dados.
+   *
+   * @throws {Error} Se ocorrer algum erro durante a consulta ao banco de dados.
+   */
   static async getAll() {
     const q = query(
       this.collectionRef,

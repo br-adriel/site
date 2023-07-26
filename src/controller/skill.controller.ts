@@ -14,6 +14,14 @@ import {
 export default class SkillController {
   private static collectionRef = collection(db, 'habilidades');
 
+  /**
+   * Retorna todos as habilidades do banco de dados
+   *
+   * @returns {Promise<ISkill[]>} Uma Promise que resolve para um array
+   * contendo todas as habilidaes do banco de dados.
+   *
+   * @throws {Error} Se ocorrer algum erro durante a consulta ao banco de dados.
+   */
   static async getAll() {
     const q = query(this.collectionRef, orderBy('ordem', 'asc'));
     const fetchedSkills = await getQuery(q);
