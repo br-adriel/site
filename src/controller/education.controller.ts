@@ -49,6 +49,20 @@ export default class EducationController {
     return { ...education, id: docRef.id };
   }
 
+  /**
+   * Atualiza uma educação existente no banco de dados.
+   *
+   * @param {Omit<IEducation, 'id'>} education - O objeto da educação atualizada
+   * a ser adicionado ao banco de dados, excluindo o campo 'id'.
+   *
+   * @param {string} id - O identificador único da educação que será atualizada.
+   *
+   * @returns {Promise<IEducation>} Uma Promise que resolve para o objeto da
+   * educação atualizada, incluindo o campo 'id' fornecido como parâmetro.
+   *
+   * @throws {Error} Se ocorrer algum erro durante a operação de atualização
+   * no banco de dados.
+   */
   static async update(
     education: Omit<IEducation, 'id'>,
     id: string

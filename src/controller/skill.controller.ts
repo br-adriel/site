@@ -45,6 +45,20 @@ export default class SkillController {
     return { ...skill, id: docRef.id };
   }
 
+  /**
+   * Atualiza uma habilidade existente no banco de dados.
+   *
+   * @param {Omit<ISkill, 'id'>} skill - O objeto da habilidade atualizada a
+   * ser adicionado ao banco de dados, excluindo o campo 'id'.
+   *
+   * @param {string} id - O identificador único da habilidade que será atualizada.
+   *
+   * @returns {Promise<ISkill>} Uma Promise que resolve para o objeto da
+   * habilidade atualizada, incluindo o campo 'id' fornecido como parâmetro.
+   *
+   * @throws {Error} Se ocorrer algum erro durante a operação de atualização
+   * no banco de dados.
+   */
   static async update(skill: Omit<ISkill, 'id'>, id: string): Promise<ISkill> {
     const docRef = doc(db, 'habilidades', id);
     await updateDoc(docRef, skill);

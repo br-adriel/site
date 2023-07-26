@@ -56,6 +56,20 @@ export default class ProjectController {
     return { ...project, id: docRef.id };
   }
 
+  /**
+   * Atualiza um projeto existente no banco de dados.
+   *
+   * @param {Omit<IProject, 'id'>} project - O objeto do projeto atualizado a
+   * ser adicionado ao banco de dados, excluindo o campo 'id'.
+   *
+   * @param {string} id - O identificador único do projeto que será atualizado.
+   *
+   * @returns {Promise<IProject>} Uma Promise que resolve para o objeto do
+   * projeto atualizado, incluindo o campo 'id' fornecido como parâmetro.
+   *
+   * @throws {Error} Se ocorrer algum erro durante a operação de atualização
+   * no banco de dados.
+   */
   static async update(
     project: Omit<IProject, 'id'>,
     id: string
