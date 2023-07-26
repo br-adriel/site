@@ -9,6 +9,7 @@ import {
   orderBy,
   query,
   updateDoc,
+  limit,
 } from '@firebase/firestore';
 
 export default class ProjectController {
@@ -16,6 +17,16 @@ export default class ProjectController {
 
   static async getAll() {
     const q = query(this.collectionRef, orderBy('dataCriacao', 'desc'));
+    const fetchedProjects = await getQuery(q);
+    return fetchedProjects as IProject[];
+  }
+
+  static async getLatest() {
+    const q = query(
+      this.collectionRef,
+      orderBy('dataCriacao', 'desc'),
+      limit(3)
+    );
     const fetchedProjects = await getQuery(q);
     return fetchedProjects as IProject[];
   }
