@@ -1,7 +1,14 @@
 import IProject from '@/interfaces/IProject';
 import { db } from '@/services/firebase/firebase.config';
 import { getQuery } from '@/services/firebase/utils';
-import { addDoc, collection, orderBy, query } from '@firebase/firestore';
+import {
+  addDoc,
+  collection,
+  doc,
+  orderBy,
+  query,
+  updateDoc,
+} from '@firebase/firestore';
 
 export default class ProjectController {
   private static collectionRef = collection(db, 'projetos');
@@ -15,5 +22,14 @@ export default class ProjectController {
   static async add(project: Omit<IProject, 'id'>): Promise<IProject> {
     const docRef = await addDoc(this.collectionRef, project);
     return { ...project, id: docRef.id };
+  }
+
+  static async update(
+    project: Omit<IProject, 'id'>,
+    id: string
+  ): Promise<IProject> {
+    const docRef = doc(db, 'projetos', id);
+    await updateDoc(docRef, project);
+    return { ...project, id };
   }
 }
