@@ -1,7 +1,6 @@
 import { fadeInUpAnimation } from '@/animations/FadeInUp';
 import { motion } from 'framer-motion';
 import LinkButton from '../LinkButton';
-import ProjectCard from '../ProjectCard';
 
 export default function ProjectsSection() {
   const numbers = [1, 2, 3];
@@ -20,7 +19,7 @@ export default function ProjectsSection() {
               className='flex'
               key={index}
             >
-              <ProjectCard key={n} />
+              {/* <ProjectCard key={n} /> */}
             </motion.div>
           );
         })}

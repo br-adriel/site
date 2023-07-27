@@ -1,6 +1,5 @@
 import Image from 'next/image';
 import ModalBody from './Modal/ModalBody';
-import ProjectCard from './ProjectCard';
 
 interface IProps {
   open: boolean;
@@ -25,9 +24,9 @@ export default function SkillModal({ open }: IProps) {
         </p>
       </div>
       <div className='w-full lg:w-2/3 xl:w-3/4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-2'>
+        {/* <ProjectCard />
         <ProjectCard />
-        <ProjectCard />
-        <ProjectCard />
+        <ProjectCard /> */}
       </div>
     </ModalBody>
   );
