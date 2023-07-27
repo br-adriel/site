@@ -106,6 +106,11 @@ export const experiencesSlice = createSlice({
         );
         state.formStatus = 'succeeded';
         state.formValues = initialState.formValues;
+      })
+      .addCase(removeProject.fulfilled, (state, action) => {
+        state.data = state.data.filter(
+          (project) => project.id !== action.payload
+        );
       });
   },
 });
