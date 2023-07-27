@@ -1,5 +1,6 @@
+import ProjectController from '@/controller/project.controller';
 import IProject from '@/interfaces/IProject';
-import { createSlice } from '@reduxjs/toolkit';
+import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { RootState } from '.';
 
 type StateType = {
@@ -24,6 +25,14 @@ const initialState: StateType = {
     tecnologias: [],
   },
 };
+
+/**
+ * Thunk responsável por carregar todos os projetos da firestore
+ */
+export const fetchProjects = createAsyncThunk('projects/fetchAll', async () => {
+  const projects = await ProjectController.getAll();
+  return projects;
+});
 
 export const experiencesSlice = createSlice({
   initialState,
