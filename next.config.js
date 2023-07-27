@@ -7,6 +7,10 @@ const nextConfig = {
         hostname: 'adrielfsantos.vercel.app',
         port: '',
       },
+      {
+        protocol: 'https',
+        hostname: 'firebasestorage.googleapis.com',
+      },
     ],
   },
 };
