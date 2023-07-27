@@ -71,7 +71,19 @@ export const experiencesSlice = createSlice({
   initialState,
   name: 'experiences',
   reducers: {},
-  extraReducers(builder) {},
+  extraReducers(builder) {
+    builder
+      .addCase(fetchProjects.pending, (state) => {
+        state.status = 'loading';
+      })
+      .addCase(fetchProjects.rejected, (state) => {
+        state.status = 'failed';
+      })
+      .addCase(fetchProjects.fulfilled, (state, action) => {
+        state.data = action.payload;
+        state.status = 'succeeded';
+      });
+  },
 });
 
 export const {} = experiencesSlice.actions;
