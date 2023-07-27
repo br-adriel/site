@@ -90,6 +90,9 @@ export const experiencesSlice = createSlice({
     setDescricao(state, action: PayloadAction<string>) {
       state.formValues.descricao = action.payload;
     },
+    setFormvalues(state, action: PayloadAction<IProject>) {
+      state.formValues = action.payload;
+    },
     setImagem(state, action: PayloadAction<string>) {
       state.formValues.imagem = action.payload;
     },
@@ -155,10 +158,12 @@ export const {
   removeTecnologia,
   setDataCriacao,
   setDescricao,
+  setFormvalues,
   setImagem,
   setLinkRepositorio,
   setLinkVisualizacao,
   setNome,
+  switchToCreateMode,
 } = experiencesSlice.actions;
 
 export const projectsReducer = experiencesSlice.reducer;
