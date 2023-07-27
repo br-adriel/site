@@ -34,6 +34,17 @@ export const fetchProjects = createAsyncThunk('projects/fetchAll', async () => {
   return projects;
 });
 
+/**
+ * Thunk responsável por adicionar projeto na firestore
+ */
+export const addProjectToFirestore = createAsyncThunk(
+  'projects/addOneToFirestore',
+  async (project: Omit<IProject, 'id'>) => {
+    const savedProject = await ProjectController.add(project);
+    return savedProject;
+  }
+);
+
 export const experiencesSlice = createSlice({
   initialState,
   name: 'experiences',
