@@ -24,10 +24,11 @@ export default function ListInput({ onAdd, onRemove, value, id }: IProps) {
         {value.length ? (
           value.map((item) => {
             return (
-              <div className='flex gap-1 p-1 rounded bg-site_bg flex-grow items-center'>
-                <span key={item} className='font-light text-center flex-grow'>
-                  {item}
-                </span>
+              <div
+                className='flex gap-1 p-1 rounded bg-site_bg flex-grow items-center'
+                key={item}
+              >
+                <span className='font-light text-center flex-grow'>{item}</span>
                 <button
                   onClick={() => onRemove(item)}
                   type='button'
