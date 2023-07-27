@@ -86,7 +86,9 @@ export default function ExperienceForm() {
         />
       </div>
       <div className='mb-3 flex flex-col'>
-        <label htmlFor='tarefas mb-1'>Tarefas</label>
+        <label htmlFor='tarefas' className='mb-1'>
+          Tarefas
+        </label>
         <ListInput
           value={formValues.tarefas}
           onAdd={(value: string) => dispatch(addTarefa(value))}
