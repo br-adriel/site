@@ -1,6 +1,6 @@
 import ProjectController from '@/controller/project.controller';
 import IProject from '@/interfaces/IProject';
-import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import { PayloadAction, createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { RootState } from '.';
 
 type StateType = {
@@ -70,7 +70,39 @@ export const removeProject = createAsyncThunk(
 export const experiencesSlice = createSlice({
   initialState,
   name: 'experiences',
-  reducers: {},
+  reducers: {
+    addTecnologia(state, action: PayloadAction<string>) {
+      if (!state.formValues.tecnologias.some((tec) => tec === action.payload)) {
+        state.formValues.tecnologias = [
+          ...state.formValues.tecnologias,
+          action.payload,
+        ];
+      }
+    },
+    removeTecnologia(state, action: PayloadAction<string>) {
+      state.formValues.tecnologias = state.formValues.tecnologias.filter(
+        (tec) => tec !== action.payload
+      );
+    },
+    setDataCriacao(state, action: PayloadAction<string>) {
+      state.formValues.dataCriacao = new Date(action.payload);
+    },
+    setDescricao(state, action: PayloadAction<string>) {
+      state.formValues.descricao = action.payload;
+    },
+    setImagem(state, action: PayloadAction<string>) {
+      state.formValues.imagem = action.payload;
+    },
+    setLinkRepositorio(state, action: PayloadAction<string>) {
+      state.formValues.linkRepositorio = action.payload;
+    },
+    setLinkVisualizacao(state, action: PayloadAction<string>) {
+      state.formValues.linkVisualizacao = action.payload;
+    },
+    setNome(state, action: PayloadAction<string>) {
+      state.formValues.nome = action.payload;
+    },
+  },
   extraReducers(builder) {
     builder
       .addCase(fetchProjects.pending, (state) => {
@@ -115,7 +147,16 @@ export const experiencesSlice = createSlice({
   },
 });
 
-export const {} = experiencesSlice.actions;
+export const {
+  addTecnologia,
+  removeTecnologia,
+  setDataCriacao,
+  setDescricao,
+  setImagem,
+  setLinkRepositorio,
+  setLinkVisualizacao,
+  setNome,
+} = experiencesSlice.actions;
 
 export const projectsReducer = experiencesSlice.reducer;
 
