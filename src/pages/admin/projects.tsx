@@ -1,10 +1,12 @@
 import HelperComponent from '@/components/HelperComponent';
-import ProjectCard from '@/components/ProjectCard';
 import Header from '@/components/admin/Header';
+import ProjectCard from '@/components/admin/ProjectCard';
+import ProjectForm from '@/components/admin/ProjectForm';
 import WithAuth from '@/hocs/WithAuth';
 import { AppDispatch } from '@/store';
 import {
   fetchProjects,
+  removeProject,
   selectAllProjects,
   selectProjectsStatus,
   setFormvalues,
@@ -42,17 +44,18 @@ function Projects() {
         <h2 className='text-2xl font-semibold mb-3'>Projetos</h2>
         <div className='grid grid-cols-12 gap-3'>
           <div className='rounded bg-alt_bg p-3 col-span-12 md:col-span-5 lg:col-span-3'>
-            {/* <EducationForm /> */}
+            <ProjectForm />
           </div>
           <div className='col-span-12 md:col-span-7 lg:col-span-9'>
             {listStatus === 'succeeded' ? (
               <div className='grid grid-cols-1 lg:grid-cols-2 gap-3'>
                 {projects.length ? (
-                  projects.map((projects) => (
+                  projects.map((project) => (
                     <ProjectCard
-                      key={projects.id}
-                      // onEdit={editProject}
-                      // onRemove={(id: string) => dispatch(removeProject(id))}
+                      project={project}
+                      key={project.id}
+                      onEdit={editProject}
+                      onRemove={(id: string) => dispatch(removeProject(id))}
                     />
                   ))
                 ) : (
