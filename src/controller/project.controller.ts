@@ -2,6 +2,7 @@ import IProject from '@/interfaces/IProject';
 import { db } from '@/services/firebase/firebase.config';
 import { getQuery } from '@/services/firebase/utils';
 import {
+  Timestamp,
   addDoc,
   collection,
   deleteDoc,

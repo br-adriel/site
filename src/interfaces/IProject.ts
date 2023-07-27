@@ -1,5 +1,5 @@
 export default interface IProject {
-  dataCriacao: Date;
+  dataCriacao: string;
   descricao: string;
   id: string;
   imagem: string;

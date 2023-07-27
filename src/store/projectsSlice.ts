@@ -16,7 +16,7 @@ const initialState: StateType = {
   formStatus: 'idle',
   formValues: {
     id: '',
-    dataCriacao: new Date(),
+    dataCriacao: `2023-07-27`,
     descricao: '',
     imagem: '',
     linkRepositorio: '',
@@ -85,7 +85,7 @@ export const experiencesSlice = createSlice({
       );
     },
     setDataCriacao(state, action: PayloadAction<string>) {
-      state.formValues.dataCriacao = new Date(action.payload);
+      state.formValues.dataCriacao = action.payload;
     },
     setDescricao(state, action: PayloadAction<string>) {
       state.formValues.descricao = action.payload;
