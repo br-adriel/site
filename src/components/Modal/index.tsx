@@ -1,5 +1,3 @@
-'use client';
-
 import { Root } from '@radix-ui/react-dialog';
 import { Dispatch, PropsWithChildren, SetStateAction } from 'react';
 

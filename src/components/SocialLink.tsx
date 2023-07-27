@@ -1,5 +1,3 @@
-'use client';
-
 import { Icon } from 'react-bootstrap-icons';
 import { motion } from 'framer-motion';
 import { fadeInGrow } from '@/animations/FadeInGrow';

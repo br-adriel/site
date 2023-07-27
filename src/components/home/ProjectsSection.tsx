@@ -1,5 +1,3 @@
-'use client';
-
 import { fadeInUpAnimation } from '@/animations/FadeInUp';
 import { motion } from 'framer-motion';
 import LinkButton from '../LinkButton';
