@@ -45,6 +45,17 @@ export const addProjectToFirestore = createAsyncThunk(
   }
 );
 
+/**
+ * Thunk responsável por atualizar projeto na firestore
+ */
+export const updateProject = createAsyncThunk(
+  'projects/updateOne',
+  async (project: IProject) => {
+    const updatedProject = await ProjectController.update(project, project.id);
+    return updatedProject;
+  }
+);
+
 export const experiencesSlice = createSlice({
   initialState,
   name: 'experiences',
