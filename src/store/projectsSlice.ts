@@ -93,6 +93,19 @@ export const experiencesSlice = createSlice({
         state.data = [action.payload, ...state.data];
         state.formStatus = 'succeeded';
         state.formValues = initialState.formValues;
+      })
+      .addCase(updateProject.pending, (state) => {
+        state.formStatus = 'loading';
+      })
+      .addCase(updateProject.rejected, (state) => {
+        state.formStatus = 'failed';
+      })
+      .addCase(updateProject.fulfilled, (state, action) => {
+        state.data = state.data.map((project) =>
+          project.id === action.payload.id ? action.payload : project
+        );
+        state.formStatus = 'succeeded';
+        state.formValues = initialState.formValues;
       });
   },
 });
