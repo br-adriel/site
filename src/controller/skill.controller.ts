@@ -65,6 +65,19 @@ export default class SkillController {
     return { ...skill, id };
   }
 
+  /**
+   * Remove uma habilidade do banco de dados.
+   *
+   * @param {string} id - O identificador único da habilidade a ser removida do
+   * banco de dados.
+   *
+   * @returns {Promise<void>} Uma Promise que resolve quando a habilidade é
+   * removida com sucesso ou é rejeitada se ocorrer algum erro durante a
+   * operação de remoção no banco de dados.
+   *
+   * @throws {Error} Se ocorrer algum erro durante a operação de remoção no
+   * banco de dados.
+   */
   static async remove(id: string): Promise<void> {
     const docRef = doc(db, 'habilidades', id);
     await deleteDoc(docRef);

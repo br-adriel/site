@@ -72,6 +72,22 @@ export default class EducationController {
     return { ...education, id };
   }
 
+  /**
+   * Remove uma entrada de educação do banco de dados.
+   *
+   * Este método estático permite remover uma entrada de educação existente do
+   * banco de dados com base em seu identificador único ('id').
+   *
+   * @param {string} id - O identificador único da entrada de educação a ser
+   * removida do banco de dados.
+   *
+   * @returns {Promise<void>} Uma Promise que resolve quando a entrada de
+   * educação é removida com sucesso ou é rejeitada se ocorrer algum erro
+   * durante a operação de remoção no banco de dados.
+   *
+   * @throws {Error} Se ocorrer algum erro durante a operação de remoção no
+   * banco de dados.
+   */
   static async remove(id: string): Promise<void> {
     const docRef = doc(db, 'educacao', id);
     await deleteDoc(docRef);

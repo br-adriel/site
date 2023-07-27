@@ -79,6 +79,19 @@ export default class ProjectController {
     return { ...project, id };
   }
 
+  /**
+   * Remove um projeto do banco de dados.
+   *
+   * @param {string} id - O identificador único do projeto a ser removido do
+   * banco de dados.
+   *
+   * @returns {Promise<void>} Uma Promise que resolve quando o projeto é
+   * removido com sucesso ou é rejeitada, se ocorrer algum erro durante a
+   * operação de remoção no banco de dados.
+   *
+   * @throws {Error} Se ocorrer algum erro durante a operação de remoção no
+   * banco de dados.
+   */
   static async remove(id: string): Promise<void> {
     const docRef = doc(db, 'projetos', id);
     await deleteDoc(docRef);
