@@ -10,7 +10,7 @@ interface IProps {
   onRemove: (value: string) => void;
 }
 
-export default function TarefasInput({ onAdd, onRemove, value, id }: IProps) {
+export default function ListInput({ onAdd, onRemove, value, id }: IProps) {
   const [inputValue, setInputValue] = useState('');
 
   const addValue = () => {
@@ -22,14 +22,14 @@ export default function TarefasInput({ onAdd, onRemove, value, id }: IProps) {
     <div className='flex flex-col gap-2'>
       <div className='flex flex-wrap gap-2'>
         {value.length ? (
-          value.map((tarefa) => {
+          value.map((item) => {
             return (
               <div className='flex gap-1 p-1 rounded bg-site_bg flex-grow items-center'>
-                <span key={tarefa} className='font-light text-center flex-grow'>
-                  {tarefa}
+                <span key={item} className='font-light text-center flex-grow'>
+                  {item}
                 </span>
                 <button
-                  onClick={() => onRemove(tarefa)}
+                  onClick={() => onRemove(item)}
                   type='button'
                   className='focus-visible:outline focus:outline-blue-500 focus:outline-2 focus:outline-offset-2 rounded hover:scale-95 hover:opacity-90 transition-all'
                 >
@@ -40,7 +40,7 @@ export default function TarefasInput({ onAdd, onRemove, value, id }: IProps) {
           })
         ) : (
           <span className='p-1 rounded bg-site_bg flex-grow font-light'>
-            Nenhuma tarefa
+            Lista vazia
           </span>
         )}
       </div>
@@ -58,4 +58,4 @@ export default function TarefasInput({ onAdd, onRemove, value, id }: IProps) {
     </div>
   );
 }
-TarefasInput;
+ListInput;

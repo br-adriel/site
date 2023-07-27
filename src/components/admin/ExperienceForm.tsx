@@ -22,7 +22,7 @@ import Button from '../Button';
 import Input from '../Input';
 import LoadingSpinner from '../LoadingSpinner';
 import Select from '../Select';
-import TarefasInput from './TarefasInput';
+import ListInput from './ListInput';
 
 export default function ExperienceForm() {
   const dispatch = useDispatch<AppDispatch>();
@@ -87,7 +87,7 @@ export default function ExperienceForm() {
       </div>
       <div className='mb-3 flex flex-col'>
         <label htmlFor='tarefas mb-1'>Tarefas</label>
-        <TarefasInput
+        <ListInput
           value={formValues.tarefas}
           onAdd={(value: string) => dispatch(addTarefa(value))}
           onRemove={(value: string) => {
