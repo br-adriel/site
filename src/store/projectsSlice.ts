@@ -56,6 +56,17 @@ export const updateProject = createAsyncThunk(
   }
 );
 
+/**
+ * Thunk responsável por remover projeto da firestore
+ */
+export const removeProject = createAsyncThunk(
+  'projects/removeOne',
+  async (id: string) => {
+    await ProjectController.remove(id);
+    return id;
+  }
+);
+
 export const experiencesSlice = createSlice({
   initialState,
   name: 'experiences',
