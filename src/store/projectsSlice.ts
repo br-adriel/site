@@ -102,6 +102,9 @@ export const experiencesSlice = createSlice({
     setNome(state, action: PayloadAction<string>) {
       state.formValues.nome = action.payload;
     },
+    switchToCreateMode(state) {
+      state.formValues = initialState.formValues;
+    },
   },
   extraReducers(builder) {
     builder
