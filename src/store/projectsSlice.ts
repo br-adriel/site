@@ -82,6 +82,17 @@ export const experiencesSlice = createSlice({
       .addCase(fetchProjects.fulfilled, (state, action) => {
         state.data = action.payload;
         state.status = 'succeeded';
+      })
+      .addCase(addProjectToFirestore.pending, (state) => {
+        state.formStatus = 'loading';
+      })
+      .addCase(addProjectToFirestore.rejected, (state) => {
+        state.formStatus = 'failed';
+      })
+      .addCase(addProjectToFirestore.fulfilled, (state, action) => {
+        state.data = [action.payload, ...state.data];
+        state.formStatus = 'succeeded';
+        state.formValues = initialState.formValues;
       });
   },
 });
