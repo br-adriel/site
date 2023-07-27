@@ -6,10 +6,10 @@ import {
   collection,
   deleteDoc,
   doc,
+  limit,
   orderBy,
   query,
   updateDoc,
-  limit,
 } from '@firebase/firestore';
 
 export default class ProjectController {
@@ -29,6 +29,17 @@ export default class ProjectController {
     return fetchedProjects as IProject[];
   }
 
+  /**
+   * Obtém os projetos mais recentes do banco de dados.
+   *
+   * Os projetos são retornados em ordem decrescente de data de criação,
+   * limitados aos 3 projetos mais recentes.
+   *
+   * @returns {Promise<IProject[]>} Uma Promise que resolve para um array
+   * contendo os 3 projetos mais recentes do banco de dados.
+   *
+   * @throws {Error} Se ocorrer algum erro durante a consulta ao banco de dados.
+   */
   static async getLatest() {
     const q = query(
       this.collectionRef,
