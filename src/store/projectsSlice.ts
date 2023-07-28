@@ -39,8 +39,12 @@ export const fetchProjects = createAsyncThunk('projects/fetchAll', async () => {
  */
 export const addProjectToFirestore = createAsyncThunk(
   'projects/addOneToFirestore',
-  async (project: Omit<IProject, 'id'>) => {
-    const savedProject = await ProjectController.add(project);
+  async (args: {
+    project: Omit<Omit<IProject, 'id'>, 'imagem'>;
+    image: File;
+  }) => {
+    const { image, project } = args;
+    const savedProject = await ProjectController.add(project, image);
     return savedProject;
   }
 );
@@ -50,8 +54,12 @@ export const addProjectToFirestore = createAsyncThunk(
  */
 export const updateProject = createAsyncThunk(
   'projects/updateOne',
-  async (project: IProject) => {
-    const updatedProject = await ProjectController.update(project, project.id);
+  async (args: { project: IProject; image?: File }) => {
+    const updatedProject = await ProjectController.update(
+      args.project,
+      args.project.id,
+      args.image
+    );
     return updatedProject;
   }
 );
@@ -92,9 +100,6 @@ export const experiencesSlice = createSlice({
     },
     setFormvalues(state, action: PayloadAction<IProject>) {
       state.formValues = action.payload;
-    },
-    setImagem(state, action: PayloadAction<string>) {
-      state.formValues.imagem = action.payload;
     },
     setLinkRepositorio(state, action: PayloadAction<string>) {
       state.formValues.linkRepositorio = action.payload;
@@ -159,7 +164,6 @@ export const {
   setDataCriacao,
   setDescricao,
   setFormvalues,
-  setImagem,
   setLinkRepositorio,
   setLinkVisualizacao,
   setNome,

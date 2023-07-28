@@ -1,10 +1,5 @@
+import IProject from '@/interfaces/IProject';
 import { AppDispatch } from '@/store';
-import { FormEvent } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import Button from '../Button';
-import Input from '../Input';
-import LoadingSpinner from '../LoadingSpinner';
-import ListInput from './ListInput';
 import {
   addProjectToFirestore,
   addTecnologia,
@@ -13,28 +8,34 @@ import {
   selectProjectsFormValues,
   setDataCriacao,
   setDescricao,
-  setImagem,
   setLinkRepositorio,
   setLinkVisualizacao,
   setNome,
   switchToCreateMode,
   updateProject,
 } from '@/store/projectsSlice';
-import IProject from '@/interfaces/IProject';
+import { FormEvent, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import Button from '../Button';
+import FileInput from '../FileInput';
+import Input from '../Input';
+import LoadingSpinner from '../LoadingSpinner';
 import Textarea from '../Textarea';
+import ListInput from './ListInput';
 
 export default function ProjectForm() {
   const dispatch = useDispatch<AppDispatch>();
   const formStatus = useSelector(selectProjectsFormStatus);
   const formValues = useSelector(selectProjectsFormValues);
 
+  const [imgValue, setImgValue] = useState<File>();
+
   const formSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    const projectValues: Omit<IProject, 'id'> = {
+    const projectValues: Omit<Omit<IProject, 'id'>, 'imagem'> = {
       dataCriacao: formValues.dataCriacao,
       descricao: formValues.descricao,
-      imagem: formValues.imagem,
       nome: formValues.nome,
       tecnologias: formValues.tecnologias,
     };
@@ -46,9 +47,13 @@ export default function ProjectForm() {
     }
 
     if (formValues.id) {
-      dispatch(updateProject({ ...projectValues, id: formValues.id }));
+      dispatch(updateProject({ project: { ...formValues }, image: imgValue }));
     } else {
-      dispatch(addProjectToFirestore(projectValues));
+      if (imgValue) {
+        dispatch(
+          addProjectToFirestore({ project: projectValues, image: imgValue })
+        );
+      }
     }
   };
 
@@ -90,12 +95,13 @@ export default function ProjectForm() {
         <label htmlFor='imagem' className='mb-1'>
           Imagem
         </label>
-        <Input
+        <FileInput
           id='imagem'
-          type='url'
-          required
-          value={formValues.imagem}
-          onChange={(e) => dispatch(setImagem(e.target.value))}
+          accept='image/png, image/jpg'
+          required={!formValues.id}
+          onChange={(e) => {
+            if (e.target.files) setImgValue(e.target.files[0]);
+          }}
         />
       </div>
       <div className='mb-3 flex flex-col'>
