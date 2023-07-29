@@ -6,14 +6,18 @@ import {
   uploadFile,
 } from '@/services/firebase/utils';
 import {
+  Query,
+  QueryDocumentSnapshot,
   addDoc,
   collection,
   deleteDoc,
   doc,
   getDoc,
+  getDocs,
   limit,
   orderBy,
   query,
+  startAfter,
   updateDoc,
 } from '@firebase/firestore';
 import { deleteObject, ref } from 'firebase/storage';
@@ -33,6 +37,42 @@ export default class ProjectController {
     const q = query(this.collectionRef, orderBy('dataCriacao', 'desc'));
     const fetchedProjects = await getQuery(q);
     return fetchedProjects as IProject[];
+  }
+
+  /**
+   * Retorna uma página de projetos do banco de dados, utilizando paginação.
+   *
+   * @param {QueryDocumentSnapshot} lastVisible - O documento a partir do qual a
+   * próxima página será buscada.
+   *
+   * @returns {Promise<{ projects: IProject[], lastProjectDoc: QueryDocumentSnapshot | undefined }>}
+   * Uma Promise que resolve para um objeto contendo um array de projetos da
+   * página e o último documento da página atual, que pode ser utilizado como
+   * ponto de referência para buscar a próxima página.
+   *
+   * @throws {Error} Se ocorrer algum erro durante a consulta ao banco de dados.
+   */
+  static async getPage(lastVisible?: QueryDocumentSnapshot) {
+    let q: Query;
+    if (lastVisible) {
+      q = query(
+        this.collectionRef,
+        orderBy('dataCriacao', 'desc'),
+        limit(10),
+        startAfter(lastVisible)
+      );
+    } else {
+      q = query(this.collectionRef, orderBy('dataCriacao', 'desc'), limit(10));
+    }
+
+    const result = await getDocs(q);
+    console.log(result);
+    const projects = result.docs.map((doc) =>
+      joinDocDataAndId(doc)
+    ) as IProject[];
+    const lastProjectDoc = result.docs[result.docs.length - 1];
+
+    return { projects, lastProjectDoc };
   }
 
   /**
