@@ -97,7 +97,7 @@ export default function ProjectForm() {
         </label>
         <FileInput
           id='imagem'
-          accept='image/png, image/jpg'
+          accept='image/png, image/jpeg'
           required={!formValues.id}
           onChange={(e) => {
             if (e.target.files) setImgValue(e.target.files[0]);
