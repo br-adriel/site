@@ -29,7 +29,7 @@ export default function SkillsSection() {
       {status === 'succeeded' ? (
         skills.length ? (
           <Modal open={showModal} onOpenChange={setShowModal}>
-            <div className='grid grid-cols-3 md:grid-cols-6 lg:grid-cols-12 gap-3'>
+            <div className='grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-12 gap-3'>
               {skills.map((skill) => (
                 <SkillCard
                   skill={skill}
