@@ -1,13 +1,14 @@
-import Image from 'next/image';
-import EducationCard from '../EducationCard';
-import { useDispatch, useSelector } from 'react-redux';
+import { AppDispatch } from '@/store';
 import {
   fetchEducation,
   selectAllEducation,
   selectEducationStatus,
 } from '@/store/educationSlice';
+import Image from 'next/image';
 import { useEffect } from 'react';
-import { AppDispatch } from '@/store';
+import { useDispatch, useSelector } from 'react-redux';
+import EducationCard from '../EducationCard';
+import HelperComponent from '../HelperComponent';
 
 export default function EducationSection() {
   const dispatch = useDispatch<AppDispatch>();
@@ -24,11 +25,22 @@ export default function EducationSection() {
         <div className='flex flex-col gap-2'>
           <h2 className='text-4xl font-semibold mb-3'>Educação</h2>
 
-          {education.map((ed, index) => {
-            return (
-              <EducationCard education={ed} delay={index} key={ed.curso} />
-            );
-          })}
+          {status === 'succeeded' ? (
+            education.length ? (
+              education.map((ed, index) => {
+                return (
+                  <EducationCard education={ed} delay={index} key={ed.curso} />
+                );
+              })
+            ) : (
+              <HelperComponent
+                option='noElements'
+                noElementsMessage='Nenhuma educação encontrada'
+              />
+            )
+          ) : (
+            <HelperComponent option={status} />
+          )}
         </div>
       </div>
       <div className='px-4 w-full md:w-1/2 flex justify-center'>
