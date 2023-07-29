@@ -5,14 +5,14 @@ import { RootState } from '.';
 
 type StateType = {
   data: ISkill[];
-  status: 'idle' | 'loading' | 'succeeded' | 'failed';
   formStatus: 'idle' | 'loading' | 'succeeded' | 'failed';
   formValues: ISkill;
+  selectedSkill?: ISkill;
+  status: 'idle' | 'loading' | 'succeeded' | 'failed';
 };
 
 const initialState: StateType = {
   data: [],
-  status: 'idle',
   formStatus: 'idle',
   formValues: {
     descricao: '',
@@ -23,6 +23,8 @@ const initialState: StateType = {
     ordem: 0,
     temProjetos: false,
   },
+  selectedSkill: undefined,
+  status: 'idle',
 };
 
 /**
@@ -88,6 +90,9 @@ export const skillsSlice = createSlice({
     setOrdem(state, action: PayloadAction<number>) {
       state.formValues.ordem = action.payload;
     },
+    setSelectedSkill(state, action: PayloadAction<ISkill | undefined>) {
+      state.selectedSkill = action.payload;
+    },
     setTemProjetos(state, action: PayloadAction<boolean>) {
       state.formValues.temProjetos = action.payload;
     },
@@ -144,6 +149,7 @@ export const {
   setImagem,
   setNome,
   setOrdem,
+  setSelectedSkill,
   setTemProjetos,
   switchToCreateMode,
 } = skillsSlice.actions;
@@ -157,3 +163,5 @@ export const selectSkillFormStatus = (state: RootState) =>
   state.skills.formStatus;
 export const selectSkillFormValues = (state: RootState) =>
   state.skills.formValues;
+export const selectSelectedSkill = (state: RootState) =>
+  state.skills.selectedSkill;
