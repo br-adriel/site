@@ -19,6 +19,7 @@ import {
   query,
   startAfter,
   updateDoc,
+  where,
 } from '@firebase/firestore';
 import { deleteObject, ref } from 'firebase/storage';
 
@@ -37,6 +38,29 @@ export default class ProjectController {
     const q = query(this.collectionRef, orderBy('dataCriacao', 'desc'));
     const fetchedProjects = await getQuery(q);
     return fetchedProjects as IProject[];
+  }
+
+  /**
+   * Retorna todos os projetos do banco de dados que contêm uma determinada
+   * tecnologia.
+   *
+   * @param {string} technology - A tecnologia pela qual os projetos serão
+   * filtrados.
+   *
+   * @returns {Promise<IProject[]>} Uma Promise que resolve para um array
+   * contendo todos os projetos do banco de dados que contêm a tecnologia
+   * especificada.
+   *
+   * @throws {Error} Se ocorrer algum erro durante a consulta ao banco de dados.
+   */
+  static async getAllByTechnology(technology: string) {
+    const q = query(
+      this.collectionRef,
+      where('tecnologias', 'array-contains', technology),
+      orderBy('dataCriacao', 'desc')
+    );
+    const projects = await getQuery(q);
+    return projects as IProject[];
   }
 
   /**
