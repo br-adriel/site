@@ -66,7 +66,7 @@ export default function Projects() {
           <section className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3'>
             {projects.map((project, index) => (
               <motion.div
-                {...fadeInUpAnimation((index % 10) * 0.2)}
+                {...fadeInUpAnimation((index % 6) * 0.2)}
                 className='flex'
                 key={project.id}
               >
