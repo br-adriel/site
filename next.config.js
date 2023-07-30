@@ -4,14 +4,12 @@ const nextConfig = {
     remotePatterns: [
       {
         protocol: 'https',
-        hostname: 'adrielfsantos.vercel.app',
-        port: '',
-      },
-      {
-        protocol: 'https',
         hostname: 'firebasestorage.googleapis.com',
       },
     ],
+  },
+  experimental: {
+    scrollRestoration: true,
   },
 };
 
