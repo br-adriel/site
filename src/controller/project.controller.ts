@@ -104,7 +104,6 @@ export default class ProjectController {
     }
 
     const result = await getDocs(q);
-    console.log(result);
     const projects = result.docs.map((doc) =>
       joinDocDataAndId(doc)
     ) as IProject[];

@@ -40,7 +40,6 @@ export default function SkillModal({ open }: IProps) {
       }
     };
 
-    console.log('rodou', status.current);
     status.current = 'idle';
     load();
   }, [skill]);
