@@ -1,45 +1,30 @@
-import { AppDispatch } from '@/store';
-import {
-  fetchEducation,
-  selectAllEducation,
-  selectEducationStatus,
-} from '@/store/educationSlice';
+import IEducation from '@/interfaces/IEducation';
 import Image from 'next/image';
-import { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
 import EducationCard from '../EducationCard';
 import HelperComponent from '../HelperComponent';
 
-export default function EducationSection() {
-  const dispatch = useDispatch<AppDispatch>();
-  const education = useSelector(selectAllEducation);
-  const status = useSelector(selectEducationStatus);
+interface IProps {
+  education: IEducation[];
+}
 
-  useEffect(() => {
-    if (status === 'idle') dispatch(fetchEducation());
-  }, [dispatch, status]);
-
+export default function EducationSection({ education }: IProps) {
   return (
     <section className='container p-5 min-h-screen mx-auto flex flex-col md:flex-row-reverse items-center justify-center gap-12 lg:gap-5'>
       <div className='w-full py-5 md:w-1/2 lg:pl-9 xl:pl-9'>
         <div className='flex flex-col gap-2'>
           <h2 className='text-4xl font-semibold mb-3'>Educação</h2>
 
-          {status === 'succeeded' ? (
-            education.length ? (
-              education.map((ed, index) => {
-                return (
-                  <EducationCard education={ed} delay={index} key={ed.curso} />
-                );
-              })
-            ) : (
-              <HelperComponent
-                option='noElements'
-                noElementsMessage='Nenhuma educação encontrada'
-              />
-            )
+          {education.length ? (
+            education.map((ed, index) => {
+              return (
+                <EducationCard education={ed} delay={index} key={ed.curso} />
+              );
+            })
           ) : (
-            <HelperComponent option={status} />
+            <HelperComponent
+              option='noElements'
+              noElementsMessage='Nenhuma educação encontrada'
+            />
           )}
         </div>
       </div>

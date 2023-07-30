@@ -1,34 +1,14 @@
 import { fadeInUpAnimation } from '@/animations/FadeInUp';
-import ProjectController from '@/controller/project.controller';
 import IProject from '@/interfaces/IProject';
 import { motion } from 'framer-motion';
-import { useEffect, useState } from 'react';
 import LinkButton from '../LinkButton';
 import ProjectCard from '../ProjectCard';
 
-export default function ProjectsSection() {
-  const [projects, setProjects] = useState<IProject[]>([]);
-  const [status, setStatus] = useState<
-    'idle' | 'loading' | 'succeeded' | 'failed'
-  >('idle');
+interface IProps {
+  projects: IProject[];
+}
 
-  useEffect(() => {
-    const load = async () => {
-      if (status === 'idle') {
-        try {
-          setStatus('loading');
-          const projects = await ProjectController.getLatest();
-          setProjects(projects);
-          setStatus('succeeded');
-        } catch (err) {
-          setStatus('failed');
-        }
-      }
-    };
-
-    load();
-  }, []);
-
+export default function ProjectsSection({ projects }: IProps) {
   return (
     <section className='container mx-auto min-h-screen flex flex-col justify-center p-5 gap-2'>
       <div className='flex justify-between gap-5 items-center'>
