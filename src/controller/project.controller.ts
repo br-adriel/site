@@ -64,6 +64,20 @@ export default class ProjectController {
   }
 
   /**
+   * Obtém os detalhes de um projeto específico com base no ID fornecido.
+   *
+   * @param {string} id - O ID do projeto a ser buscado.
+   *
+   * @returns {Promise<IProject>} Uma Promise que, ao ser resolvida, retorna os
+   * dados do projeto associado ao ID fornecido.
+   */
+  static async getById(id: string) {
+    const docRef = doc(db, 'projetos', id);
+    const project = await getDoc(docRef);
+    return joinDocDataAndId(project) as IProject;
+  }
+
+  /**
    * Retorna uma página de projetos do banco de dados, utilizando paginação.
    *
    * @param {QueryDocumentSnapshot} lastVisible - O documento a partir do qual a
