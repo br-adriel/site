@@ -1,5 +1,5 @@
 {
-  "name": "v2",
+  "name": "site",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -9,22 +9,23 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@radix-ui/react-popover": "^1.0.5",
-    "@reduxjs/toolkit": "^1.9.3",
-    "@types/node": "18.15.3",
-    "@types/react": "18.0.28",
-    "@types/react-dom": "18.0.11",
-    "firebase": "^9.17.2",
-    "framer-motion": "^10.3.2",
-    "next": "13.2.4",
+    "@radix-ui/react-dialog": "^1.0.4",
+    "@radix-ui/react-switch": "^1.0.3",
+    "@reduxjs/toolkit": "^1.9.5",
+    "@types/node": "20.4.2",
+    "@types/react": "18.2.15",
+    "@types/react-dom": "18.2.7",
+    "autoprefixer": "10.4.14",
+    "firebase": "^10.1.0",
+    "framer-motion": "^10.13.0",
+    "next": "13.4.10",
+    "postcss": "8.4.26",
     "react": "18.2.0",
-    "react-bootstrap-icons": "^1.10.2",
+    "react-bootstrap-icons": "^1.10.3",
     "react-dom": "18.2.0",
-    "react-redux": "^8.0.5",
-    "styled-components": "^5.3.9",
-    "typescript": "4.9.5"
-  },
-  "devDependencies": {
-    "@types/styled-components": "^5.1.26"
+    "react-loader-spinner": "^5.3.4",
+    "react-redux": "^8.1.1",
+    "tailwindcss": "3.3.3",
+    "typescript": "5.1.6"
   }
 }

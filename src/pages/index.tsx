@@ -1,49 +1,55 @@
-import EducationSection from '@/components/EducationSection';
-import HelloSection from '@/components/HelloSection';
-import ProjectsSection from '@/components/ProjectsSection';
-import SkillsSection from '@/components/SkillsSection';
-import { IEducationItem, ISkill } from '@/global/types';
-import { getEducacao, getHabilidades } from '@/utils/firebaseCollections';
-import { GetStaticProps } from 'next';
-import Head from 'next/head';
+import EducationSection from '@/components/home/EducationSection';
+import ExperienceSection from '@/components/home/ExperienceSection';
+import HelloSection from '@/components/home/HelloSection';
+import ProjectsSection from '@/components/home/ProjectsSection';
+import SkillsSection from '@/components/home/SkillsSection';
+import EducationController from '@/controller/education.controller';
+import ExperienceController from '@/controller/experience.controller';
+import ProjectController from '@/controller/project.controller';
+import SkillController from '@/controller/skill.controller';
+import IEducation from '@/interfaces/IEducation';
+import IExperience from '@/interfaces/IExperience';
+import IProject from '@/interfaces/IProject';
+import ISkill from '@/interfaces/ISkill';
+import { GetServerSideProps } from 'next';
 
 interface IProps {
+  experiences: IExperience[];
   skills: ISkill[];
-  education: IEducationItem[];
+  education: IEducation[];
+  latestProjects: IProject[];
 }
 
-export default function Home({ skills, education }: IProps) {
+export default function index({
+  education,
+  experiences,
+  latestProjects,
+  skills,
+}: IProps) {
   return (
-    <>
-      <Head>
-        <title>Adriel Santos - Desenvolvedor Fullstack</title>
-
-        <meta charSet='UTF-8' />
-        <meta name='viewport' content='width=device-width, initial-scale=1' />
-        <meta
-          name='description'
-          content='Conheça mais das minhas habilidades e do meu trabalho como desenvolvedor fullstack'
-        />
-      </Head>
-      <main>
-        <HelloSection />
-        <SkillsSection skills={skills} />
-        <EducationSection education={education} />
-        <ProjectsSection />
-      </main>
-    </>
+    <main className='flex flex-col'>
+      <HelloSection />
+      <ExperienceSection experiences={experiences} />
+      <SkillsSection skills={skills} />
+      <EducationSection education={education} />
+      <ProjectsSection projects={latestProjects} />
+    </main>
   );
 }
 
-export const getStaticProps: GetStaticProps = async (context) => {
-  try {
-    const skills = await getHabilidades();
-    const education = await getEducacao();
-    return {
-      props: { skills, education },
-    };
-  } catch (err) {}
+export const getStaticProps: GetServerSideProps = async () => {
+  const [experiences, skills, education, latestProjects] = await Promise.all([
+    await ExperienceController.getAll(),
+    await SkillController.getAll(),
+    await EducationController.getAll(),
+    await ProjectController.getLatest(),
+  ]);
   return {
-    props: { education: [], skills: [] },
+    props: {
+      experiences,
+      skills,
+      education,
+      latestProjects,
+    },
   };
 };
