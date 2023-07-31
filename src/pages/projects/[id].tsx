@@ -4,7 +4,6 @@ import ProjectController from '@/controller/project.controller';
 import IProject from '@/interfaces/IProject';
 import { GetServerSideProps } from 'next';
 import Head from 'next/head';
-import { CodeSlash } from 'react-bootstrap-icons';
 
 interface IProps {
   project: IProject;
@@ -42,18 +41,18 @@ export default function Project({ project }: IProps) {
             />
           </div>
           <div className='col-span-12 lg:col-span-5'>
-            <div className='p-3 bg-alt_bg rounded shadow mb-3'>
+            <div className='p-3 bg-siteBgAlt-light dark:bg-siteBgAlt-dark rounded shadow mb-3'>
               <h2 className='font-bold mb-1'>Descrição</h2>
               <p className='font-light mb-2'>{project.descricao}</p>
             </div>
-            <div className='p-3 bg-alt_bg rounded shadow'>
+            <div className='p-3 bg-siteBgAlt-light dark:bg-siteBgAlt-dark rounded shadow'>
               <h2 className='font-bold mb-1'>Tecnologias empregadas</h2>
               <div className='font-extralight text-sm flex flex-wrap gap-1'>
                 {project.tecnologias.map((tecnologia) => {
                   return (
                     <span
                       key={tecnologia}
-                      className='p-2 rounded bg-site_bg grow text-center'
+                      className='p-2 rounded bg-siteBg-light dark:bg-siteBg-dark grow text-center'
                     >
                       {tecnologia.toUpperCase()}
                     </span>

@@ -40,7 +40,7 @@ export default function ListInput({ onAdd, onRemove, value, id }: IProps) {
             );
           })
         ) : (
-          <span className='p-1 rounded bg-site_bg flex-grow font-light'>
+          <span className='p-1 rounded bg-siteBg-light dark:bg-siteBg-dark flex-grow font-light'>
             Lista vazia
           </span>
         )}

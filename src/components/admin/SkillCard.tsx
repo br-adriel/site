@@ -19,7 +19,7 @@ export default function SkillCard({ delay, skill, onEdit, onRemove }: IProps) {
     <motion.div {...cardAnimation}>
       <div
         title={skill.nome}
-        className='bg-alt_bg p-2 rounded shadow hover:shadow-md focus:outline-blue-600 focus:outline-2 focus:outline-offset-4 transition-all'
+        className='bg-siteBgAlt-light dark:bg-siteBgAlt-dark p-2 rounded shadow hover:shadow-md focus:outline-blue-600 focus:outline-2 focus:outline-offset-4 transition-all'
       >
         <div className='grid grid-cols-12 gap-3'>
           <div className='flex flex-col col-span-2'>

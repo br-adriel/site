@@ -10,7 +10,7 @@ export default function ProjectCard({ project }: IProps) {
   return (
     <Link
       href={`/projects/${project.id}`}
-      className='bg-alt_bg p-3 rounded shadow hover:shadow-lg transition-shadow focus:outline-blue-600 focus:outline-2 focus-visible:outline w-full'
+      className='bg-siteBgAlt-light dark:bg-siteBgAlt-dark p-3 rounded shadow hover:shadow-lg transition-shadow focus:outline-blue-600 focus:outline-2 focus-visible:outline w-full'
     >
       <Image
         alt=''
