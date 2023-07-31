@@ -20,7 +20,7 @@ export default function SkillCard({ delay, skill }: IProps) {
       <Trigger
         title={skill.nome}
         onClick={() => dispatch(setSelectedSkill(skill))}
-        className='bg-alt_bg p-2 rounded flex items-center justify-center cursor-pointer shadow hover:shadow-md focus:outline-blue-600 focus:outline-2 focus:outline-offset-4 hover:scale-105 transition-all'
+        className='bg-siteBgAlt-light dark:bg-siteBgAlt-dark p-2 rounded flex items-center justify-center cursor-pointer shadow hover:shadow-md focus:outline-blue-600 focus:outline-2 focus:outline-offset-4 hover:scale-105 transition-all'
       >
         <Image
           src={skill.imagem}

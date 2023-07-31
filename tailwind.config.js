@@ -8,14 +8,17 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        site_bg: {
-          DEFAULT: 'rgb(var(--background-rgb))',
+        siteBg: {
+          'light': 'rgb(245,245,245)',
+          'dark':'rgb(31,31,31)'
         },
-        alt_bg: {
-          DEFAULT: 'rgb(var(--background-rgb-alt))',
+        siteBgAlt: {
+          'light': 'rgb(255,255,255)',
+          'dark': 'rgb(26,26,26)',
         },
       },
     },
   },
+  darkMode: 'class',
   plugins: [],
 };

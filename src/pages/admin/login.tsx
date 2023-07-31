@@ -54,7 +54,7 @@ function Login() {
         <div className='container mx-auto flex items-center justify-center p-5'>
           <AnimatePresence>
             <div
-              className='w-full sm:w-9/12 md:w-6/12 lg:w-4/12 bg-alt_bg px-4 py-6
+              className='w-full sm:w-9/12 md:w-6/12 lg:w-4/12 bg-siteBgAlt-light dark:bg-siteBgAlt-dark px-4 py-6
             rounded shadow'
             >
               <h1 className='text-3xl font-semibold text-center mb-3'>Admin</h1>

@@ -1,4 +1,5 @@
 import { AuthContextProvider } from '@/contexts/AuthContext';
+import { ThemeContextProvider } from '@/contexts/ThemeContext';
 import { store } from '@/store';
 import '@/styles/globals.css';
 import type { AppProps } from 'next/app';
@@ -21,9 +22,11 @@ export default function App({ Component, pageProps }: AppProps) {
       </Head>
 
       <AuthContextProvider>
-        <div className={outfit.className}>
-          <Component {...pageProps} />
-        </div>
+        <ThemeContextProvider>
+          <div className={outfit.className + ' bg-siteBg-light text-black dark:bg-siteBg-dark dark:text-white transition-colors'}>
+            <Component {...pageProps} />
+          </div>
+        </ThemeContextProvider>
       </AuthContextProvider>
     </Provider>
   );

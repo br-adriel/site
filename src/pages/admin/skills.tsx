@@ -43,7 +43,7 @@ function Skills() {
       <main className='container mx-auto p-3'>
         <h2 className='text-2xl font-semibold mb-3'>Habilidades</h2>
         <div className='grid grid-cols-12 gap-3'>
-          <div className='rounded bg-alt_bg p-3 col-span-12 md:col-span-5 lg:col-span-3'>
+          <div className='rounded bg-siteBgAlt-light dark:bg-siteBgAlt-dark p-3 col-span-12 md:col-span-5 lg:col-span-3'>
             <SkillForm />
           </div>
           <div className='col-span-12 md:col-span-7 lg:col-span-9'>

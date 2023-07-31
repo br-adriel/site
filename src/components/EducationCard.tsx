@@ -33,7 +33,7 @@ export default function EducationCard({
   return (
     <motion.div
       {...animation}
-      className='bg-alt_bg shadow rounded py-3 px-4 hover:shadow-md transition-shadow'
+      className='bg-siteBgAlt-light dark:bg-siteBgAlt-dark shadow rounded py-3 px-4 hover:shadow-md transition-shadow'
     >
       <h3 className='text-xl md:text-2xl mb-1 font-medium'>
         {education.curso} ({education.instituicao})

@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import Image from 'next/image';
 import { Github, Icon, Linkedin } from 'react-bootstrap-icons';
 import SocialLink from '../SocialLink';
+import ThemeToggle from '../ThemeToggle';
 
 interface ILinkSocial {
   icon: Icon;
@@ -31,7 +32,8 @@ export default function HelloSection() {
   const h2Animation = fadeInAnimation(0.5, 0.2);
 
   return (
-    <section className='container p-5 min-h-screen mx-auto flex flex-col md:flex-row items-center justify-center gap-12 lg:gap-8'>
+    <section className='container p-5 min-h-screen mx-auto flex flex-col md:flex-row items-center justify-center gap-12 lg:gap-8 relative'>
+      <ThemeToggle />
       <div className='w-full py-5 md:w-1/2 lg:pl-9 xl:pl-9'>
         <motion.h1
           {...h1Animation}

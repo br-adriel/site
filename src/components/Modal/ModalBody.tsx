@@ -18,11 +18,11 @@ export default function ModalBody({ title, children, open }: IProps) {
       {open && (
         <Dialog.Portal forceMount key='modal-portal'>
           <ModalBackground />
-          <Dialog.Overlay className='fixed top-0 left-0 w-screen h-screen backdrop-blur-lg p-3 md:p-5 lg:p-20 overflow-auto'>
+          <Dialog.Overlay className='fixed top-0 left-0 w-screen h-screen backdrop-blur-lg p-3 md:p-5 lg:p-20 overflow-auto text-black dark:text-white'>
             <Dialog.Content asChild>
               <motion.div
                 {...modalAnimation}
-                className='container bg-site_bg mx-auto rounded shadow-md focus:outline-blue-600 p-5 min-h-full'
+                className='container bg-siteBg-light dark:bg-siteBg-dark mx-auto rounded shadow-md focus:outline-blue-600 p-5 min-h-full'
               >
                 <Dialog.Title asChild>
                   <div className='flex items-center gap-5 justify-between mb-3'>
