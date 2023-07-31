@@ -35,7 +35,7 @@ function Admin() {
       </Head>
 
       <Header />
-      <main className='container px-3 py-4 mx-auto'>
+      <main className='container px-3 py-4 mx-auto min-h-screen'>
         <section className='grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3'>
           {collections.map((col) => {
             return (
