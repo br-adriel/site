@@ -1,3 +1,5 @@
+'use client';
+
 import ISkill from '@/interfaces/ISkill';
 import { useState } from 'react';
 import HelperComponent from '../HelperComponent';

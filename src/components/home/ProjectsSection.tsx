@@ -1,3 +1,5 @@
+'use client';
+
 import { fadeInUpAnimation } from '@/animations/FadeInUp';
 import IProject from '@/interfaces/IProject';
 import { motion } from 'framer-motion';

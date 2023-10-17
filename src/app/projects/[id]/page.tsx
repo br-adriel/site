@@ -1,32 +1,23 @@
+'use client';
+
 import BackButton from '@/components/BackButton';
 import ProjectImage from '@/components/ProjectImage';
 import ProjectController from '@/controller/project.controller';
 import IProject from '@/interfaces/IProject';
-import { GetServerSideProps } from 'next';
-import Head from 'next/head';
+import { notFound, useParams } from 'next/navigation';
 
-interface IProps {
-  project: IProject;
-}
+export default async function Project() {
+  const params = useParams();
 
-export default function Project({ project }: IProps) {
+  if (params == null) return notFound();
+  if (params.id == undefined) return notFound();
+
+  const project = await getData(params.id as string);
+
+  if (project == null) return notFound();
+
   return (
     <>
-      <Head>
-        <title>
-          {(project ? project.nome : 'Carregando...') +
-            ' | Adriel Santos - Desenvolvedor Fullstack'}
-        </title>
-        <meta
-          name='description'
-          content={
-            project
-              ? project.descricao
-              : 'Veja mais informações sobre um dos meus projetos'
-          }
-        />
-      </Head>
-
       <main className='container mx-auto min-h-screen p-4'>
         <div className='flex gap-4 mb-4'>
           <BackButton />
@@ -67,24 +58,10 @@ export default function Project({ project }: IProps) {
   );
 }
 
-export const getServerSideProps: GetServerSideProps<{
-  project: IProject;
-}> = async (context) => {
-  if (
-    context.params &&
-    context.params.id &&
-    typeof context.params.id === 'string'
-  ) {
-    const fetchedProject = await ProjectController.getById(context.params.id);
-    if (fetchedProject.id && fetchedProject.nome) {
-      return {
-        props: {
-          project: fetchedProject,
-        },
-      };
-    }
+export const getData = async (id: string) => {
+  const fetchedProject = await ProjectController.getById(id);
+  if (fetchedProject.id && fetchedProject.nome) {
+    return fetchedProject as IProject;
   }
-  return {
-    notFound: true,
-  };
+  return null;
 };

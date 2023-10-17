@@ -1,3 +1,5 @@
+'use client';
+
 import { fadeInAnimation } from '@/animations/FadeIn';
 import Button from '@/components/Button';
 import Input from '@/components/Input';
@@ -5,8 +7,7 @@ import LoadingSpinner from '@/components/LoadingSpinner';
 import { getUserAuth } from '@/contexts/AuthContext';
 import WithoutAuth from '@/hocs/WithoutAuth';
 import { AnimatePresence, motion } from 'framer-motion';
-import Head from 'next/head';
-import { useRouter } from 'next/router';
+import { useRouter } from 'next/navigation';
 import { FormEvent, useEffect, useState } from 'react';
 
 function Login() {
@@ -42,13 +43,13 @@ function Login() {
 
   return (
     <>
-      <Head>
+      {/* <Head>
         <title>Admin | Adriel Santos - Desenvolvedor Fullstack</title>
         <meta
           name='description'
           content='Faça login para acessar a área administrativa'
         />
-      </Head>
+      </Head> */}
 
       <main className='w-screen min-h-screen flex items-center'>
         <div className='container mx-auto flex items-center justify-center p-5'>

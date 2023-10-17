@@ -1,6 +1,8 @@
+'use client';
+
 import LoadingScreen from '@/components/LoadingScreen';
 import { getUserAuth } from '@/contexts/AuthContext';
-import { useRouter } from 'next/router';
+import { useRouter } from 'next/navigation';
 import { ComponentType, useEffect } from 'react';
 
 export default function WithAuth(Component: ComponentType<any>) {

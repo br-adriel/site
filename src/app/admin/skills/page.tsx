@@ -1,3 +1,5 @@
+'use client';
+
 import HelperComponent from '@/components/HelperComponent';
 import Header from '@/components/admin/Header';
 import SkillCard from '@/components/admin/SkillCard';
@@ -11,7 +13,6 @@ import {
   selectSkillsStatus,
   setFormvalues,
 } from '@/store/skillsSlice';
-import Head from 'next/head';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -31,13 +32,13 @@ function Skills() {
 
   return (
     <>
-      <Head>
+      {/* <Head>
         <title>Seção Habilidades | Adminitração do Site</title>
         <meta
           name='description'
           content='Visualize e edite as habilidades exibidas no site'
         />
-      </Head>
+      </Head> */}
 
       <Header />
       <main className='container mx-auto p-3'>

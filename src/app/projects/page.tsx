@@ -1,3 +1,5 @@
+'use client';
+
 import { fadeInUpAnimation } from '@/animations/FadeInUp';
 import BackButton from '@/components/BackButton';
 import LoadingScreen from '@/components/LoadingScreen';

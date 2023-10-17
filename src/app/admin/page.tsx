@@ -1,7 +1,8 @@
+'use client';
+
 import CollectionCardLink from '@/components/admin/CollectionCardLink';
 import Header from '@/components/admin/Header';
 import WithAuth from '@/hocs/WithAuth';
-import Head from 'next/head';
 
 function Admin() {
   const collections = [
@@ -29,10 +30,10 @@ function Admin() {
 
   return (
     <>
-      <Head>
+      {/* <Head>
         <title>Administração | Adriel Santos - Desenvolvedor Fullstack</title>
         <meta name='description' content='Página de administração do site' />
-      </Head>
+      </Head> */}
 
       <Header />
       <main className='container px-3 py-4 mx-auto min-h-screen'>

@@ -11,21 +11,10 @@ import IEducation from '@/interfaces/IEducation';
 import IExperience from '@/interfaces/IExperience';
 import IProject from '@/interfaces/IProject';
 import ISkill from '@/interfaces/ISkill';
-import { GetServerSideProps } from 'next';
 
-interface IProps {
-  experiences: IExperience[];
-  skills: ISkill[];
-  education: IEducation[];
-  latestProjects: IProject[];
-}
+export default async function Page() {
+  const { education, experiences, latestProjects, skills } = await getData();
 
-export default function index({
-  education,
-  experiences,
-  latestProjects,
-  skills,
-}: IProps) {
   return (
     <main className='flex flex-col'>
       <HelloSection />
@@ -37,19 +26,17 @@ export default function index({
   );
 }
 
-export const getStaticProps: GetServerSideProps = async () => {
+export const getData = async () => {
   const [experiences, skills, education, latestProjects] = await Promise.all([
-    await ExperienceController.getAll(),
-    await SkillController.getAll(),
-    await EducationController.getAll(),
-    await ProjectController.getLatest(),
+    (await ExperienceController.getAll()) as IExperience[],
+    (await SkillController.getAll()) as ISkill[],
+    (await EducationController.getAll()) as IEducation[],
+    (await ProjectController.getLatest()) as IProject[],
   ]);
   return {
-    props: {
-      experiences,
-      skills,
-      education,
-      latestProjects,
-    },
+    experiences,
+    skills,
+    education,
+    latestProjects,
   };
 };

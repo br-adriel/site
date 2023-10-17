@@ -1,3 +1,5 @@
+'use client';
+
 import { auth } from '@/services/firebase/firebase.config';
 import {
   User,

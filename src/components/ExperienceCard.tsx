@@ -1,3 +1,5 @@
+'use client';
+
 import { fadeInUpAnimation } from '@/animations/FadeInUp';
 import IExperience from '@/interfaces/IExperience';
 import { getShortMonthName } from '@/utils/date';
