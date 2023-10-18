@@ -1,3 +1,5 @@
+'use client';
+
 import HelperComponent from '@/components/HelperComponent';
 import Header from '@/components/admin/Header';
 import ProjectCard from '@/components/admin/ProjectCard';
@@ -11,7 +13,6 @@ import {
   selectProjectsStatus,
   setFormvalues,
 } from '@/store/projectsSlice';
-import Head from 'next/head';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -31,13 +32,13 @@ function Projects() {
 
   return (
     <>
-      <Head>
+      {/* <Head>
         <title>Seção Projetos | Adminitração do Site</title>
         <meta
           name='description'
           content='Visualize e edite os projetos exibidos no site'
         />
-      </Head>
+      </Head> */}
 
       <Header />
       <main className='container mx-auto p-3'>
