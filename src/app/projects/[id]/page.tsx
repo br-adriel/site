@@ -21,7 +21,7 @@ type MetadataProps = {
 export async function generateMetadata({
   params,
 }: MetadataProps): Promise<Metadata> {
-  const project = await getData(params.id as string);
+  const project: IProject | null = await getData(params.id as string);
 
   if (project) {
     return {
@@ -33,6 +33,14 @@ export async function generateMetadata({
     title: 'Projeto desconhecido',
     description: 'Projeto deseconhecido',
   };
+}
+
+async function getData(id: string): Promise<IProject | null> {
+  const fetchedProject = await ProjectController.getById(id);
+  if (fetchedProject.id && fetchedProject.nome) {
+    return fetchedProject as IProject;
+  }
+  return null;
 }
 
 export default async function Project({ params }: Props) {
@@ -81,11 +89,3 @@ export default async function Project({ params }: Props) {
     </>
   );
 }
-
-export const getData = async (id: string) => {
-  const fetchedProject = await ProjectController.getById(id);
-  if (fetchedProject.id && fetchedProject.nome) {
-    return fetchedProject as IProject;
-  }
-  return null;
-};
