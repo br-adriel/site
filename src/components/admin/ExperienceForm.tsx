@@ -1,3 +1,5 @@
+'use client';
+
 import IExperience from '@/interfaces/IExperience';
 import { AppDispatch } from '@/store';
 import {
