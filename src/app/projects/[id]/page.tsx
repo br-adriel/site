@@ -1,21 +1,45 @@
-'use client';
-
 import BackButton from '@/components/BackButton';
 import ProjectImage from '@/components/ProjectImage';
 import ProjectController from '@/controller/project.controller';
 import IProject from '@/interfaces/IProject';
-import { notFound, useParams } from 'next/navigation';
+import { Metadata } from 'next';
+import { notFound } from 'next/navigation';
 
-export default async function Project() {
-  const params = useParams();
+type RouteParams = {
+  id: string;
+};
 
+type Props = {
+  params: RouteParams;
+};
+
+type MetadataProps = {
+  params: RouteParams;
+  searchParams: { [key: string]: string | string[] | undefined };
+};
+
+export async function generateMetadata({
+  params,
+}: MetadataProps): Promise<Metadata> {
+  const project = await getData(params.id as string);
+
+  if (project) {
+    return {
+      title: `${project.nome} | Adriel Santos - Desenvolvedor Fullstack`,
+      description: project.descricao,
+    };
+  }
+  return {
+    title: 'Projeto desconhecido',
+    description: 'Projeto deseconhecido',
+  };
+}
+
+export default async function Project({ params }: Props) {
   if (params == null) return notFound();
-  if (params.id == undefined) return notFound();
-
   const project = await getData(params.id as string);
 
   if (project == null) return notFound();
-
   return (
     <>
       <main className='container mx-auto min-h-screen p-4'>
