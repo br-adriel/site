@@ -1,3 +1,5 @@
+'use client';
+
 import { fadeInGrow } from '@/animations/FadeInGrow';
 import ISkill from '@/interfaces/ISkill';
 import { motion } from 'framer-motion';
