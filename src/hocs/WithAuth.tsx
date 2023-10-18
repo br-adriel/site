@@ -3,19 +3,17 @@
 import LoadingScreen from '@/components/LoadingScreen';
 import { getUserAuth } from '@/contexts/AuthContext';
 import { useRouter } from 'next/navigation';
-import { ComponentType, useEffect } from 'react';
+import { PropsWithChildren, useEffect } from 'react';
 
-export default function WithAuth(Component: ComponentType<any>) {
-  return function (props: any) {
-    const router = useRouter();
-    const { user } = getUserAuth();
+export default function WithAuth({ children }: PropsWithChildren) {
+  const router = useRouter();
+  const { user } = getUserAuth();
 
-    useEffect(() => {
-      if (user === null) {
-        router.push('/admin/login');
-      }
-    }, [user, router]);
+  useEffect(() => {
+    if (user === null) {
+      router.push('/admin/login');
+    }
+  }, [user, router]);
 
-    return user ? <Component {...props} /> : <LoadingScreen />;
-  };
+  return user ? <>{children}</> : <LoadingScreen />;
 }
