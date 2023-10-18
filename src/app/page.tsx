@@ -12,8 +12,13 @@ import IExperience from '@/interfaces/IExperience';
 import IProject from '@/interfaces/IProject';
 import ISkill from '@/interfaces/ISkill';
 
-export default async function Page() {
-  const { education, experiences, latestProjects, skills } = await getData();
+export default async function Home() {
+  const [experiences, skills, education, latestProjects] = await Promise.all([
+    (await ExperienceController.getAll()) as IExperience[],
+    (await SkillController.getAll()) as ISkill[],
+    (await EducationController.getAll()) as IEducation[],
+    (await ProjectController.getLatest()) as IProject[],
+  ]);
 
   return (
     <main className='flex flex-col'>
@@ -25,18 +30,3 @@ export default async function Page() {
     </main>
   );
 }
-
-export const getData = async () => {
-  const [experiences, skills, education, latestProjects] = await Promise.all([
-    (await ExperienceController.getAll()) as IExperience[],
-    (await SkillController.getAll()) as ISkill[],
-    (await EducationController.getAll()) as IEducation[],
-    (await ProjectController.getLatest()) as IProject[],
-  ]);
-  return {
-    experiences,
-    skills,
-    education,
-    latestProjects,
-  };
-};
