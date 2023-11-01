@@ -1,4 +1,9 @@
 {
+  "misc": {
+    "helper-component": {
+      "error": "An error ocurred, try again later"
+    }
+  },
   "home": {
     "meta": {
       "title": "Adriel Santos - Fullstack Developer",
@@ -9,6 +14,7 @@
       "title": "Fullstack Developer",
       "theme-button-text": "Change theme",
       "experience-title": "Experience",
+      "no-experiences": "No experiences found",
       "skills-title": "Skills",
       "education-title": "Education",
       "projects-title": "Projects",

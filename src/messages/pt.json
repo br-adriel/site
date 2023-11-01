@@ -1,4 +1,9 @@
 {
+  "misc": {
+    "helper-component": {
+      "error": "Um erro ocorreu, tente novamente mais tarde"
+    }
+  },
   "home": {
     "meta": {
       "title": "Adriel Santos - Desenvolvedor Fullstack",
@@ -9,6 +14,7 @@
       "title": "Desenvolvedor Fullstack",
       "theme-button-text": "Alterar tema",
       "experience-title": "Experiência",
+      "no-experiences": "Nenhuma experiência encontrada",
       "skills-title": "Habilidades",
       "education-title": "Educação",
       "projects-title": "Projetos",
