@@ -5,7 +5,9 @@
     },
     "experience-card": {
       "current-job": "Today"
-    }
+    },
+    "loading": "Loading...",
+    "close-button": "Close"
   },
   "home": {
     "meta": {
@@ -13,12 +15,13 @@
       "description": "Checkout my work as a web developer"
     },
     "page": {
-      "close-button": "Close",
       "title": "Fullstack Developer",
       "theme-button-text": "Change theme",
       "experience-title": "Experience",
       "no-experiences": "No experiences found",
       "skills-title": "Skills",
+      "no-projects-with-tech": "No projects using this technology",
+      "no-skills": "No skills found",
       "education-title": "Education",
       "projects-title": "Projects",
       "see-all-projects-button": "See all"

@@ -5,7 +5,9 @@
     },
     "experience-card": {
       "current-job": "Atualmente"
-    }
+    },
+    "close-button": "Fechar",
+    "loading": "Carregando..."
   },
   "home": {
     "meta": {
@@ -13,12 +15,13 @@
       "description": "Conheça meu trabalho como desenvolvedor web"
     },
     "page": {
-      "close-button": "Fechar",
       "title": "Desenvolvedor Fullstack",
       "theme-button-text": "Alterar tema",
       "experience-title": "Experiência",
       "no-experiences": "Nenhuma experiência encontrada",
+      "no-projects-with-tech": "Nenhum projeto com essa tecnologia",
       "skills-title": "Habilidades",
+      "no-skills": "No skills found",
       "education-title": "Educação",
       "projects-title": "Projetos",
       "see-all-projects-button": "Ver todos"
