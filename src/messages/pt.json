@@ -2,6 +2,9 @@
   "misc": {
     "helper-component": {
       "error": "Um erro ocorreu, tente novamente mais tarde"
+    },
+    "experience-card": {
+      "current-job": "Atualmente"
     }
   },
   "home": {
