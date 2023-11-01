@@ -11,6 +11,19 @@ import IEducation from '@/interfaces/IEducation';
 import IExperience from '@/interfaces/IExperience';
 import IProject from '@/interfaces/IProject';
 import ISkill from '@/interfaces/ISkill';
+import { Metadata } from 'next';
+
+interface MetadataProps {
+  params: { locale: string };
+  searchParams: {};
+}
+
+export async function generateMetadata({
+  params: { locale },
+}: MetadataProps): Promise<Metadata> {
+  const messages = (await import(`../../messages/${locale}.json`)).default;
+  return messages.home.meta;
+}
 
 export default async function Home() {
   const [experiences, skills, education, latestProjects] = await Promise.all([
