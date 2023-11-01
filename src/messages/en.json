@@ -1,0 +1,18 @@
+{
+  "home": {
+    "meta": {
+      "title": "Adriel Santos - Fullstack Developer",
+      "description": "Checkout my work as a web developer"
+    },
+    "page": {
+      "close-button": "Close",
+      "title": "Fullstack Developer",
+      "theme-button-text": "Change theme",
+      "experience-title": "Experience",
+      "skills-title": "Skills",
+      "education-title": "Education",
+      "projects-title": "Projects",
+      "see-all-projects-button": "See all"
+    }
+  }
+}

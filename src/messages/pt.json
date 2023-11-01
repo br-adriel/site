@@ -1,0 +1,18 @@
+{
+  "home": {
+    "meta": {
+      "title": "Adriel Santos - Desenvolvedor Fullstack",
+      "description": "Conheça meu trabalho como desenvolvedor web"
+    },
+    "page": {
+      "close-button": "Fechar",
+      "title": "Desenvolvedor Fullstack",
+      "theme-button-text": "Alterar tema",
+      "experience-title": "Experiência",
+      "skills-title": "Habilidades",
+      "education-title": "Educação",
+      "projects-title": "Projetos",
+      "see-all-projects-button": "Ver todos"
+    }
+  }
+}
