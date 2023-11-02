@@ -48,5 +48,18 @@
     "page": {
       "title": "Projects"
     }
+  },
+  "project": {
+    "meta": {
+      "title": " | Adriel Santos - Fullstack Developer",
+      "no-project": {
+        "title": "Unknown project",
+        "description": "Unknown project"
+      }
+    },
+    "page": {
+      "description-label": "Description",
+      "technologies-label": "Technologies used"
+    }
   }
 }

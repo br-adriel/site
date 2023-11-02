@@ -48,5 +48,18 @@
     "page": {
       "title": "Projetos"
     }
+  },
+  "project": {
+    "meta": {
+      "title": " | Adriel Santos - Desenvolvedor Fullstack",
+      "no-project": {
+        "title": "Projeto desconhecido",
+        "description": "Projeto desconhecido"
+      }
+    },
+    "page": {
+      "description-label": "Descrição",
+      "technologies-label": "Tecnologias empregadas"
+    }
   }
 }
