@@ -27,5 +27,16 @@
       "projects-title": "Projetos",
       "see-all-projects-button": "Ver todos"
     }
+  },
+  "not-found": {
+    "meta": {
+      "title": "Página não encontrada | Adriel Santos - Desenvolvedor Fullstack",
+      "description": "Página não encontrada, verifique a URL e tente novamente"
+    },
+    "page": {
+      "title": "Página não encontrada",
+      "text": "Verifique a url e tente novamente",
+      "button-text": "Ir para a página inicial"
+    }
   }
 }

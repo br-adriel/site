@@ -27,5 +27,16 @@
       "projects-title": "Projects",
       "see-all-projects-button": "See all"
     }
+  },
+  "not-found": {
+    "meta": {
+      "title": "Page not found | Adriel Santos - Fullstack Developer",
+      "description": "Page not found, check the URL and try again"
+    },
+    "page": {
+      "title": "Page not found",
+      "text": "Verify the URL and try again",
+      "button-text": "Go to homepage"
+    }
   }
 }

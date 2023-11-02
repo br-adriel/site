@@ -2,6 +2,7 @@ import ContextWrapper from '@/components/ContextWrapper';
 import '@/styles/globals.css';
 import { NextIntlClientProvider } from 'next-intl';
 import { notFound } from 'next/navigation';
+import { ReactNode } from 'react';
 
 export const metadata = {
   themeColor: '#1d4ed8',
@@ -15,7 +16,7 @@ export default async function LocaleLayout({
   children,
   params: { locale },
 }: {
-  children: any;
+  children: ReactNode;
   params: { locale: string };
 }) {
   let messages;
