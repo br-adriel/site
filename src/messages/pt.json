@@ -7,7 +7,8 @@
       "current-job": "Atualmente"
     },
     "close-button": "Fechar",
-    "loading": "Carregando..."
+    "loading": "Carregando...",
+    "back-button": "Voltar"
   },
   "home": {
     "meta": {
@@ -37,6 +38,15 @@
       "title": "Página não encontrada",
       "text": "Verifique a url e tente novamente",
       "button-text": "Ir para a página inicial"
+    }
+  },
+  "projects": {
+    "meta": {
+      "title": "Projetos | Adriel Santos - Desenvolvedor Fullstack",
+      "description": "Confira alguns dos projetos que eu já construí"
+    },
+    "page": {
+      "title": "Projetos"
     }
   }
 }

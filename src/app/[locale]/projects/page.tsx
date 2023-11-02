@@ -1,19 +1,21 @@
-import BackButton from '@/components/BackButton';
 import ProjectsList from '@/components/ProjectsList';
+import ProjectsPageTitle from '@/components/ProjectsPageTitle';
+import IMetadataProps from '@/interfaces/IMetadataProps';
 import { Metadata } from 'next';
 
-export const metadata: Metadata = {
-  title: 'Projetos | Adriel Santos - Desenvolvedor Fullstack',
-  description: 'Confira alguns dos projetos que eu já construí',
-};
+export async function generateMetadata(
+  props: IMetadataProps
+): Promise<Metadata> {
+  const messages = (
+    await import(`../../../messages/${props.params.locale}.json`)
+  ).default;
+  return messages.projects.meta;
+}
 
 export default function Projects() {
   return (
     <main className='container mx-auto min-h-screen p-4 flex-col'>
-      <div className='flex gap-4 mb-4'>
-        <BackButton />
-        <h1 className='font-semibold text-3xl'>Projetos</h1>
-      </div>
+      <ProjectsPageTitle />
 
       <ProjectsList />
     </main>

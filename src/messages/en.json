@@ -7,7 +7,8 @@
       "current-job": "Today"
     },
     "loading": "Loading...",
-    "close-button": "Close"
+    "close-button": "Close",
+    "back-button": "Go back"
   },
   "home": {
     "meta": {
@@ -37,6 +38,15 @@
       "title": "Page not found",
       "text": "Verify the URL and try again",
       "button-text": "Go to homepage"
+    }
+  },
+  "projects": {
+    "meta": {
+      "title": "Projects | Adriel Santos - Fullstack Developer",
+      "description": "Check out some of the projects that I've built"
+    },
+    "page": {
+      "title": "Projects"
     }
   }
 }
