@@ -1,3 +1,5 @@
+'use client';
+
 import IEducation from '@/interfaces/IEducation';
 import { AppDispatch } from '@/store';
 import {

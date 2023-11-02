@@ -1,3 +1,5 @@
+'use client';
+
 import IProject from '@/interfaces/IProject';
 import { AppDispatch } from '@/store';
 import {

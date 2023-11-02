@@ -1,9 +1,14 @@
 import CollectionCardLink from '@/components/admin/CollectionCardLink';
 import Header from '@/components/admin/Header';
 import WithAuth from '@/hocs/WithAuth';
-import Head from 'next/head';
+import { Metadata } from 'next';
 
-function Admin() {
+export const metadata: Metadata = {
+  title: 'Administração | Adriel Santos - Desenvolvedor Fullstack',
+  description: 'Página de administração do site',
+};
+
+export default function Admin() {
   const collections = [
     {
       href: '/admin/education',
@@ -28,12 +33,7 @@ function Admin() {
   ];
 
   return (
-    <>
-      <Head>
-        <title>Administração | Adriel Santos - Desenvolvedor Fullstack</title>
-        <meta name='description' content='Página de administração do site' />
-      </Head>
-
+    <WithAuth>
       <Header />
       <main className='container px-3 py-4 mx-auto min-h-screen'>
         <section className='grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3'>
@@ -51,8 +51,6 @@ function Admin() {
 
         <div className='fixed bottom-3 right-3' title='Sair'></div>
       </main>
-    </>
+    </WithAuth>
   );
 }
-
-export default WithAuth(Admin);

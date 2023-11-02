@@ -1,7 +1,10 @@
+'use client';
+
 import { fadeInUpAnimation } from '@/animations/FadeInUp';
 import IEducation from '@/interfaces/IEducation';
 import { getShortMonthName } from '@/utils/date';
 import { motion } from 'framer-motion';
+import { useParams } from 'next/navigation';
 import { Pen, Trash } from 'react-bootstrap-icons';
 import Button from './Button';
 
@@ -18,11 +21,13 @@ export default function EducationCard({
   onEdit,
   onRemove,
 }: IProps) {
+  const { locale } = useParams<{ locale: string }>();
+
   const animation = fadeInUpAnimation(0.2 * (delay || 0));
 
-  const startMonthName: string = getShortMonthName(education.mesInicio);
+  const startMonthName: string = getShortMonthName(education.mesInicio, locale);
   const endMonthName: string = education.mesFim
-    ? getShortMonthName(education.mesFim)
+    ? getShortMonthName(education.mesFim, locale)
     : '';
 
   const startDate: string = `${startMonthName} ${education.anoInicio}`;

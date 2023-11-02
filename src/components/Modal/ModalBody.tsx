@@ -4,6 +4,7 @@ import { AnimatePresence, motion } from 'framer-motion';
 import { PropsWithChildren } from 'react';
 import { XLg } from 'react-bootstrap-icons';
 import ModalBackground from './ModalBackground';
+import { useTranslations } from 'next-intl';
 
 interface IProps extends PropsWithChildren {
   title: React.ReactNode;
@@ -12,6 +13,7 @@ interface IProps extends PropsWithChildren {
 
 export default function ModalBody({ title, children, open }: IProps) {
   const modalAnimation = fadeInGrow(0, 0.2);
+  const t = useTranslations('misc');
 
   return (
     <AnimatePresence>
@@ -31,7 +33,7 @@ export default function ModalBody({ title, children, open }: IProps) {
                     <Dialog.Close asChild>
                       <button
                         className='p-2 rounded hover:text-blue-600 focus:outline-blue-600 focus:outline-2 focus-visible:outline'
-                        title='Fechar'
+                        title={t('close-button')}
                       >
                         <XLg />
                       </button>

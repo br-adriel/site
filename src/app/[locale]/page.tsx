@@ -9,23 +9,26 @@ import ProjectController from '@/controller/project.controller';
 import SkillController from '@/controller/skill.controller';
 import IEducation from '@/interfaces/IEducation';
 import IExperience from '@/interfaces/IExperience';
+import IMetadataProps from '@/interfaces/IMetadataProps';
 import IProject from '@/interfaces/IProject';
 import ISkill from '@/interfaces/ISkill';
-import { GetServerSideProps } from 'next';
+import { Metadata } from 'next';
 
-interface IProps {
-  experiences: IExperience[];
-  skills: ISkill[];
-  education: IEducation[];
-  latestProjects: IProject[];
+export async function generateMetadata({
+  params: { locale },
+}: IMetadataProps): Promise<Metadata> {
+  const messages = (await import(`../../messages/${locale}.json`)).default;
+  return messages.home.meta;
 }
 
-export default function index({
-  education,
-  experiences,
-  latestProjects,
-  skills,
-}: IProps) {
+export default async function Home() {
+  const [experiences, skills, education, latestProjects] = await Promise.all([
+    (await ExperienceController.getAll()) as IExperience[],
+    (await SkillController.getAll()) as ISkill[],
+    (await EducationController.getAll()) as IEducation[],
+    (await ProjectController.getLatest()) as IProject[],
+  ]);
+
   return (
     <main className='flex flex-col'>
       <HelloSection />
@@ -36,20 +39,3 @@ export default function index({
     </main>
   );
 }
-
-export const getStaticProps: GetServerSideProps = async () => {
-  const [experiences, skills, education, latestProjects] = await Promise.all([
-    await ExperienceController.getAll(),
-    await SkillController.getAll(),
-    await EducationController.getAll(),
-    await ProjectController.getLatest(),
-  ]);
-  return {
-    props: {
-      experiences,
-      skills,
-      education,
-      latestProjects,
-    },
-  };
-};

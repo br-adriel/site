@@ -1,9 +1,13 @@
+'use client';
+
 import { fadeInUpAnimation } from '@/animations/FadeInUp';
 import IExperience from '@/interfaces/IExperience';
 import { getShortMonthName } from '@/utils/date';
 import { motion } from 'framer-motion';
 import { ArrowRight, Pen, Trash } from 'react-bootstrap-icons';
 import Button from './Button';
+import { useTranslations } from 'next-intl';
+import { useParams } from 'next/navigation';
 
 interface IProps {
   delay?: number;
@@ -19,6 +23,9 @@ export default function ExperienceCard({
   onRemove,
 }: IProps) {
   const animation = fadeInUpAnimation(0.2 * (delay || 0));
+  const t = useTranslations('misc.experience-card');
+
+  const { locale } = useParams<{ locale: string }>();
 
   return (
     <motion.div
@@ -27,12 +34,14 @@ export default function ExperienceCard({
     >
       <h3 className='text-2xl mb-1 font-medium'>{experience.empresa}</h3>
       <p className='text-md opacity-70'>
-        {`${getShortMonthName(experience.mesInicio)} ${
+        {`${getShortMonthName(experience.mesInicio, locale)} ${
           experience.anoInicio
         } - `}
         {experience.mesFim
-          ? `${getShortMonthName(experience.mesFim)} ${experience.anoFim}`
-          : 'Atualmente'}
+          ? `${getShortMonthName(experience.mesFim, locale)} ${
+              experience.anoFim
+            }`
+          : t('current-job')}
       </p>
       <hr className='border opacity-10 my-2 rounded' />
       <h4 className='text-xl font-medium'>{experience.cargo}</h4>

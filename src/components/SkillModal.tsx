@@ -1,7 +1,10 @@
+'use client';
+
 import ProjectController from '@/controller/project.controller';
 import IProject from '@/interfaces/IProject';
 import { selectSelectedSkill } from '@/store/skillsSlice';
 import Status from '@/types/Status';
+import { useTranslations } from 'next-intl';
 import Image from 'next/image';
 import { useEffect, useRef, useState } from 'react';
 import { useSelector } from 'react-redux';
@@ -15,6 +18,9 @@ interface IProps {
 }
 
 export default function SkillModal({ open }: IProps) {
+  const t = useTranslations('misc');
+  const tHome = useTranslations('home.page');
+
   const skill = useSelector(selectSelectedSkill);
   const [projects, setProjects] = useState<IProject[]>([]);
   const status = useRef<Status>('idle');
@@ -47,9 +53,7 @@ export default function SkillModal({ open }: IProps) {
   return (
     <ModalBody
       open={open}
-      title={
-        <h2 className='font-bold'>{skill ? skill.nome : 'Carregando...'}</h2>
-      }
+      title={<h2 className='font-bold'>{skill ? skill.nome : t('loading')}</h2>}
     >
       {skill ? (
         <>
@@ -74,7 +78,7 @@ export default function SkillModal({ open }: IProps) {
               ) : (
                 <HelperComponent
                   option='noElements'
-                  noElementsMessage='Nenhum projeto com essa tecnologia'
+                  noElementsMessage={tHome('no-projects-with-tech')}
                 />
               )}
             </div>

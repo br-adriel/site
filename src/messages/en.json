@@ -1,0 +1,65 @@
+{
+  "misc": {
+    "helper-component": {
+      "error": "An error ocurred, try again later"
+    },
+    "experience-card": {
+      "current-job": "Today"
+    },
+    "loading": "Loading...",
+    "close-button": "Close",
+    "back-button": "Go back"
+  },
+  "home": {
+    "meta": {
+      "title": "Adriel Santos - Fullstack Developer",
+      "description": "Checkout my work as a web developer"
+    },
+    "page": {
+      "title": "Fullstack Developer",
+      "theme-button-text": "Change theme",
+      "experience-title": "Experience",
+      "no-experiences": "No experiences found",
+      "no-education": "No education found",
+      "skills-title": "Skills",
+      "no-projects-with-tech": "No projects using this technology",
+      "no-skills": "No skills found",
+      "education-title": "Education",
+      "projects-title": "Projects",
+      "see-all-projects-button": "See all"
+    }
+  },
+  "not-found": {
+    "meta": {
+      "title": "Page not found | Adriel Santos - Fullstack Developer",
+      "description": "Page not found, check the URL and try again"
+    },
+    "page": {
+      "title": "Page not found",
+      "text": "Verify the URL and try again",
+      "button-text": "Go to homepage"
+    }
+  },
+  "projects": {
+    "meta": {
+      "title": "Projects | Adriel Santos - Fullstack Developer",
+      "description": "Check out some of the projects that I've built"
+    },
+    "page": {
+      "title": "Projects"
+    }
+  },
+  "project": {
+    "meta": {
+      "title": " | Adriel Santos - Fullstack Developer",
+      "no-project": {
+        "title": "Unknown project",
+        "description": "Unknown project"
+      }
+    },
+    "page": {
+      "description-label": "Description",
+      "technologies-label": "Technologies used"
+    }
+  }
+}

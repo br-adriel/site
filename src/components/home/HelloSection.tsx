@@ -1,5 +1,8 @@
+'use client';
+
 import { fadeInAnimation } from '@/animations/FadeIn';
 import { motion } from 'framer-motion';
+import { useTranslations } from 'next-intl';
 import Image from 'next/image';
 import { Github, Icon, Linkedin } from 'react-bootstrap-icons';
 import SocialLink from '../SocialLink';
@@ -13,6 +16,8 @@ interface ILinkSocial {
 }
 
 export default function HelloSection() {
+  const t = useTranslations('home.page');
+
   const linksSociais: ILinkSocial[] = [
     {
       icon: Github,
@@ -45,7 +50,7 @@ export default function HelloSection() {
           {...h2Animation}
           className='text-center md:text-left text-2xl lg:text-3xl capitalize'
         >
-          Desenvolvedor fullstack
+          {t('title')}
         </motion.p>
 
         <div className='flex justify-center md:justify-start items-center gap-2 mt-4'>

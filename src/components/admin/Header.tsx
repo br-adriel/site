@@ -1,3 +1,5 @@
+'use client';
+
 import { getUserAuth } from '@/contexts/AuthContext';
 import Link from 'next/link';
 import { BoxArrowRight } from 'react-bootstrap-icons';

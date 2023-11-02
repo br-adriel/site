@@ -1,3 +1,5 @@
+'use client';
+
 import { fadeInAnimation } from '@/animations/FadeIn';
 import { motion } from 'framer-motion';
 import Image from 'next/image';

@@ -1,4 +1,7 @@
+'use client';
+
 import LoadingSpinner from '@/components/LoadingSpinner';
+import { useTranslations } from 'next-intl';
 
 interface IProps {
   option: 'idle' | 'failed' | 'loading' | 'noElements';
@@ -6,11 +9,11 @@ interface IProps {
 }
 
 export default function HelperComponent({ option, noElementsMessage }: IProps) {
+  const t = useTranslations('misc.helper-component');
+
   const helperComponents = {
     idle: <LoadingSpinner />,
-    failed: (
-      <h3 className='text-xl'>Um erro ocorreu, tente novamente mais tarde</h3>
-    ),
+    failed: <h3 className='text-xl'>{t('error')}</h3>,
     loading: <LoadingSpinner />,
     noElements: <h3 className='text-xl'>{noElementsMessage}</h3>,
   };
