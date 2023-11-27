@@ -19,7 +19,7 @@
     "encoding": "^0.1.13",
     "firebase": "^10.1.0",
     "framer-motion": "^10.13.0",
-    "next": "^13.5.5",
+    "next": "^14.0.3",
     "next-intl": "^2.21.0",
     "postcss": "^8.4.31",
     "react": "18.2.0",
