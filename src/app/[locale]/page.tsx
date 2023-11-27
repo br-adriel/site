@@ -21,9 +21,15 @@ export async function generateMetadata({
   return messages.home.meta;
 }
 
-export default async function Home() {
+interface IProps {
+  params: {
+    locale: string;
+  };
+}
+
+export default async function Home({ params }: IProps) {
   const [experiences, skills, education, latestProjects] = await Promise.all([
-    (await ExperienceController.getAll()) as IExperience[],
+    (await ExperienceController.getAll(params.locale)) as IExperience[],
     (await SkillController.getAll()) as ISkill[],
     (await EducationController.getAll()) as IEducation[],
     (await ProjectController.getLatest()) as IProject[],
