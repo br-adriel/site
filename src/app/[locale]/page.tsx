@@ -31,7 +31,7 @@ export default async function Home({ params }: IProps) {
   const [experiences, skills, education, latestProjects] = await Promise.all([
     (await ExperienceController.getAll(params.locale)) as IExperience[],
     (await SkillController.getAll()) as ISkill[],
-    (await EducationController.getAll()) as IEducation[],
+    (await EducationController.getAll(params.locale)) as IEducation[],
     (await ProjectController.getLatest()) as IProject[],
   ]);
 
