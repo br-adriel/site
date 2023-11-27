@@ -1,10 +1,11 @@
 import ContextWrapper from '@/components/ContextWrapper';
 import '@/styles/globals.css';
+import { Viewport } from 'next';
 import { NextIntlClientProvider } from 'next-intl';
 import { notFound } from 'next/navigation';
 import { ReactNode } from 'react';
 
-export const metadata = {
+export const viewport: Viewport = {
   themeColor: '#1d4ed8',
 };
 
