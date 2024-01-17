@@ -96,29 +96,34 @@ export default class ProjectController {
   }
 
   /**
-   * Retorna uma página de projetos do banco de dados, utilizando paginação.
+   * Obtém uma lista paginada de projetos da coleção, ordenados por data de
+   * criação.
    *
-   * @param {QueryDocumentSnapshot} lastVisible - O documento a partir do qual a
-   * próxima página será buscada.
+   * @param {QueryDocumentSnapshot} [lastVisible] - Opcional. O último snapshot
+   * de documento visível da página anterior, usado para paginação.
+   * @param {string} [locale] - Opcional. O código de localidade.
    *
-   * @returns {Promise<{ projects: IProject[], lastProjectDoc: QueryDocumentSnapshot | undefined }>}
-   * Uma Promise que resolve para um objeto contendo um array de projetos da
-   * página e o último documento da página atual, que pode ser utilizado como
-   * ponto de referência para buscar a próxima página.
-   *
-   * @throws {Error} Se ocorrer algum erro durante a consulta ao banco de dados.
+   * @returns {Promise<{
+   * projects: IProject[],
+   * lastProjectDoc: QueryDocumentSnapshot }>} Uma Promise que resolve para um
+   * objeto contendo uma matriz de projetos e o snapshot do último projeto na
+   * página.
    */
-  static async getPage(lastVisible?: QueryDocumentSnapshot) {
+  static async getPage(lastVisible?: QueryDocumentSnapshot, locale?: string) {
     let q: Query;
     if (lastVisible) {
       q = query(
-        this.collectionRef,
+        getCollectionLocaleRef(this.collectionName, db, locale),
         orderBy('dataCriacao', 'desc'),
         limit(10),
         startAfter(lastVisible)
       );
     } else {
-      q = query(this.collectionRef, orderBy('dataCriacao', 'desc'), limit(10));
+      q = query(
+        getCollectionLocaleRef(this.collectionName, db, locale),
+        orderBy('dataCriacao', 'desc'),
+        limit(10)
+      );
     }
 
     const result = await getDocs(q);
