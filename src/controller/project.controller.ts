@@ -51,21 +51,22 @@ export default class ProjectController {
   }
 
   /**
-   * Retorna todos os projetos do banco de dados que contêm uma determinada
-   * tecnologia.
+   * Obtém todos os projetos da coleção que contêm a tecnologia especificada,
+   * ordenados por data de criação, de acordo com a localidade especificada, se
+   * fornecida.
    *
    * @param {string} technology - A tecnologia pela qual os projetos serão
    * filtrados.
+   * @param {string} [locale] - Opcional. O código de localidade. Se fornecido e
+   * válido, a consulta será ajustada para a localidade especificada.
    *
-   * @returns {Promise<IProject[]>} Uma Promise que resolve para um array
-   * contendo todos os projetos do banco de dados que contêm a tecnologia
-   * especificada.
-   *
-   * @throws {Error} Se ocorrer algum erro durante a consulta ao banco de dados.
+   * @returns {Promise<IProject[]>} Uma Promise que resolve para uma matriz de
+   * projetos que contêm a tecnologia especificada, ordenados por data de
+   * criação decrescente.
    */
-  static async getAllByTechnology(technology: string) {
+  static async getAllByTechnology(technology: string, locale?: string) {
     const q = query(
-      this.collectionRef,
+      getCollectionLocaleRef(this.collectionName, db, locale),
       where('tecnologias', 'array-contains', technology),
       orderBy('dataCriacao', 'desc')
     );
