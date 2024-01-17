@@ -15,9 +15,10 @@ import ProjectCard from './ProjectCard';
 
 interface IProps {
   open: boolean;
+  locale?: string;
 }
 
-export default function SkillModal({ open }: IProps) {
+export default function SkillModal({ open, locale }: IProps) {
   const t = useTranslations('misc');
   const tHome = useTranslations('home.page');
 
@@ -33,7 +34,10 @@ export default function SkillModal({ open }: IProps) {
             try {
               status.current = 'loading';
               const fetchedProjects =
-                await ProjectController.getAllByTechnology(skill.filtro);
+                await ProjectController.getAllByTechnology(
+                  skill.filtro,
+                  locale
+                );
               setProjects(fetchedProjects);
               status.current = 'succeeded';
             } catch (err) {
