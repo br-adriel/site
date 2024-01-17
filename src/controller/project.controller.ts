@@ -6,6 +6,10 @@ import {
   uploadFile,
 } from '@/services/firebase/utils';
 import {
+  getCollectionLocaleName,
+  getCollectionLocaleRef,
+} from '@/utils/controller';
+import {
   Query,
   QueryDocumentSnapshot,
   addDoc,
@@ -24,38 +28,44 @@ import {
 import { deleteObject, ref } from 'firebase/storage';
 
 export default class ProjectController {
-  private static collectionRef = collection(db, 'projetos');
+  private static collectionName: string = 'projetos';
 
   /**
-   * Retorna todos os projetos do banco de dados
+   * Obtém todos os projetos da coleção, ordenados por data de criação, de
+   * acordo com a localidade especificada, se fornecida.
    *
-   * @returns {Promise<IProject[]>} Uma Promise que resolve para um array
-   * contendo todos os projetos do banco de dados.
+   * @param {string} [locale] - Opcional. O código de localidade. Se fornecido e
+   * válido, a consulta será ajustada para a localidade especificada.
    *
-   * @throws {Error} Se ocorrer algum erro durante a consulta ao banco de dados.
+   * @returns {Promise<IProject[]>} Uma Promise que resolve para uma matriz de
+   * projetos, ordenados por data de criação decrescente.
    */
-  static async getAll() {
-    const q = query(this.collectionRef, orderBy('dataCriacao', 'desc'));
+  static async getAll(locale?: string) {
+    const q = query(
+      getCollectionLocaleRef(this.collectionName, db, locale),
+      orderBy('dataCriacao', 'desc')
+    );
     const fetchedProjects = await getQuery(q);
     return fetchedProjects as IProject[];
   }
 
   /**
-   * Retorna todos os projetos do banco de dados que contêm uma determinada
-   * tecnologia.
+   * Obtém todos os projetos da coleção que contêm a tecnologia especificada,
+   * ordenados por data de criação, de acordo com a localidade especificada, se
+   * fornecida.
    *
    * @param {string} technology - A tecnologia pela qual os projetos serão
    * filtrados.
+   * @param {string} [locale] - Opcional. O código de localidade. Se fornecido e
+   * válido, a consulta será ajustada para a localidade especificada.
    *
-   * @returns {Promise<IProject[]>} Uma Promise que resolve para um array
-   * contendo todos os projetos do banco de dados que contêm a tecnologia
-   * especificada.
-   *
-   * @throws {Error} Se ocorrer algum erro durante a consulta ao banco de dados.
+   * @returns {Promise<IProject[]>} Uma Promise que resolve para uma matriz de
+   * projetos que contêm a tecnologia especificada, ordenados por data de
+   * criação decrescente.
    */
-  static async getAllByTechnology(technology: string) {
+  static async getAllByTechnology(technology: string, locale?: string) {
     const q = query(
-      this.collectionRef,
+      getCollectionLocaleRef(this.collectionName, db, locale),
       where('tecnologias', 'array-contains', technology),
       orderBy('dataCriacao', 'desc')
     );
@@ -64,43 +74,55 @@ export default class ProjectController {
   }
 
   /**
-   * Obtém os detalhes de um projeto específico com base no ID fornecido.
+   * Obtém um projeto específico da coleção com base no ID, de acordo com a
+   * localidade especificada, se fornecida.
    *
-   * @param {string} id - O ID do projeto a ser buscado.
+   * @param {string} id - O ID do projeto desejado.
+   * @param {string} [locale] - Opcional. O código de localidade. Se fornecido
+   * e válido, o nome da coleção será ajustado para incluir a localidade.
    *
-   * @returns {Promise<IProject>} Uma Promise que, ao ser resolvida, retorna os
-   * dados do projeto associado ao ID fornecido.
+   * @returns {Promise<IProject>} Uma Promise que resolve para o projeto com o
+   * ID fornecido.
    */
-  static async getById(id: string) {
-    const docRef = doc(db, 'projetos', id);
+  static async getById(id: string, locale?: string) {
+    const docCollectionName = getCollectionLocaleName(
+      this.collectionName,
+      locale
+    );
+    const docRef = doc(db, docCollectionName, id);
     const project = await getDoc(docRef);
     return joinDocDataAndId(project) as IProject;
   }
 
   /**
-   * Retorna uma página de projetos do banco de dados, utilizando paginação.
+   * Obtém uma lista paginada de projetos da coleção, ordenados por data de
+   * criação.
    *
-   * @param {QueryDocumentSnapshot} lastVisible - O documento a partir do qual a
-   * próxima página será buscada.
+   * @param {QueryDocumentSnapshot} [lastVisible] - Opcional. O último snapshot
+   * de documento visível da página anterior, usado para paginação.
+   * @param {string} [locale] - Opcional. O código de localidade.
    *
-   * @returns {Promise<{ projects: IProject[], lastProjectDoc: QueryDocumentSnapshot | undefined }>}
-   * Uma Promise que resolve para um objeto contendo um array de projetos da
-   * página e o último documento da página atual, que pode ser utilizado como
-   * ponto de referência para buscar a próxima página.
-   *
-   * @throws {Error} Se ocorrer algum erro durante a consulta ao banco de dados.
+   * @returns {Promise<{
+   * projects: IProject[],
+   * lastProjectDoc: QueryDocumentSnapshot }>} Uma Promise que resolve para um
+   * objeto contendo uma matriz de projetos e o snapshot do último projeto na
+   * página.
    */
-  static async getPage(lastVisible?: QueryDocumentSnapshot) {
+  static async getPage(lastVisible?: QueryDocumentSnapshot, locale?: string) {
     let q: Query;
     if (lastVisible) {
       q = query(
-        this.collectionRef,
+        getCollectionLocaleRef(this.collectionName, db, locale),
         orderBy('dataCriacao', 'desc'),
         limit(10),
         startAfter(lastVisible)
       );
     } else {
-      q = query(this.collectionRef, orderBy('dataCriacao', 'desc'), limit(10));
+      q = query(
+        getCollectionLocaleRef(this.collectionName, db, locale),
+        orderBy('dataCriacao', 'desc'),
+        limit(10)
+      );
     }
 
     const result = await getDocs(q);
@@ -113,19 +135,18 @@ export default class ProjectController {
   }
 
   /**
-   * Obtém os projetos mais recentes do banco de dados.
+   * Obtém os 3 projetos mais recentes da coleção, ordenados por data de
+   * criação de acordo com a localidade especificada, se fornecida.
    *
-   * Os projetos são retornados em ordem decrescente de data de criação,
-   * limitados aos 3 projetos mais recentes.
+   * @param {string} [locale] - Opcional. O código de localidade. Se fornecido e
+   * válido, o nome da coleção será ajustado para incluir a localidade.
    *
-   * @returns {Promise<IProject[]>} Uma Promise que resolve para um array
-   * contendo os 3 projetos mais recentes do banco de dados.
-   *
-   * @throws {Error} Se ocorrer algum erro durante a consulta ao banco de dados.
+   * @returns {Promise<IProject[]>} Uma Promise que resolve para uma matriz dos
+   * projetos mais recentes, ordenados por data de criação decrescente.
    */
-  static async getLatest() {
+  static async getLatest(locale?: string) {
     const q = query(
-      this.collectionRef,
+      getCollectionLocaleRef(this.collectionName, db, locale),
       orderBy('dataCriacao', 'desc'),
       limit(3)
     );
@@ -134,26 +155,28 @@ export default class ProjectController {
   }
 
   /**
-   * Adiciona um novo projeto ao banco de dados.
+   * Adiciona um novo projeto à coleção, juntamente com uma imagem associada, e
+   * retorna o projeto adicionado.
    *
-   * @param {Omit<IProject, 'id'>} project - O objeto projeto a ser
-   * adicionado ao banco de dados, excluindo o campo 'id'.
-   * @param {File} image - O arquivo de imagem associado ao projeto.
+   * @param {Omit<Omit<IProject, 'id'>, 'imagem'>} project - Os detalhes do
+   * projeto, excluindo o ID e a URL da imagem.
+   * @param {File} image - A imagem associada ao projeto.
+   * @param {string} [locale] - Opcional. O código de localidade.
    *
-   * @returns {Promise<IProject>} Uma Promise que resolve para o objeto do
-   * projeto adicionado, incluindo o campo 'id' gerado pelo banco de dados e o
-   * campo 'imagem' que contém a URL da imagem armazenada.
-   *
-   * @throws {Error} Se ocorrer algum erro durante a operação de inserção no
-   * banco de dados ou no upload da imagem.
+   * @returns {Promise<IProject>} Uma Promise que resolve para o projeto
+   * adicionado, incluindo o ID e a URL da imagem.
    */
   static async add(
     project: Omit<Omit<IProject, 'id'>, 'imagem'>,
-    image: File
+    image: File,
+    locale?: string
   ): Promise<IProject> {
-    const docRef = await addDoc(this.collectionRef, {
-      ...project,
-    });
+    const docRef = await addDoc(
+      getCollectionLocaleRef(this.collectionName, db, locale),
+      {
+        ...project,
+      }
+    );
 
     const imageUrl = await uploadFile(
       `projetos/${docRef.id}.${image.name.split('.').pop()}`,
@@ -165,26 +188,23 @@ export default class ProjectController {
   }
 
   /**
-   * Atualiza um projeto existente no banco de dados.
+   * Atualiza as informações de um projeto existente na coleção, incluindo a
+   * possibilidade de atualizar a imagem associada.
    *
-   * @param {Omit<IProject, 'id'>} project - O objeto do projeto atualizado a
-   * ser adicionado ao banco de dados, excluindo o campo 'id'.
+   * @param {Omit<IProject, 'id'>} project - Os detalhes atualizados do projeto,
+   * excluindo o ID.
+   * @param {string} id - O ID do projeto a ser atualizado.
+   * @param {File} [image] - Opcional. A nova imagem associada ao projeto.
+   * @param {string} [locale] - Opcional. O código de localidade.
    *
-   * @param {string} id - O identificador único do projeto que será atualizado.
-   *
-   * @param {File} [image] - O arquivo de imagem a ser atualizado no projeto
-   * (opcional).
-   *
-   * @returns {Promise<IProject>} Uma Promise que resolve para o objeto do
-   * projeto atualizado, incluindo o campo 'id' fornecido como parâmetro.
-   *
-   * @throws {Error} Se ocorrer algum erro durante a operação de atualização
-   * no banco de dados ou no upload da imagem.
+   * @returns {Promise<IProject>} Uma Promise que resolve para o projeto
+   * atualizado, incluindo o ID e a URL da imagem, se aplicável.
    */
   static async update(
     project: Omit<IProject, 'id'>,
     id: string,
-    image?: File
+    image?: File,
+    locale?: string
   ): Promise<IProject> {
     if (image) {
       const imageUrl = await uploadFile(
@@ -194,26 +214,30 @@ export default class ProjectController {
       project.imagem = imageUrl;
     }
 
-    const docRef = doc(db, 'projetos', id);
+    const docCollectionName = getCollectionLocaleName(
+      this.collectionName,
+      locale
+    );
+    const docRef = doc(db, docCollectionName, id);
     await updateDoc(docRef, project);
     return { ...project, id };
   }
 
   /**
-   * Remove um projeto do banco de dados.
+   * Remove um projeto da coleção, incluindo a exclusão da imagem associada.
    *
-   * @param {string} id - O identificador único do projeto a ser removido do
-   * banco de dados.
+   * @param {string} id - O ID do projeto a ser removido.
+   * @param {string} [locale] - Opcional. O código de localidade.
    *
-   * @returns {Promise<void>} Uma Promise que resolve quando o projeto é
-   * removido com sucesso ou é rejeitada, se ocorrer algum erro durante a
-   * operação de remoção no banco de dados.
-   *
-   * @throws {Error} Se ocorrer algum erro durante a operação de remoção no
-   * banco de dados.
+   * @returns {Promise<void>} Uma Promise que resolve quando a remoção do
+   * projeto e sua imagem associada (se existente) forem concluídas.
    */
-  static async remove(id: string): Promise<void> {
-    const docRef = doc(db, 'projetos', id);
+  static async remove(id: string, locale?: string): Promise<void> {
+    const docCollectionName = getCollectionLocaleName(
+      this.collectionName,
+      locale
+    );
+    const docRef = doc(db, docCollectionName, id);
     const project = joinDocDataAndId(await getDoc(docRef)) as IProject;
 
     const imgRef = ref(
