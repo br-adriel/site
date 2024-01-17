@@ -9,7 +9,11 @@ import { useEffect, useRef, useState } from 'react';
 import LoadingScreen from './LoadingScreen';
 import ProjectCard from './ProjectCard';
 
-function ProjectsList() {
+type Props = {
+  locale?: string;
+};
+
+function ProjectsList({ locale }: Props) {
   const [projects, setProjects] = useState<IProject[]>([]);
   const projectsFirstLoad = useRef(true);
   const projectsLoading = useRef(false);
@@ -22,7 +26,8 @@ function ProjectsList() {
         projectsLoading.current = true;
 
         const { lastProjectDoc, projects } = await ProjectController.getPage(
-          lastProject.current
+          lastProject.current,
+          locale
         );
         setProjects((prev) => [...prev, ...projects]);
 
