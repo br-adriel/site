@@ -25,6 +25,7 @@ import { deleteObject, ref } from 'firebase/storage';
 
 export default class ProjectController {
   private static collectionRef = collection(db, 'projetos');
+  private static collectionName: string = 'projetos';
 
   /**
    * Retorna todos os projetos do banco de dados
