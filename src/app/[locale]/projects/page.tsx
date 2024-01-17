@@ -12,12 +12,18 @@ export async function generateMetadata(
   return messages.projects.meta;
 }
 
-export default function Projects() {
+interface IProps {
+  params: {
+    locale: string;
+  };
+}
+
+export default function Projects({ params }: IProps) {
   return (
     <main className='container mx-auto min-h-screen p-4 flex-col'>
       <ProjectsPageTitle />
 
-      <ProjectsList />
+      <ProjectsList locale={params.locale} />
     </main>
   );
 }
