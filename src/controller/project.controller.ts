@@ -75,15 +75,22 @@ export default class ProjectController {
   }
 
   /**
-   * Obtém os detalhes de um projeto específico com base no ID fornecido.
+   * Obtém um projeto específico da coleção com base no ID, de acordo com a
+   * localidade especificada, se fornecida.
    *
-   * @param {string} id - O ID do projeto a ser buscado.
+   * @param {string} id - O ID do projeto desejado.
+   * @param {string} [locale] - Opcional. O código de localidade. Se fornecido
+   * e válido, o nome da coleção será ajustado para incluir a localidade.
    *
-   * @returns {Promise<IProject>} Uma Promise que, ao ser resolvida, retorna os
-   * dados do projeto associado ao ID fornecido.
+   * @returns {Promise<IProject>} Uma Promise que resolve para o projeto com o
+   * ID fornecido.
    */
-  static async getById(id: string) {
-    const docRef = doc(db, 'projetos', id);
+  static async getById(id: string, locale?: string) {
+    const docCollectionName = getCollectionLocaleName(
+      this.collectionName,
+      locale
+    );
+    const docRef = doc(db, docCollectionName, id);
     const project = await getDoc(docRef);
     return joinDocDataAndId(project) as IProject;
   }
