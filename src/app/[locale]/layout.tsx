@@ -30,7 +30,12 @@ export default async function LocaleLayout({
   return (
     <html lang={locale}>
       <body>
-        <NextIntlClientProvider locale={locale} messages={messages}>
+        <NextIntlClientProvider
+          locale={locale}
+          messages={messages}
+          timeZone='America/Fortaleza'
+          now={new Date()}
+        >
           <ContextWrapper>{children}</ContextWrapper>
         </NextIntlClientProvider>
       </body>
