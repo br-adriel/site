@@ -225,20 +225,20 @@ export default class ProjectController {
   }
 
   /**
-   * Remove um projeto do banco de dados.
+   * Remove um projeto da coleção, incluindo a exclusão da imagem associada.
    *
-   * @param {string} id - O identificador único do projeto a ser removido do
-   * banco de dados.
+   * @param {string} id - O ID do projeto a ser removido.
+   * @param {string} [locale] - Opcional. O código de localidade.
    *
-   * @returns {Promise<void>} Uma Promise que resolve quando o projeto é
-   * removido com sucesso ou é rejeitada, se ocorrer algum erro durante a
-   * operação de remoção no banco de dados.
-   *
-   * @throws {Error} Se ocorrer algum erro durante a operação de remoção no
-   * banco de dados.
+   * @returns {Promise<void>} Uma Promise que resolve quando a remoção do
+   * projeto e sua imagem associada (se existente) forem concluídas.
    */
-  static async remove(id: string): Promise<void> {
-    const docRef = doc(db, 'projetos', id);
+  static async remove(id: string, locale?: string): Promise<void> {
+    const docCollectionName = getCollectionLocaleName(
+      this.collectionName,
+      locale
+    );
+    const docRef = doc(db, docCollectionName, id);
     const project = joinDocDataAndId(await getDoc(docRef)) as IProject;
 
     const imgRef = ref(
