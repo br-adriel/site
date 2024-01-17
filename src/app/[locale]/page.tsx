@@ -32,14 +32,14 @@ export default async function Home({ params }: IProps) {
     (await ExperienceController.getAll(params.locale)) as IExperience[],
     (await SkillController.getAll(params.locale)) as ISkill[],
     (await EducationController.getAll(params.locale)) as IEducation[],
-    (await ProjectController.getLatest()) as IProject[],
+    (await ProjectController.getLatest(params.locale)) as IProject[],
   ]);
 
   return (
     <main className='flex flex-col'>
       <HelloSection />
       <ExperienceSection experiences={experiences} />
-      <SkillsSection skills={skills} />
+      <SkillsSection skills={skills} locale={params.locale} />
       <EducationSection education={education} />
       <ProjectsSection projects={latestProjects} />
     </main>
