@@ -156,26 +156,28 @@ export default class ProjectController {
   }
 
   /**
-   * Adiciona um novo projeto ao banco de dados.
+   * Adiciona um novo projeto à coleção, juntamente com uma imagem associada, e
+   * retorna o projeto adicionado.
    *
-   * @param {Omit<IProject, 'id'>} project - O objeto projeto a ser
-   * adicionado ao banco de dados, excluindo o campo 'id'.
-   * @param {File} image - O arquivo de imagem associado ao projeto.
+   * @param {Omit<Omit<IProject, 'id'>, 'imagem'>} project - Os detalhes do
+   * projeto, excluindo o ID e a URL da imagem.
+   * @param {File} image - A imagem associada ao projeto.
+   * @param {string} [locale] - Opcional. O código de localidade.
    *
-   * @returns {Promise<IProject>} Uma Promise que resolve para o objeto do
-   * projeto adicionado, incluindo o campo 'id' gerado pelo banco de dados e o
-   * campo 'imagem' que contém a URL da imagem armazenada.
-   *
-   * @throws {Error} Se ocorrer algum erro durante a operação de inserção no
-   * banco de dados ou no upload da imagem.
+   * @returns {Promise<IProject>} Uma Promise que resolve para o projeto
+   * adicionado, incluindo o ID e a URL da imagem.
    */
   static async add(
     project: Omit<Omit<IProject, 'id'>, 'imagem'>,
-    image: File
+    image: File,
+    locale?: string
   ): Promise<IProject> {
-    const docRef = await addDoc(this.collectionRef, {
-      ...project,
-    });
+    const docRef = await addDoc(
+      getCollectionLocaleRef(this.collectionName, db, locale),
+      {
+        ...project,
+      }
+    );
 
     const imageUrl = await uploadFile(
       `projetos/${docRef.id}.${image.name.split('.').pop()}`,
