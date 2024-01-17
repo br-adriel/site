@@ -1,12 +1,12 @@
 import BackButton from '@/components/BackButton';
+import ProjectDescription from '@/components/ProjectDescription';
 import ProjectImage from '@/components/ProjectImage';
+import ProjectTechnologies from '@/components/ProjectTechnologies';
 import ProjectController from '@/controller/project.controller';
 import IMetadataProps from '@/interfaces/IMetadataProps';
 import IProject from '@/interfaces/IProject';
 import { Metadata } from 'next';
 import NotFound from '../../[...not-found]/page';
-import ProjectDescription from '@/components/ProjectDescription';
-import ProjectTechnologies from '@/components/ProjectTechnologies';
 
 interface Props extends IMetadataProps {
   params: {
@@ -17,7 +17,7 @@ interface Props extends IMetadataProps {
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const [project, messages] = await Promise.all([
-    getData(params.id as string),
+    getData(params.id as string, params.locale),
     import(`../../../../messages/${params.locale}.json`),
   ]);
 
@@ -30,8 +30,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return messages.default.project.meta['no-project'];
 }
 
-async function getData(id: string): Promise<IProject | null> {
-  const fetchedProject = await ProjectController.getById(id);
+async function getData(id: string, locale?: string): Promise<IProject | null> {
+  const fetchedProject = await ProjectController.getById(id, locale);
   if (fetchedProject.id && fetchedProject.nome) {
     return fetchedProject as IProject;
   }
@@ -40,7 +40,7 @@ async function getData(id: string): Promise<IProject | null> {
 
 export default async function Project({ params }: Props) {
   if (params == null) return <NotFound />;
-  const project = await getData(params.id as string);
+  const project = await getData(params.id as string, params.locale);
 
   if (project == null) return <NotFound />;
   return (
