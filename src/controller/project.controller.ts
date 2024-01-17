@@ -6,6 +6,10 @@ import {
   uploadFile,
 } from '@/services/firebase/utils';
 import {
+  getCollectionLocaleName,
+  getCollectionLocaleRef,
+} from '@/utils/controller';
+import {
   Query,
   QueryDocumentSnapshot,
   addDoc,
@@ -28,15 +32,20 @@ export default class ProjectController {
   private static collectionName: string = 'projetos';
 
   /**
-   * Retorna todos os projetos do banco de dados
+   * Obtém todos os projetos da coleção, ordenados por data de criação, de
+   * acordo com a localidade especificada, se fornecida.
    *
-   * @returns {Promise<IProject[]>} Uma Promise que resolve para um array
-   * contendo todos os projetos do banco de dados.
+   * @param {string} [locale] - Opcional. O código de localidade. Se fornecido e
+   * válido, a consulta será ajustada para a localidade especificada.
    *
-   * @throws {Error} Se ocorrer algum erro durante a consulta ao banco de dados.
+   * @returns {Promise<IProject[]>} Uma Promise que resolve para uma matriz de
+   * projetos, ordenados por data de criação decrescente.
    */
-  static async getAll() {
-    const q = query(this.collectionRef, orderBy('dataCriacao', 'desc'));
+  static async getAll(locale?: string) {
+    const q = query(
+      getCollectionLocaleRef(this.collectionName, db, locale),
+      orderBy('dataCriacao', 'desc')
+    );
     const fetchedProjects = await getQuery(q);
     return fetchedProjects as IProject[];
   }
