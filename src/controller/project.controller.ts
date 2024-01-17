@@ -189,26 +189,23 @@ export default class ProjectController {
   }
 
   /**
-   * Atualiza um projeto existente no banco de dados.
+   * Atualiza as informações de um projeto existente na coleção, incluindo a
+   * possibilidade de atualizar a imagem associada.
    *
-   * @param {Omit<IProject, 'id'>} project - O objeto do projeto atualizado a
-   * ser adicionado ao banco de dados, excluindo o campo 'id'.
+   * @param {Omit<IProject, 'id'>} project - Os detalhes atualizados do projeto,
+   * excluindo o ID.
+   * @param {string} id - O ID do projeto a ser atualizado.
+   * @param {File} [image] - Opcional. A nova imagem associada ao projeto.
+   * @param {string} [locale] - Opcional. O código de localidade.
    *
-   * @param {string} id - O identificador único do projeto que será atualizado.
-   *
-   * @param {File} [image] - O arquivo de imagem a ser atualizado no projeto
-   * (opcional).
-   *
-   * @returns {Promise<IProject>} Uma Promise que resolve para o objeto do
-   * projeto atualizado, incluindo o campo 'id' fornecido como parâmetro.
-   *
-   * @throws {Error} Se ocorrer algum erro durante a operação de atualização
-   * no banco de dados ou no upload da imagem.
+   * @returns {Promise<IProject>} Uma Promise que resolve para o projeto
+   * atualizado, incluindo o ID e a URL da imagem, se aplicável.
    */
   static async update(
     project: Omit<IProject, 'id'>,
     id: string,
-    image?: File
+    image?: File,
+    locale?: string
   ): Promise<IProject> {
     if (image) {
       const imageUrl = await uploadFile(
@@ -218,7 +215,11 @@ export default class ProjectController {
       project.imagem = imageUrl;
     }
 
-    const docRef = doc(db, 'projetos', id);
+    const docCollectionName = getCollectionLocaleName(
+      this.collectionName,
+      locale
+    );
+    const docRef = doc(db, docCollectionName, id);
     await updateDoc(docRef, project);
     return { ...project, id };
   }
