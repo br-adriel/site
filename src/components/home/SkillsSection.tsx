@@ -10,9 +10,10 @@ import SkillModal from '../SkillModal';
 
 interface IProps {
   skills: ISkill[];
+  locale?: string;
 }
 
-export default function SkillsSection({ skills }: IProps) {
+export default function SkillsSection({ skills, locale }: IProps) {
   const t = useTranslations('home.page');
 
   const [showModal, setShowModal] = useState<boolean>(false);
@@ -31,7 +32,7 @@ export default function SkillsSection({ skills }: IProps) {
               />
             ))}
           </div>
-          <SkillModal open={showModal} />
+          <SkillModal open={showModal} locale={locale} />
         </Modal>
       ) : (
         <HelperComponent
