@@ -136,19 +136,18 @@ export default class ProjectController {
   }
 
   /**
-   * Obtém os projetos mais recentes do banco de dados.
+   * Obtém os 3 projetos mais recentes da coleção, ordenados por data de
+   * criação de acordo com a localidade especificada, se fornecida.
    *
-   * Os projetos são retornados em ordem decrescente de data de criação,
-   * limitados aos 3 projetos mais recentes.
+   * @param {string} [locale] - Opcional. O código de localidade. Se fornecido e
+   * válido, o nome da coleção será ajustado para incluir a localidade.
    *
-   * @returns {Promise<IProject[]>} Uma Promise que resolve para um array
-   * contendo os 3 projetos mais recentes do banco de dados.
-   *
-   * @throws {Error} Se ocorrer algum erro durante a consulta ao banco de dados.
+   * @returns {Promise<IProject[]>} Uma Promise que resolve para uma matriz dos
+   * projetos mais recentes, ordenados por data de criação decrescente.
    */
-  static async getLatest() {
+  static async getLatest(locale?: string) {
     const q = query(
-      this.collectionRef,
+      getCollectionLocaleRef(this.collectionName, db, locale),
       orderBy('dataCriacao', 'desc'),
       limit(3)
     );
