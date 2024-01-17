@@ -53,3 +53,23 @@ export const getDocLocaleRef = (
   }
   return doc(db, defaultLocale + '-' + collectionName, id);
 };
+
+/**
+ * Retorna o nome da coleção ajustado de acordo com a localidade, se fornecida.
+ *
+ * @param {string} collectionName - O nome da coleção.
+ * @param {string} [locale] - Opcional. O código de localidade. Se fornecido e
+ * válido, o nome da coleção será ajustado para incluir a localidade.
+ *
+ * @returns {string} O nome da coleção ajustado conforme a localidade.
+ */
+export const getCollectionLocaleName = (
+  collectionName: string,
+  locale?: string
+): string => {
+  if (locale && locale === 'pt') return collectionName;
+  if (locale && availableLocales.includes(locale)) {
+    return locale + '-' + collectionName;
+  }
+  return defaultLocale + '-' + collectionName;
+};
