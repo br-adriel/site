@@ -1,4 +1,4 @@
-import BackButton from '@/components/BackButton';
+import Navigation from '@/components/Navigation';
 import ProjectDescription from '@/components/ProjectDescription';
 import ProjectImage from '@/components/ProjectImage';
 import ProjectTechnologies from '@/components/ProjectTechnologies';
@@ -47,7 +47,7 @@ export default async function Project({ params }: Props) {
     <>
       <main className='container mx-auto min-h-screen p-4'>
         <div className='flex gap-4 mb-4'>
-          <BackButton />
+          <Navigation />
           <h1 className='font-semibold text-3xl'>{project?.nome}</h1>
         </div>
         <section className='grid grid-cols-12 gap-3'>

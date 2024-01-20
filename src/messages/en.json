@@ -8,7 +8,8 @@
     },
     "loading": "Loading...",
     "close-button": "Close",
-    "back-button": "Go back"
+    "back-button": "Go back",
+    "home-button": "Homepage"
   },
   "home": {
     "meta": {
