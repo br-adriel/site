@@ -7,6 +7,8 @@ import IMetadataProps from '@/interfaces/IMetadataProps';
 import IProject from '@/interfaces/IProject';
 import { Metadata } from 'next';
 import NotFound from '../../[...not-found]/page';
+import HomeButton from '@/components/HomeButton';
+import Navigation from '@/components/Navigation';
 
 interface Props extends IMetadataProps {
   params: {
@@ -47,7 +49,7 @@ export default async function Project({ params }: Props) {
     <>
       <main className='container mx-auto min-h-screen p-4'>
         <div className='flex gap-4 mb-4'>
-          <BackButton />
+          <Navigation />
           <h1 className='font-semibold text-3xl'>{project?.nome}</h1>
         </div>
         <section className='grid grid-cols-12 gap-3'>
