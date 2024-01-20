@@ -1,4 +1,4 @@
-import BackButton from '@/components/BackButton';
+import Navigation from '@/components/Navigation';
 import ProjectDescription from '@/components/ProjectDescription';
 import ProjectImage from '@/components/ProjectImage';
 import ProjectTechnologies from '@/components/ProjectTechnologies';
@@ -7,8 +7,6 @@ import IMetadataProps from '@/interfaces/IMetadataProps';
 import IProject from '@/interfaces/IProject';
 import { Metadata } from 'next';
 import NotFound from '../../[...not-found]/page';
-import HomeButton from '@/components/HomeButton';
-import Navigation from '@/components/Navigation';
 
 interface Props extends IMetadataProps {
   params: {
