@@ -28,6 +28,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     return {
       title,
       description,
+      metadataBase: new URL('https://adrielfsantos.vercel.app'),
       twitter: {
         card: 'summary_large_image',
         creator: '@meunomenaotemn',
