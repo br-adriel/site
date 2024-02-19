@@ -7,6 +7,7 @@ import IMetadataProps from '@/interfaces/IMetadataProps';
 import IProject from '@/interfaces/IProject';
 import { Metadata } from 'next';
 import NotFound from '../../[...not-found]/page';
+import { truncate } from '@/utils/strings';
 
 interface Props extends IMetadataProps {
   params: {
@@ -23,7 +24,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
   if (project) {
     const title = `${project.nome}${messages.default.project.meta.title}`;
-    const description = project.descricao;
+    const description = truncate(project.descricao);
     return {
       title,
       description,
