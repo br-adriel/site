@@ -22,9 +22,32 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   ]);
 
   if (project) {
+    const title = `${project.nome}${messages.default.project.meta.title}`;
+    const description = project.descricao;
     return {
-      title: `${project.nome}${messages.default.project.meta.title}`,
-      description: project.descricao,
+      title,
+      description,
+      twitter: {
+        card: 'summary_large_image',
+        creator: '@meunomenaotemn',
+        title,
+        description,
+        images: [project.imagem],
+      },
+      openGraph: {
+        title,
+        description,
+        siteName: 'Adriel Santos',
+        locale: params.locale,
+        type: 'website',
+        images: [
+          {
+            url: project.imagem,
+            width: 1066,
+            height: 600,
+          },
+        ],
+      },
     };
   }
   return messages.default.project.meta['no-project'];
